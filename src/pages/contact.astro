@@ -1,0 +1,316 @@
+---
+import PageHero from '../components/PageHero.astro';
+import { contact, telHref as tel, whatsappHref } from '../data/contact';
+import { school } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const whatsappReady = Boolean(contact.whatsappNumber);
+const main = contact.phones[0];
+---
+
+<BaseLayout
+  title={`Contact | ${school.name}`}
+  description="Call the right office, message the school on WhatsApp, or send an enquiry."
+  section="contact"
+>
+  <PageHero title="Contact us" lead={contact.lead} crumbs={[{ label: 'Contact' }]}>
+    <a class="bc-btn bc-btn-whatsapp" href={whatsappHref()}>WhatsApp the school</a>
+    <a class="bc-btn bc-btn-secondary" href={tel(main.number)}>Call {main.number} {contact.phoneTag}</a>
+  </PageHero>
+
+  <section class="bc-section">
+    <div class="bc-wrap contact-grid">
+      <div class="contact-info">
+        {
+          !whatsappReady && (
+            <div class="bc-alert bc-alert-warning" role="note" id="whatsapp">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 3l10 18H2z M12 10v5 M12 18v.5" />
+              </svg>
+              <div>
+                <b>WhatsApp is not connected yet</b>
+                <p>
+                  The school's official WhatsApp number has not been supplied, so the WhatsApp buttons and the
+                  enquiry form cannot open a chat. Please call an office below. [SAMPLE]
+                </p>
+              </div>
+            </div>
+          )
+        }
+
+        <div id="phone">
+          <h2 class="bc-h3">Phone by department</h2>
+          <ul class="dept-list">
+            {
+              contact.offices.map((office) => (
+                <li class="dept">
+                  <div>
+                    <b>{office.name}</b>
+                    <span class="bc-muted">{office.hint}</span>
+                  </div>
+                  <a href={tel(office.number)}>{office.number}</a>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="bc-muted tag-note">All numbers [SAMPLE].</p>
+        </div>
+
+        <div>
+          <h2 class="bc-h3">Office hours</h2>
+          <table class="bc-table bc-table-dates">
+            <tbody>
+              {
+                contact.hoursRows.map((row) => (
+                  <tr>
+                    <td class="date">{row.day}</td>
+                    <td>{row.time}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+          <p class="bc-muted tag-note">[SAMPLE]</p>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <form class="bc-card enquiry" id="enquiry-form" novalidate data-whatsapp-ready={String(whatsappReady)}>
+          <h2 class="bc-h3">Send an enquiry</h2>
+
+          <div class="bc-alert" id="form-alert" tabindex="-1" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"></svg>
+            <div>
+              <b id="form-alert-title"></b>
+              <p id="form-alert-text"></p>
+            </div>
+          </div>
+
+          <div class="bc-field field">
+            <label class="bc-label" for="enq-name">Your name</label>
+            <input class="bc-input" id="enq-name" name="name" type="text" autocomplete="name" required aria-describedby="enq-name-help" />
+            <span class="bc-help" id="enq-name-help">Parent or guardian.</span>
+          </div>
+
+          <div class="bc-field field">
+            <label class="bc-label" for="enq-phone">Phone number</label>
+            <input
+              class="bc-input"
+              id="enq-phone"
+              name="phone"
+              type="tel"
+              inputmode="tel"
+              autocomplete="tel"
+              required
+              aria-describedby="enq-phone-help"
+            />
+            <span class="bc-help" id="enq-phone-help">11-digit Nigerian number, for example 0803 123 4567.</span>
+          </div>
+
+          <div class="bc-field field">
+            <label class="bc-label" for="enq-interest">Level of interest</label>
+            <select class="bc-select" id="enq-interest" name="interest">
+              {contact.interests.map((option) => <option value={option.value}>{option.label}</option>)}
+            </select>
+          </div>
+
+          <div class="bc-field field">
+            <label class="bc-label" for="enq-message">Message</label>
+            <textarea class="bc-input" id="enq-message" name="message" rows="4" required aria-describedby="enq-message-help"></textarea>
+            <span class="bc-help" id="enq-message-help">Tell us what you would like to know.</span>
+          </div>
+
+          <p class="bc-muted consent">
+            {contact.consent}
+            <a href="/privacy/">Privacy</a>
+          </p>
+
+          <div class="form-actions">
+            <button class="bc-btn bc-btn-primary" type="submit">Send on WhatsApp</button>
+            <span class="bc-muted">{contact.replyPromise}</span>
+          </div>
+          <noscript><p class="bc-muted">This form needs JavaScript. Please call an office instead.</p></noscript>
+        </form>
+
+        <div class="bc-card enquiry" id="handoff" tabindex="-1" hidden>
+          <div class="bc-alert bc-alert-success" role="status">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M8 12l3 3 5-6"></path>
+            </svg>
+            <div>
+              <b>WhatsApp is open with your enquiry.</b>
+              <p>Press Send in WhatsApp to deliver it. Nothing reaches the school until you do.</p>
+            </div>
+          </div>
+          <p>Need an answer sooner? Call Admissions on {contact.offices[0].number} {contact.phoneTag}.</p>
+          <div class="form-actions">
+            <button class="bc-btn bc-btn-secondary" type="button" id="enquiry-again">Send another enquiry</button>
+            <a class="bc-btn bc-btn-text" href="/">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="find-us">
+    <div class="bc-wrap find-us">
+      <h2 class="bc-h2">Find us</h2>
+      <p>
+        {school.name}<br />{school.streetAddress}<br />{school.location} [DRAFT]
+      </p>
+      <p class="bc-muted">{contact.directions}</p>
+      <a class="bc-btn bc-btn-secondary" href={contact.mapsUrl} target="_blank" rel="noopener">Open in Google Maps</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { contact } from '../data/contact';
+  import { submitEnquiry, type Enquiry } from '../scripts/submit-enquiry';
+
+  const form = document.getElementById('enquiry-form') as HTMLFormElement;
+  const handoff = document.getElementById('handoff') as HTMLElement;
+  const alertBox = document.getElementById('form-alert') as HTMLElement;
+  const alertTitle = document.getElementById('form-alert-title') as HTMLElement;
+  const alertText = document.getElementById('form-alert-text') as HTMLElement;
+  const alertIcon = alertBox.querySelector('svg') as SVGElement;
+
+  const fields = {
+    name: document.getElementById('enq-name') as HTMLInputElement,
+    phone: document.getElementById('enq-phone') as HTMLInputElement,
+    interest: document.getElementById('enq-interest') as HTMLSelectElement,
+    message: document.getElementById('enq-message') as HTMLTextAreaElement,
+  };
+  const helpText = new Map<HTMLElement, string>();
+  for (const field of [fields.name, fields.phone, fields.message]) {
+    const help = document.getElementById(`${field.id}-help`) as HTMLElement;
+    helpText.set(help, help.textContent ?? '');
+  }
+
+  const ICON_ERROR = '<circle cx="12" cy="12" r="9"></circle><path d="M12 7v6 M12 16v.5"></path>';
+  const ICON_WARNING = '<path d="M12 3l10 18H2z M12 10v5 M12 18v.5"></path>';
+
+  function showAlert(kind: 'error' | 'warning', title: string, text: string, link?: { href: string; label: string }) {
+    alertBox.className = `bc-alert ${kind === 'error' ? 'bc-alert-error' : 'bc-alert-warning'}`;
+    alertBox.setAttribute('role', 'alert');
+    alertIcon.innerHTML = kind === 'error' ? ICON_ERROR : ICON_WARNING;
+    alertTitle.textContent = title;
+    alertText.textContent = text;
+    if (link) {
+      alertText.append(' ');
+      const a = document.createElement('a');
+      a.href = link.href;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = link.label;
+      alertText.append(a);
+    }
+    alertBox.hidden = false;
+    alertBox.focus();
+  }
+
+  function clearErrors() {
+    alertBox.hidden = true;
+    for (const field of [fields.name, fields.phone, fields.message]) {
+      field.classList.remove('is-error');
+      field.removeAttribute('aria-invalid');
+    }
+    for (const [help, original] of helpText) {
+      help.textContent = original;
+      help.classList.remove('is-error');
+    }
+  }
+
+  function setError(field: HTMLInputElement | HTMLTextAreaElement, message: string) {
+    field.classList.add('is-error');
+    field.setAttribute('aria-invalid', 'true');
+    const help = document.getElementById(`${field.id}-help`) as HTMLElement;
+    help.textContent = message;
+    help.classList.add('is-error');
+  }
+
+  /** Accepts 0803 123 4567, 0803-123-4567 and +234 803 123 4567. Returns the 11-digit form or null. */
+  function normalisePhone(value: string): string | null {
+    let digits = value.replace(/[\s\-().]/g, '');
+    if (digits.startsWith('+234')) digits = `0${digits.slice(4)}`;
+    else if (digits.startsWith('234') && digits.length === 13) digits = `0${digits.slice(3)}`;
+    return /^0\d{10}$/.test(digits) ? digits : null;
+  }
+
+  function validate(): Enquiry | null {
+    clearErrors();
+    const problems: Array<[HTMLInputElement | HTMLTextAreaElement, string]> = [];
+    const name = fields.name.value.trim();
+    const phone = normalisePhone(fields.phone.value);
+    const message = fields.message.value.trim();
+
+    if (name.length < 2) problems.push([fields.name, 'Enter your name.']);
+    if (!phone) problems.push([fields.phone, 'Enter an 11-digit number, for example 0803 123 4567.']);
+    if (message.length < 5) problems.push([fields.message, 'Write a short message so we know how to help.']);
+
+    if (problems.length) {
+      for (const [field, text] of problems) setError(field, text);
+      showAlert(
+        'error',
+        problems.length === 1 ? 'Please check one field' : `Please check ${problems.length} fields`,
+        problems.map(([, text]) => text).join(' '),
+      );
+      problems[0][0].focus();
+      return null;
+    }
+    return {
+      name,
+      phone: phone as string,
+      interest: fields.interest.selectedOptions[0].textContent ?? '',
+      message,
+    };
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const enquiry = validate();
+    if (!enquiry) return;
+
+    const result = submitEnquiry(enquiry);
+    if (result.ok) {
+      form.hidden = true;
+      handoff.hidden = false;
+      handoff.focus();
+    } else if (result.status === 'not-configured') {
+      showAlert(
+        'warning',
+        'Your enquiry has not been sent',
+        "WhatsApp is not connected yet: the school's official WhatsApp number has not been supplied. Please call an office instead.",
+      );
+    } else {
+      showAlert('warning', 'Your enquiry has not been sent', 'Your browser blocked WhatsApp from opening.', {
+        href: result.url,
+        label: 'Open WhatsApp with your message',
+      });
+    }
+  });
+
+  document.getElementById('enquiry-again')?.addEventListener('click', () => {
+    form.reset();
+    preselectInterest();
+    clearErrors();
+    handoff.hidden = true;
+    form.hidden = false;
+    fields.name.focus();
+  });
+
+  /** ?interest=tour (from "Book a Tour") preselects the level of interest. */
+  function preselectInterest() {
+    const wanted = new URLSearchParams(location.search).get('interest');
+    if (wanted && contact.interests.some((option) => option.value === wanted)) fields.interest.value = wanted;
+  }
+  preselectInterest();
+
+  // Development preview of the hand-off state only. Compiled out of production builds, and never
+  // shown in a real build, so the site cannot display a success state it did not earn.
+  if (import.meta.env.DEV && new URLSearchParams(location.search).get('preview') === 'handoff') {
+    form.hidden = true;
+    handoff.hidden = false;
+  }
+</script>
