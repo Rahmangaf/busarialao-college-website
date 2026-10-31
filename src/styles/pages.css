@@ -238,6 +238,10 @@
 /* Placeholder for something that does not exist yet (PDF, payment, channel). Not a link. */
 .bc-btn.is-disabled {
   cursor: not-allowed;
+  /* The design system's disabled grey (2.4:1) is too faint for text that explains why it is off. */
+  color: var(--neutral-600);
+  border-style: dashed;
+  border-color: var(--neutral-400);
 }
 
 /* ---------- Closing CTA band ---------- */

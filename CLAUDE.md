@@ -15,11 +15,13 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server on http://localhost:4321. The launch guard does not run. |
-| `npm run build` | Production build **with the launch guard on**. Fails while any `[SAMPLE]`, `[DRAFT]` or `[CONFIRM]` tag is in the built pages. |
+| `npm run build` | Production build **with the launch guard on**. Fails while any `[SAMPLE]`, `[DRAFT]` or `[CONFIRM]` tag is in the built pages, or while `developmentNoindex` is still on. |
 | `npm run build:draft` | Production build with the guard off (`LAUNCH_GUARD=off`). Use this while the site is still being built. |
 | `npm run check` | `astro check` (types and Astro diagnostics). |
+| `npm run check:links` | Checks every internal link and `#fragment` in `dist/` (run `build:draft` first). |
 | `npm run images` | Regenerate the WebP masters from `assets/generated-photos`. |
 | `npm run logos` | Regenerate `public/logo/*.svg` from `assets/logo/busarialao-logo-clean.svg`. |
+| `npm run favicons` | Regenerate the favicon set in `public/` from the logo emblem. |
 
 ## Layout
 
@@ -27,7 +29,9 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 - `src/data/` holds typed data (`school`, `contact`, `admissions`, `results`, `nav`) and `sample-content-register.ts`, the list of every generated photo, its alt text and where it is used.
 - `design-system/` is an untouched copy of the handoff CSS and tokens, for diffing when the design changes. The site loads the copies in `src/styles/` (identical except the Google Fonts `@import` is removed).
 - `design-references/` has desktop screenshots of the approved design. The full design (desktop, mobile and states) is the Claude design handoff canvas.
+- `site.config.mjs` holds the central `developmentNoindex` flag (see Launch checklist).
 - `integrations/launch-guard.mjs` is the build check described above.
+- `src/pages/` has one file per page; shared page structure is `PageHero` and `CtaBand` in `src/components/`, styled by `src/styles/pages.css` and `page-sections.css`.
 
 ## Content rules
 
@@ -40,7 +44,9 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 
 ## Decisions
 
-- Breakpoints come from the design tokens: 600px and 960px. Below 960px the header is the mobile header. Tablet (check at 768px) has no separate design.
+- Breakpoints: 600px and 960px (design tokens) for page layout. The site chrome (top bar, full navigation, mega-menu) starts at **1100px**; below that the header is the mobile header, because six nav labels, the logo and Apply Now do not fit on one line any narrower. Tablet (check at 768px) has no separate design.
+- Home Minimal is the design reference for every page: one slim top bar, no eyebrow labels, at most one navy section per page, circle motif on Home only, no flat placeholder boxes (a section without a real photo has none).
+- Invented achievement claims from the mockup (JAMB 312, top-five candidate grades, teacher ratio, testimonials) are not built. Structural placeholders (fees, dates, hours, phone numbers) are built and tagged `[SAMPLE]`.
 - "Apply Now" and "Start your application" link to the Admissions page's application steps (`/admissions/#how-to-apply`). `/apply/` is a simple "Applications open soon" page for the form itself.
 - "Book a Tour" links to `/contact/?interest=tour`, which preselects "Book a tour" as the level of interest.
 - Portals link to one "Portal links coming soon" page (`/portals/`) listing Parent, Student, Staff and Applicant, tagged `[SAMPLE]`.
@@ -49,6 +55,16 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 - Until the school supplies a WhatsApp number (`contact.whatsappNumber`), WhatsApp links go to the Contact page rather than a made-up number.
 - Contact map and Boarding gallery are hidden until real assets exist. Keep an "Open in Google Maps" link.
 - Payment confirmed is a static design state only, clearly marked "payment not yet connected".
+
+## Launch checklist
+
+`npm run build` (guard on) must pass before launch. It checks:
+
+1. No `[SAMPLE]`, `[DRAFT]` or `[CONFIRM]` tag is left in any built page.
+2. `developmentNoindex` in `site.config.mjs` is switched off. While it is on, every page has a `noindex` meta tag and `/robots.txt` disallows everything.
+3. Exposure protection (every build, even with the guard off): the noindex tag and robots.txt must match the flag, and `developmentNoindex: false` with `LAUNCH_GUARD=off` is refused.
+
+Also before launch: set `contact.whatsappNumber`, replace every generated photo (see the sample-content register), add the real domain as `site` in `astro.config.mjs`, and add a sitemap.
 
 ## Not decided yet
 
