@@ -1,0 +1,16 @@
+---
+// Announcement + utility links. Desktop only (960px and up); on smaller screens the
+// utility links move into the mobile menu.
+import { admissions } from '../data/admissions';
+import { whatsappHref } from '../data/contact';
+import { utilityLinks } from '../data/nav';
+
+const links = utilityLinks.map((link) => (link.label === 'WhatsApp' ? { ...link, href: whatsappHref() } : link));
+---
+
+<div class="top-bar">
+  <p>{admissions.announcement}</p>
+  <nav aria-label="Utility">
+    {links.map((link) => <a href={link.href}>{link.label}</a>)}
+  </nav>
+</div>

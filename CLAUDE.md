@@ -1,0 +1,62 @@
+# Busarialao College website
+
+Marketing and admissions site for Busarialao College, a science-focused day and boarding secondary school in Ilorin, Kwara State. Parents on phones are the main audience. Nothing on the site is verified yet: all content is a draft until the school confirms it.
+
+## Stack
+
+- **Astro**, static output (`output: 'static'`), TypeScript. No React, no Tailwind, no shadcn/ui.
+- **The design system's own CSS and tokens.** `src/styles/tokens.css` and `src/styles/bundle.css` are the design system from the approved design handoff (class prefix `bc-`). Site-specific layout goes in `src/styles/site.css` (shared chrome) and per-page files such as `src/styles/home.css`. Do not add a CSS framework.
+- **Inter, self-hosted** through `@fontsource-variable/inter` (family name "Inter Variable"). No Google Fonts request.
+- **Client-side JavaScript stays minimal.** Small scripts or islands only where needed: the mega-menu, accordions, results year selector, news filter and form validation. The mobile menu is a native `popover` and the accordions are native `<details>`, so they need no script. Prefer HTML and CSS first.
+- **Images**: originals stay in `assets/`. `npm run images` writes WebP masters to `src/assets/photos`; Astro's `<Image>` builds the responsive sizes. Use the `Media` component, never a bare `<img>` for photographs.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server on http://localhost:4321. The launch guard does not run. |
+| `npm run build` | Production build **with the launch guard on**. Fails while any `[SAMPLE]`, `[DRAFT]` or `[CONFIRM]` tag is in the built pages. |
+| `npm run build:draft` | Production build with the guard off (`LAUNCH_GUARD=off`). Use this while the site is still being built. |
+| `npm run check` | `astro check` (types and Astro diagnostics). |
+| `npm run images` | Regenerate the WebP masters from `assets/generated-photos`. |
+| `npm run logos` | Regenerate `public/logo/*.svg` from `assets/logo/busarialao-logo-clean.svg`. |
+
+## Layout
+
+- `content/` is the source of truth for all copy. Read it before writing page copy or data. `content/00-README.md` has the tag rules; `content/08-open-questions.md` lists what the school must confirm.
+- `src/data/` holds typed data (`school`, `contact`, `admissions`, `results`, `nav`) and `sample-content-register.ts`, the list of every generated photo, its alt text and where it is used.
+- `design-system/` is an untouched copy of the handoff CSS and tokens, for diffing when the design changes. The site loads the copies in `src/styles/` (identical except the Google Fonts `@import` is removed).
+- `design-references/` has desktop screenshots of the approved design. The full design (desktop, mobile and states) is the Claude design handoff canvas.
+- `integrations/launch-guard.mjs` is the build check described above.
+
+## Content rules
+
+1. **Tags.** `[DRAFT]` (from the draft magazine), `[SAMPLE]` (invented for the mockup) and `[CONFIRM]` (unclear in the source) stay in the copy until the school confirms the item. Never remove a tag without that confirmation. Tags are literal text in the data and templates, so the launch guard can find them.
+2. Do not invent school facts, statistics, testimonials, facilities or policies. If a page needs content that does not exist, flag it.
+3. Write plain, short sentences. British/Nigerian spelling. Naira as ₦180,000. Verbs first on buttons.
+4. Use the name **Busarialao College** (the spelling is itself `[CONFIRM]`).
+5. Anything that changes over time (such as years since founding) is computed from a stored year, never typed.
+6. Every photograph is a generated sample with a visible `[SAMPLE] Generated photo` tag and an entry in the sample-content register. Hide a section rather than fill it with flat placeholder boxes.
+
+## Decisions
+
+- Breakpoints come from the design tokens: 600px and 960px. Below 960px the header is the mobile header. Tablet (check at 768px) has no separate design.
+- "Apply Now" and "Start your application" link to the Admissions page's application steps (`/admissions/#how-to-apply`). `/apply/` is a simple "Applications open soon" page for the form itself.
+- "Book a Tour" links to `/contact/?interest=tour`, which preselects "Book a tour" as the level of interest.
+- Portals link to one "Portal links coming soon" page (`/portals/`) listing Parent, Student, Staff and Applicant, tagged `[SAMPLE]`.
+- Nav sub-pages (Leadership, Scholarships, Entrance exam, Eligibility) are sections on their parent page, not separate pages.
+- The contact form validates, then hands off to WhatsApp through one `submitEnquiry` function. No storage, no email, and no success state unless it actually sent.
+- Until the school supplies a WhatsApp number (`contact.whatsappNumber`), WhatsApp links go to the Contact page rather than a made-up number.
+- Contact map and Boarding gallery are hidden until real assets exist. Keep an "Open in Google Maps" link.
+- Payment confirmed is a static design state only, clearly marked "payment not yet connected".
+
+## Not decided yet
+
+Payments (provider and webhook), enquiry delivery beyond WhatsApp, hosting and domain. Do not choose a provider or add a webhook. `site` is deliberately unset in `astro.config.mjs` until the domain is known.
+
+## Phasing
+
+1. Foundation, data layer, Home, About, Contact (with its sent state), then stop for review at 1440px and 360px.
+2. Remaining pages: Admissions, Fees, Results, Academics, Boarding, News, plus the Apply, Portals and Privacy placeholders.
+
+Commit after each phase.

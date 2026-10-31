@@ -1,0 +1,39 @@
+---
+import { contact } from '../data/contact';
+import { footerLinks } from '../data/nav';
+import { school } from '../data/school';
+
+// Computed at build time, so the year updates whenever the site is rebuilt.
+const year = new Date().getFullYear();
+---
+
+<footer class="bc-footer site-footer">
+  <div class="bc-footer-logo">
+    <img src="/logo/logo-white.svg" alt={school.name} width="139" height="72" />
+  </div>
+  <div>
+    <h4>Explore</h4>
+    {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+  </div>
+  <div>
+    <h4>Visit</h4>
+    {school.location}<br />{school.streetAddress}
+  </div>
+  <div>
+    <h4>Office hours</h4>
+    {contact.officeHours}
+  </div>
+  <div>
+    <h4>Follow</h4>
+    {
+      contact.social.map((account) =>
+        account.url ? (
+          <a href={account.url}>{account.label}</a>
+        ) : (
+          <span class="footer-pending">{account.label} [SAMPLE: link not set]</span>
+        ),
+      )
+    }
+  </div>
+  <small>{school.accreditation} · © {year} {school.name}</small>
+</footer>

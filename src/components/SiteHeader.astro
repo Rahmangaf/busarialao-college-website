@@ -1,0 +1,170 @@
+---
+// Sticky header. From 960px: logo, main nav (Admissions has a mega-menu) and Apply Now.
+// Below 960px: logo, Apply Now and a menu button that opens a full-screen popover.
+//
+// The mobile menu uses the native `popover` attribute, so it opens and closes without
+// JavaScript. The small script below only adds the Admissions mega-menu and closes the
+// mobile menu when a link inside it is followed.
+import { whatsappHref } from '../data/contact';
+import { admissionsMega, cta, mainNav, utilityLinks } from '../data/nav';
+import { school } from '../data/school';
+
+interface Props {
+  /** Key of the current section in `mainNav`, e.g. "about". */
+  section?: string;
+}
+
+const { section } = Astro.props;
+const current = (key: string) => (section === key ? 'page' : undefined);
+const utility = utilityLinks.map((link) => (link.label === 'WhatsApp' ? { ...link, href: whatsappHref() } : link));
+---
+
+<header class="bc-header site-header" data-site-header>
+  <a class="site-logo" href="/">
+    <img src="/logo/logo.svg" alt={school.name} width="92" height="48" />
+  </a>
+
+  <nav class="bc-nav site-nav" aria-label="Main">
+    {
+      mainNav.map((item) =>
+        item.key === 'admissions' ? (
+          <div class="nav-split">
+            <a href={item.href} aria-current={current(item.key)}>{item.label}</a>
+            <button
+              type="button"
+              class="nav-toggle"
+              aria-expanded="false"
+              aria-controls="mega-admissions"
+              aria-label="Show the Admissions menu"
+              data-mega-toggle
+              hidden
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"></path></svg>
+            </button>
+          </div>
+        ) : (
+          <a href={item.href} aria-current={current(item.key)}>{item.label}</a>
+        ),
+      )
+    }
+  </nav>
+
+  <a class="bc-btn bc-btn-primary site-apply" href={cta.apply}>Apply Now</a>
+
+  <button
+    type="button"
+    class="bc-btn bc-btn-secondary bc-btn-icon menu-btn"
+    popovertarget="mobile-menu"
+    aria-label="Open menu"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+  </button>
+
+  <div class="mega" id="mega-admissions" hidden>
+    <div class="bc-wrap">
+      <div class="bc-mega">
+        {
+          admissionsMega.columns.map((column) => (
+            <div class="bc-mega-col">
+              <span class="bc-eyebrow">{column.title}</span>
+              {column.links.map((link) => (
+                <a href={link.href}>
+                  {link.label}
+                  <span>{link.hint}</span>
+                </a>
+              ))}
+            </div>
+          ))
+        }
+        <div class="bc-mega-feature">
+          <span class="bc-eyebrow">{admissionsMega.feature.eyebrow}</span>
+          <b>{admissionsMega.feature.heading}</b>
+          <span class="bc-muted">{admissionsMega.feature.text}</span>
+          <a class="bc-btn bc-btn-primary" href={cta.apply}>Start application</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mega-scrim" data-mega-scrim hidden></div>
+
+<div id="mobile-menu" class="mobile-menu" popover>
+  <div class="bc-header mobile-menu-bar">
+    <a class="site-logo" href="/">
+      <img src="/logo/logo.svg" alt={school.name} width="77" height="40" />
+    </a>
+    <button
+      type="button"
+      class="bc-btn bc-btn-secondary bc-btn-icon menu-btn"
+      popovertarget="mobile-menu"
+      popovertargetaction="hide"
+      aria-label="Close menu"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+  </div>
+
+  <nav class="bc-mmenu-nav" aria-label="Main">
+    <div class="bc-acc">
+      {
+        mainNav.map((group) =>
+          group.children ? (
+            <details>
+              <summary>{group.label}</summary>
+              {group.children.map((link) => <a href={link.href}>{link.label}</a>)}
+            </details>
+          ) : (
+            <a class="mm-link" href={group.href}>
+              {group.label}
+            </a>
+          ),
+        )
+      }
+    </div>
+    <div class="mm-util">
+      {utility.map((link) => <a href={link.href}>{link.label}</a>)}
+    </div>
+  </nav>
+
+  <div class="mm-cta">
+    <a class="bc-btn bc-btn-primary" href={cta.apply}>Apply Now →</a>
+  </div>
+</div>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-mega-toggle]');
+  const panel = document.getElementById('mega-admissions');
+  const scrim = document.querySelector<HTMLElement>('[data-mega-scrim]');
+
+  if (header && toggle && panel && scrim) {
+    toggle.hidden = false;
+
+    const setOpen = (open: boolean, returnFocus = false) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      scrim.hidden = !open;
+      if (!open && returnFocus) toggle.focus();
+    };
+
+    toggle.addEventListener('click', () => setOpen(Boolean(panel.hidden)));
+    scrim.addEventListener('click', () => setOpen(false));
+    panel.addEventListener('click', (event) => {
+      if ((event.target as Element).closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !panel.hidden) setOpen(false, true);
+    });
+    header.addEventListener('focusout', (event) => {
+      const next = event.relatedTarget as Node | null;
+      if (!panel.hidden && next && !header.contains(next)) setOpen(false);
+    });
+  }
+
+  // Links to a section of the page you are already on do not reload it, so close the menu.
+  const menu = document.getElementById('mobile-menu');
+  menu?.addEventListener('click', (event) => {
+    if ((event.target as Element).closest('a')) menu.hidePopover();
+  });
+</script>

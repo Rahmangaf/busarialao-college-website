@@ -1,0 +1,47 @@
+---
+// A registered sample photograph in a fixed-ratio frame with a visible [SAMPLE] tag.
+// The ratio can differ by breakpoint: `ratio` applies from 600px up, `ratioMobile` below.
+import { Image } from 'astro:assets';
+import { samplePhotos, type PhotoId } from '../data/sample-content-register';
+
+interface Props {
+  photo: PhotoId;
+  /** CSS aspect-ratio, e.g. "16 / 9". */
+  ratio?: string;
+  ratioMobile?: string;
+  /** object-position focal point, e.g. "50% 40%". */
+  focus?: string;
+  /** Hero images load eagerly; everything else is lazy. */
+  eager?: boolean;
+  sizes?: string;
+  class?: string;
+}
+
+const {
+  photo,
+  ratio = '3 / 2',
+  ratioMobile = ratio,
+  focus = '50% 50%',
+  eager = false,
+  sizes = '(min-width: 1264px) 1200px, 100vw',
+  class: className,
+} = Astro.props;
+
+const { image, alt } = samplePhotos[photo];
+---
+
+<figure
+  class:list={['bc-media', 'media', className]}
+  style={`--ratio:${ratio};--ratio-m:${ratioMobile};--focus:${focus}`}
+>
+  <Image
+    src={image}
+    alt={alt}
+    widths={[480, 768, 1024, 1440, 1600]}
+    sizes={sizes}
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : 'auto'}
+    decoding={eager ? 'sync' : 'async'}
+  />
+  <span class="bc-media-tag">[SAMPLE] Generated photo</span>
+</figure>

@@ -1,0 +1,12 @@
+---
+// The two-circle brand motif, used as a decorative backdrop on navy bands.
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<svg class:list={['bc-motif', 'on-navy', className]} aria-hidden="true" focusable="false" viewBox="0 0 760 480">
+  <circle cx="240" cy="240" r="240"></circle>
+  <circle cx="520" cy="240" r="240"></circle>
+</svg>

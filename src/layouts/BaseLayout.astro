@@ -1,0 +1,45 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/tokens.css';
+import '../styles/bundle.css';
+import '../styles/site.css';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import TopBar from '../components/TopBar.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+import { school } from '../data/school';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Key of the current section in `mainNav` (src/data/nav.ts). */
+  section?: string;
+}
+
+const {
+  title = `${school.name}: Nurturing Scientific Minds, Inspiring the Future`,
+  description = 'A science-focused day and boarding school in Ilorin, Kwara State.',
+  section,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-NG">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#2A1F7A" />
+    <title>{title}</title>
+  </head>
+  <body class="bc">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <TopBar />
+    <SiteHeader section={section} />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter />
+    <WhatsAppFab />
+  </body>
+</html>

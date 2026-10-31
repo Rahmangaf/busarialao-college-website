@@ -1,0 +1,334 @@
+/*
+ * Site layer on top of the design system (tokens.css + bundle.css).
+ * Shared chrome only: header, mega-menu, mobile menu, top bar, footer, media frames.
+ * Breakpoints (from the design tokens): 600px and 960px.
+ *   < 600px   mobile
+ *   600-959px tablet (mobile header, 600px+ layouts)
+ *   >= 960px  desktop
+ */
+
+body {
+  margin: 0;
+  background: var(--surface);
+}
+
+/* Inter is self-hosted (@fontsource-variable/inter registers it as "Inter Variable"). */
+.bc {
+  font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Plain text links. :where() keeps this at zero specificity so the design system's own link
+   colours (nav, mega-menu, footer, menus) always win. */
+:where(.bc a:not([class])) {
+  color: var(--sky-600);
+}
+:where(.bc a:not([class]):hover) {
+  color: var(--sky-700);
+}
+
+.bc img {
+  max-width: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  background: var(--navy-900);
+  color: var(--on-primary);
+  border-radius: var(--radius-sm);
+}
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+/* ---------- Media frames: ratio can change at 600px ---------- */
+.bc-media.media {
+  aspect-ratio: var(--ratio-m, 3 / 2);
+}
+@media (min-width: 600px) {
+  .bc-media.media {
+    aspect-ratio: var(--ratio, 3 / 2);
+  }
+}
+
+/* ---------- Top bar (desktop only) ---------- */
+.top-bar {
+  display: none;
+}
+@media (min-width: 960px) {
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    min-height: 40px;
+    padding: 0 var(--space-6);
+    background: var(--navy-900);
+    color: var(--on-primary);
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .top-bar p {
+    margin: 0;
+  }
+  .top-bar nav {
+    display: flex;
+    gap: var(--space-5);
+  }
+  .top-bar a {
+    color: var(--on-primary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+  .top-bar a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  gap: var(--space-4);
+  padding: 0 var(--gutter-mobile);
+  min-height: 64px;
+}
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+}
+.site-logo img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+.site-header .site-apply {
+  margin-left: auto;
+  padding: 0 var(--space-4);
+}
+.site-nav,
+.mega,
+.mega-scrim {
+  display: none;
+}
+.menu-btn {
+  border-color: var(--neutral-200);
+}
+
+@media (min-width: 960px) {
+  .site-header {
+    gap: var(--space-6);
+    padding: 0 var(--space-6);
+    min-height: 72px;
+  }
+  .site-logo img {
+    height: 48px;
+  }
+  .site-nav {
+    display: flex;
+    margin-left: auto;
+  }
+  .site-header .site-apply {
+    margin-left: 0;
+    padding: 0 var(--space-5);
+  }
+  .site-header .menu-btn {
+    display: none;
+  }
+}
+
+/* Admissions: link plus a separate disclosure button for the mega-menu. */
+.nav-split {
+  display: inline-flex;
+  align-items: center;
+}
+.bc-nav .nav-split > a {
+  padding-right: var(--space-1);
+}
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  margin-left: -2px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--navy-900);
+  cursor: pointer;
+}
+.nav-toggle[hidden] {
+  display: none;
+}
+.nav-toggle:hover,
+.nav-toggle[aria-expanded='true'] {
+  background: var(--sky-50);
+}
+.nav-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s ease-out;
+}
+.nav-toggle[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
+
+/* ---------- Mega-menu (desktop) ---------- */
+@media (min-width: 960px) {
+  .mega:not([hidden]) {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+  }
+  .mega-scrim:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    background: rgba(42, 31, 122, 0.18);
+  }
+  .mega .bc-mega-feature b {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+  }
+}
+
+/* ---------- Mobile menu (native popover, full screen) ---------- */
+.mobile-menu {
+  /* The UA stylesheet centres popovers; make it a full-viewport sheet. */
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--surface);
+  color: var(--navy-900);
+  overflow: hidden;
+}
+.mobile-menu:popover-open {
+  display: flex;
+  flex-direction: column;
+}
+.mobile-menu-bar {
+  flex: none;
+  gap: var(--space-2);
+  padding: 0 var(--gutter-mobile);
+  min-height: 64px;
+  justify-content: space-between;
+}
+.mobile-menu .bc-mmenu-nav {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+.mobile-menu .bc-acc summary,
+.mobile-menu .bc-acc .mm-link {
+  font-weight: 600;
+}
+.mobile-menu .bc-acc .mm-link {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: var(--space-3) 0;
+  font-size: 18px;
+  color: var(--navy-900);
+  text-decoration: none;
+  border-bottom: 1px solid var(--neutral-200);
+}
+.mm-util {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5) 0 var(--space-2);
+}
+.mm-util a {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--navy-900);
+  text-decoration: none;
+  font-size: 16px;
+}
+.mm-cta {
+  flex: none;
+  padding: var(--space-4) var(--gutter-mobile) calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--neutral-200);
+}
+.mm-cta .bc-btn {
+  display: flex;
+}
+@media (min-width: 960px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+/* ---------- WhatsApp button: below 960px only ---------- */
+@media (min-width: 960px) {
+  .site-fab {
+    display: none;
+  }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding-left: var(--gutter-mobile);
+  padding-right: var(--gutter-mobile);
+  padding-bottom: 96px; /* clears the WhatsApp button */
+  grid-template-columns: 1fr;
+}
+.site-footer h4 {
+  font-weight: 600;
+}
+.footer-pending {
+  display: block;
+  padding: 4px 0;
+  opacity: 0.85;
+}
+@media (min-width: 600px) {
+  .site-footer {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+@media (min-width: 960px) {
+  .site-footer {
+    padding-left: clamp(var(--space-6), 8.33vw, 120px);
+    padding-right: clamp(var(--space-6), 8.33vw, 120px);
+    padding-bottom: var(--space-5);
+  }
+}

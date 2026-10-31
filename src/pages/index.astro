@@ -1,0 +1,130 @@
+---
+// Home Minimal (the approved home design). Content: content/07-homepage-and-shared-copy.md.
+import Media from '../components/Media.astro';
+import Motif from '../components/Motif.astro';
+import { admissions } from '../data/admissions';
+import { contact, whatsappHref } from '../data/contact';
+import { cta } from '../data/nav';
+import { formatPercent, latestResult } from '../data/results';
+import { home, school, yearsSinceFounding } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/home.css';
+
+const latest = latestResult();
+const stats = [
+  { value: String(yearsSinceFounding()), label: `years of teaching, since ${school.foundedYear}` },
+  { value: formatPercent(latest.wassce ?? 0), label: `WASSCE pass rate, ${latest.year} [DRAFT · CONFIRM measure]` },
+  { value: formatPercent(latest.universityAdmission ?? 0, 0), label: `university admission, ${latest.year} [DRAFT]` },
+];
+---
+
+<BaseLayout title="Busarialao College: Nurturing Scientific Minds, Inspiring the Future" description={home.subline}>
+  <section class="home-hero">
+    <div class="bc-wrap">
+      <div class="home-hero-copy">
+        <h1>{home.title}</h1>
+        <p class="home-sub">{home.subline}</p>
+        <div class="home-actions">
+          <a class="bc-btn bc-btn-primary" href={cta.apply}>Apply Now →</a>
+          <a class="bc-btn bc-btn-secondary" href={cta.tour}>Book a Tour</a>
+        </div>
+      </div>
+      <Media
+        photo="chemistry-lab"
+        ratio="16 / 9"
+        ratioMobile="4 / 5"
+        focus="50% 40%"
+        sizes="(min-width: 1264px) 1200px, 100vw"
+        eager
+      />
+    </div>
+  </section>
+
+  <section class="bc-section-navy home-numbers" aria-labelledby="numbers-heading">
+    <Motif />
+    <div class="bc-wrap home-numbers-inner">
+      <h2 id="numbers-heading" class="sr-only">Our record</h2>
+      <ul class="home-stats">
+        {
+          stats.map((stat) => (
+            <li>
+              <span class="home-stat-value">{stat.value}</span>
+              <span class="home-stat-label">{stat.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="home-results-link" href={cta.results}>See all results</a>
+    </div>
+  </section>
+
+  <section class="home-band" aria-labelledby="paths-heading">
+    <div class="bc-wrap">
+      <h2 id="paths-heading" class="home-h2">Day or boarding. Both, fully supported.</h2>
+      <div class="home-paths">
+        <article>
+          <Media
+            photo="students-walking"
+            ratio="4 / 5"
+            focus="45% 30%"
+            sizes="(min-width: 1264px) 584px, (min-width: 600px) 50vw, 100vw"
+          />
+          <h3 class="bc-h3">Day school</h3>
+          <p class="home-sub home-sub-sm">Classes from 7:45am to 3pm, with clubs and supervised prep. [SAMPLE]</p>
+        </article>
+        <article>
+          <Media
+            photo="dormitory"
+            ratio="4 / 5"
+            focus="40% 55%"
+            sizes="(min-width: 1264px) 584px, (min-width: 600px) 50vw, 100vw"
+          />
+          <h3 class="bc-h3">Boarding</h3>
+          <p class="home-sub home-sub-sm">A hostel on Yidi Road with house staff and a sick bay. [DRAFT]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-band home-join" aria-labelledby="join-heading">
+    <div class="bc-wrap">
+      <h2 id="join-heading" class="home-h2">How to join</h2>
+      <ol class="home-steps">
+        {
+          admissions.joinSummary.map((step) => (
+            <li>
+              <span class="home-step-number" aria-hidden="true" />
+              <div>
+                <h3 class="bc-h3">{step.title}</h3>
+                <p class="home-sub home-sub-sm">{step.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="home-join-cta">
+        <a class="bc-btn bc-btn-primary" href={cta.apply}>Start your application →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-visit" aria-labelledby="visit-heading">
+    <div class="bc-wrap">
+      <div class="home-visit-copy">
+        <h2 id="visit-heading" class="home-h2">Ready to visit?</h2>
+        <p class="home-sub">{contact.tours}</p>
+        <div class="home-visit-actions">
+          <a class="bc-btn bc-btn-primary" href={cta.tour}>Book a Tour →</a>
+          <a class="bc-btn bc-btn-text" href={whatsappHref()}>Ask on WhatsApp</a>
+        </div>
+      </div>
+      <Media
+        photo="courtyard"
+        ratio="21 / 9"
+        ratioMobile="4 / 3"
+        focus="50% 55%"
+        sizes="(min-width: 1264px) 1200px, 100vw"
+      />
+    </div>
+  </section>
+</BaseLayout>
