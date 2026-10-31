@@ -12,7 +12,8 @@
     "images": "node scripts/optimise-images.mjs",
     "logos": "node scripts/make-logos.mjs",
     "favicons": "node scripts/make-favicons.mjs",
-    "check:links": "node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs",
+    "cms": "decap-server"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
@@ -21,6 +22,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "decap-cms": "^3.17.3",
+    "decap-server": "^3.11.6",
     "typescript": "^6.0.3"
   }
 }

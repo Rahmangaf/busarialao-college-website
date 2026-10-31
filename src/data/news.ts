@@ -23,7 +23,12 @@ export interface NewsItem {
   bodyHeading?: { before: number; text: string };
 }
 
-export const news = data.items as unknown as NewsItem[];
+// The editor saves an empty photo or focus as "", so turn those back into "not set".
+export const news: NewsItem[] = (data.items as unknown as NewsItem[]).map((item) => ({
+  ...item,
+  photo: item.photo || undefined,
+  focus: item.focus || undefined,
+}));
 
 export function formatNewsDate(iso: string, style: 'short' | 'long' = 'short'): string {
   const date = new Date(`${iso}T00:00:00Z`);
