@@ -1,0 +1,135 @@
+---
+import CtaBand from '../components/CtaBand.astro';
+import Media from '../components/Media.astro';
+import PageHero from '../components/PageHero.astro';
+import { academics } from '../data/academics';
+import { contact } from '../data/contact';
+import { cta } from '../data/nav';
+import { school } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const { curriculum, labs, fair, competitions, vocational } = academics;
+---
+
+<BaseLayout title={`Academics | ${school.name}`} description={academics.lead} section="academics">
+  <PageHero title={academics.title} lead={academics.lead} crumbs={[{ label: 'Academics' }]}>
+    <a class="bc-btn bc-btn-primary" href={cta.tour}>Book a Tour</a>
+    <a class="bc-btn bc-btn-secondary" href={cta.results}>See our results</a>
+    <Media slot="media" photo="biology-lab" ratio="16 / 9" ratioMobile="4 / 3" focus="50% 35%" eager />
+  </PageHero>
+
+  <section class="bc-section" id="curriculum">
+    <div class="bc-wrap">
+      <div class="bc-section-head">
+        <h2 class="bc-h2">{curriculum.heading}</h2>
+        <p class="bc-muted">{curriculum.text}</p>
+      </div>
+      <div class="bc-pathway">
+        <div class="bc-pathway-stage">
+          <span class="stage-years">{curriculum.stages[0].years}</span>
+          <h3 class="bc-h3">{curriculum.stages[0].name}</h3>
+          <p class="bc-muted">{curriculum.stages[0].text}</p>
+          <div class="bc-pathway-exam">Ends with {curriculum.stages[0].exams.map((exam) => <span>{exam}</span>)}</div>
+        </div>
+        <div class="bc-pathway-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="bc-pathway-stage">
+          <span class="stage-years">{curriculum.stages[1].years}</span>
+          <h3 class="bc-h3">{curriculum.stages[1].name}</h3>
+          <p class="bc-muted">{curriculum.stages[1].text}</p>
+          <div class="bc-pathway-exam">Ends with {curriculum.stages[1].exams.map((exam) => <span>{exam}</span>)}</div>
+        </div>
+      </div>
+      <ul class="bc-checklist curriculum-notes">
+        {curriculum.notes.map((note) => <li>{note}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="laboratories">
+    <div class="bc-wrap">
+      <div class="bc-section-head">
+        <h2 class="bc-h2">{labs.heading}</h2>
+        <p class="bc-muted">{labs.text}</p>
+      </div>
+      <div class="grid-4">
+        {
+          labs.items.map((lab) => (
+            <article class="bc-card lab-card">
+              {lab.photo && (
+                <Media
+                  photo={lab.photo}
+                  ratio="4 / 3"
+                  focus={lab.focus}
+                  sizes="(min-width: 1264px) 290px, (min-width: 600px) 50vw, 100vw"
+                />
+              )}
+              <div class="bc-card-body">
+                <h3 class="bc-h4">{lab.name}</h3>
+                <p class="bc-muted">{lab.text}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <p class="bc-muted tag-note">{labs.fifthLab}</p>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-navy" id="competitions">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <h2 class="bc-h2">Science fair and competitions</h2>
+      </div>
+      <div class="split-body navy-stack">
+        <div class="subhead">
+          <h3 class="bc-h4">{fair.heading}</h3>
+          <p>{fair.text}</p>
+          <p class="navy-muted">{fair.projectsHeading}:</p>
+          <ul class="chip-list">
+            {fair.projects.map((project) => <li>{project}</li>)}
+          </ul>
+        </div>
+        <div class="subhead">
+          <h3 class="bc-h4">{competitions.heading}</h3>
+          <p class="navy-muted">{competitions.text}</p>
+          <p>Competitions entered:</p>
+          <ul class="dash-list">
+            {competitions.entered.map((item) => <li>{item}</li>)}
+          </ul>
+          <p>Awards listed in the magazine:</p>
+          <ul class="dash-list">
+            {competitions.awards.map((item) => <li>{item}</li>)}
+          </ul>
+          <a class="navy-link" href={cta.results}>See results</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section" id="vocational">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">{vocational.heading}</h2>
+          <p class="bc-muted">{vocational.text}</p>
+        </div>
+      </div>
+      <div class="split-body grid-2 tile-grid">
+        {
+          vocational.areas.map((area) => (
+            <div class="bc-tile">
+              <span class="bc-tile-label">{area}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="See the labs in action" text={contact.tours} flush>
+    <a class="bc-btn bc-btn-primary" href={cta.tour}>Book a Tour</a>
+    <a class="bc-btn bc-btn-secondary" href={cta.apply}>Start Application</a>
+  </CtaBand>
+</BaseLayout>

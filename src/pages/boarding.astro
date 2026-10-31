@@ -1,0 +1,192 @@
+---
+import CtaBand from '../components/CtaBand.astro';
+import Media from '../components/Media.astro';
+import PageHero from '../components/PageHero.astro';
+import { academics } from '../data/academics';
+import { boarding } from '../data/boarding';
+import { contact, whatsappHref } from '../data/contact';
+import { cta } from '../data/nav';
+import { school } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const { hostel, routine, clubs, sports, character, excursions, faq } = boarding;
+---
+
+<BaseLayout
+  title={`Boarding & Student Life | ${school.name}`}
+  description="Boarding on Yidi Road, clubs, sport and practical skills at Busarialao College."
+  section="boarding"
+>
+  <PageHero title={boarding.title} lead={boarding.lead} crumbs={[{ label: 'Boarding & Student Life' }]}>
+    <a class="bc-btn bc-btn-primary" href={cta.tour}>Book a Tour</a>
+    <a class="bc-btn bc-btn-secondary" href="/fees/">Boarding fees</a>
+    <Media slot="media" photo="dormitory" ratio="16 / 9" ratioMobile="4 / 3" focus="45% 55%" eager />
+  </PageHero>
+
+  <section class="bc-section" id="boarding">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">{hostel.heading}</h2>
+          <p class="bc-muted">{hostel.text}</p>
+        </div>
+      </div>
+      <div class="split-body">
+        <div class="bc-stats hostel-facts">
+          {
+            hostel.facts.map((fact) => (
+              <div class="bc-stat">
+                <b>{fact.value}</b>
+                <span>{fact.label}</span>
+              </div>
+            ))
+          }
+        </div>
+        <p class="bc-muted tag-note">{hostel.weekend}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="routine">
+    <div class="bc-wrap split split-wide">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">{routine.heading}</h2>
+          <p class="bc-muted">{routine.text}</p>
+        </div>
+        <ol class="bc-timeline routine-timeline">
+          {
+            routine.steps.map((step) => (
+              <li>
+                <time>{step.time}</time>
+                <div>{step.text}</div>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="bc-muted tag-note">{routine.note}</p>
+      </div>
+      <div class="split-body routine-panels">
+        <div class="bc-card panel">
+          <h3 class="bc-h3">{routine.bring.heading}</h3>
+          <ul class="bc-checklist">
+            {routine.bring.items.map((item) => <li>{item}</li>)}
+          </ul>
+          <p class="bc-muted">{routine.bring.note}</p>
+        </div>
+        <div class="bc-card panel">
+          <h3 class="bc-h3">{routine.care.heading}</h3>
+          {routine.care.lines.map((line) => <p>{line}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* The design's photo gallery is hidden: real, consented photographs are not available yet. */}
+
+  <section class="bc-section" id="clubs">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">{clubs.heading}</h2>
+          <p class="bc-muted">{clubs.text}</p>
+        </div>
+      </div>
+      <div class="split-body">
+        <ul class="club-list">
+          {
+            clubs.items.map((club) => (
+              <li>
+                <b>{club.name}</b>
+                <span class="bc-muted">{club.purpose}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="bc-muted tag-note">{clubs.note}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="sports">
+    <div class="bc-wrap split split-wide">
+      <div class="split-head sports-copy">
+        <div class="sec-head">
+          <h2 class="bc-h2">{sports.heading}</h2>
+          <p class="bc-muted">{sports.facilities}</p>
+        </div>
+        <ul class="dash-list">
+          {sports.activities.map((activity) => <li>{activity}</li>)}
+        </ul>
+        <p class="bc-muted">{sports.competitions} {sports.schedule}</p>
+      </div>
+      <Media
+        class="split-body"
+        photo="football"
+        ratio="3 / 2"
+        focus="45% 50%"
+        sizes="(min-width: 1264px) 590px, (min-width: 960px) 50vw, 100vw"
+      />
+    </div>
+  </section>
+
+  <section class="bc-section" id="character">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">{character.heading}</h2>
+          <p class="bc-muted">{character.text}</p>
+        </div>
+      </div>
+      <div class="split-body grid-2">
+        <ul class="bc-checklist">
+          {character.points.map((point) => <li>{point}</li>)}
+        </ul>
+        <div class="subhead">
+          <h3 class="bc-h4">Vocational training</h3>
+          <ul class="plain-list">
+            {academics.vocational.areas.map((area) => <li>{area}</li>)}
+          </ul>
+          <p class="bc-muted">[DRAFT] <a href="/academics/#vocational">More on Academics</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="excursions">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">{excursions.heading}</h2>
+          <p class="bc-muted">{excursions.text}</p>
+        </div>
+      </div>
+      <ul class="bc-checklist split-body">
+        {excursions.list.map((place) => <li>{place} [DRAFT]</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bc-section" id="faq">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <h2 class="bc-h2">Boarding FAQ</h2>
+      </div>
+      <div class="bc-acc split-body">
+        {
+          faq.map((item, index) => (
+            <details open={index === 0}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="See the hostel for yourself" text={contact.tours} flush>
+    <a class="bc-btn bc-btn-primary" href={cta.tour}>Book a Tour</a>
+    <a class="bc-btn bc-btn-whatsapp" href={whatsappHref()}>WhatsApp</a>
+  </CtaBand>
+</BaseLayout>
