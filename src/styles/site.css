@@ -1,10 +1,13 @@
 /*
  * Site layer on top of the design system (tokens.css + bundle.css).
  * Shared chrome only: header, mega-menu, mobile menu, top bar, footer, media frames.
- * Breakpoints (from the design tokens): 600px and 960px.
- *   < 600px   mobile
- *   600-959px tablet (mobile header, 600px+ layouts)
- *   >= 960px  desktop
+ * Breakpoints: 600px and 960px (design tokens) for page layout, plus 1100px for the site chrome.
+ *   < 600px    mobile
+ *   600-959px  tablet layouts
+ *   >= 960px   desktop layouts
+ * The top bar, full navigation and mega-menu start at 1100px. Below that the header is the
+ * mobile header (logo, Apply Now, menu button), because six nav labels, the logo and the
+ * button do not fit on one line any narrower. Between 1100px and 1279px the nav is compact.
  */
 
 body {
@@ -70,7 +73,7 @@ body {
 .top-bar {
   display: none;
 }
-@media (min-width: 960px) {
+@media (min-width: 1100px) {
   .top-bar {
     display: flex;
     align-items: center;
@@ -117,10 +120,17 @@ body {
   align-items: center;
   flex: none;
 }
+/* Logo: 51px on the mobile header (was 40px) and 62px on desktop (was 48px), about +28%.
+   The artwork is an SVG, so it stays crisp at any size. */
 .site-logo img {
   display: block;
-  height: 40px;
+  height: 51px;
   width: auto;
+}
+/* Nothing in the header wraps onto a second line. */
+.site-header a,
+.site-header button {
+  white-space: nowrap;
 }
 .site-header .site-apply {
   margin-left: auto;
@@ -135,18 +145,27 @@ body {
   border-color: var(--neutral-200);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1100px) {
   .site-header {
     gap: var(--space-6);
     padding: 0 var(--space-6);
     min-height: 72px;
   }
   .site-logo img {
-    height: 48px;
+    height: 62px;
   }
   .site-nav {
     display: flex;
+    flex-wrap: nowrap;
     margin-left: auto;
+  }
+  /* Compact nav from 1100px; the design's full spacing returns at 1280px. */
+  .site-header .bc-nav a {
+    font-size: 14px;
+    padding: 0 var(--space-2);
+  }
+  .site-header .site-apply {
+    padding: 0 var(--space-4);
   }
   .site-header .site-apply {
     margin-left: 0;
@@ -154,6 +173,19 @@ body {
   }
   .site-header .menu-btn {
     display: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .site-header {
+    gap: var(--space-6);
+  }
+  .site-header .bc-nav a {
+    font-size: 15px;
+    padding: 0 var(--space-3);
+  }
+  .site-header .site-apply {
+    padding: 0 var(--space-5);
   }
 }
 
@@ -201,7 +233,7 @@ body {
 }
 
 /* ---------- Mega-menu (desktop) ---------- */
-@media (min-width: 960px) {
+@media (min-width: 1100px) {
   .mega:not([hidden]) {
     display: block;
     position: absolute;
@@ -290,14 +322,14 @@ body {
 .mm-cta .bc-btn {
   display: flex;
 }
-@media (min-width: 960px) {
+@media (min-width: 1100px) {
   .mobile-menu {
     display: none !important;
   }
 }
 
-/* ---------- WhatsApp button: below 960px only ---------- */
-@media (min-width: 960px) {
+/* ---------- WhatsApp button: below 1100px only (the top bar carries it above that) ---------- */
+@media (min-width: 1100px) {
   .site-fab {
     display: none;
   }

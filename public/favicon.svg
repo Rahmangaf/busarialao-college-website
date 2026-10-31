@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="220 24 176 176" width="176" height="176">
+<circle cx="308" cy="112" r="88" fill="#1b92d9"/>
+<circle cx="308" cy="112" r="78" fill="#fff"/>
+  <path d="M 347 179.5 A 78 78 0 1 1 381.3 138.7" fill="none" stroke="#111" stroke-width="2.5"/>
+  <circle cx="308" cy="112" r="66" fill="#fff" stroke="#111" stroke-width="3"/>
+  <g transform="translate(308,112) scale(0.8) translate(-306,-100)">
+    <g fill="#111">
+      <rect x="270" y="60" width="7" height="94"/>
+      <rect x="263" y="150" width="60" height="6"/>
+      <rect x="270" y="60" width="22" height="5"/>
+      <rect x="288" y="46" width="6" height="18"/>
+      <rect x="283" y="43" width="16" height="5" rx="2"/>
+      <path d="M 291 62 a 13 13 0 1 0 0.1 0 z"/>
+      <rect x="285" y="62" width="12" height="3" fill="#fff"/>
+    </g>
+    <g fill="#fff" stroke="#111" stroke-width="2.5" stroke-linejoin="round">
+      <path d="M 290 122 L 318 128 L 348 120 L 348 150 L 318 158 L 290 152 Z"/>
+      <path d="M 318 128 L 318 158" fill="none"/>
+    </g>
+    <g stroke="#111" stroke-width="1.5" fill="none">
+      <path d="M 296 134 L 312 138 M 296 141 L 312 145 M 296 148 L 312 151"/>
+      <path d="M 324 138 L 342 133 M 324 145 L 342 140 M 324 152 L 342 147"/>
+    </g>
+    <g stroke="#111" stroke-width="2" fill="#fff">
+      <ellipse cx="311" cy="116" rx="8" ry="6"/>
+      <ellipse cx="331" cy="115" rx="8" ry="6"/>
+      <path d="M 319 115 L 323 115 M 303 115 L 292 110 M 339 114 L 346 109" fill="none"/>
+    </g>
+  </g>
+</svg>

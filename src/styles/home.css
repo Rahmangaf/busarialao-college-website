@@ -80,9 +80,11 @@
 }
 
 /* ---------- Numbers band ---------- */
+/* Bottom padding is about one-third smaller than the design's (80/96/128px) so there is less
+   empty space under "See all results". */
 .home-numbers {
   position: relative;
-  padding: 80px 0;
+  padding: 80px 0 53px;
 }
 .home-numbers .bc-motif {
   width: 360px;
@@ -126,7 +128,7 @@
 }
 @media (min-width: 720px) {
   .home-numbers {
-    padding: 96px 0;
+    padding: 96px 0 64px;
   }
   .home-numbers .bc-motif {
     width: 560px;
@@ -152,7 +154,7 @@
 }
 @media (min-width: 960px) {
   .home-numbers {
-    padding: 128px 0;
+    padding: 128px 0 86px;
   }
   .home-numbers .bc-motif {
     width: 760px;
