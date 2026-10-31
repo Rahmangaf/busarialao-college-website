@@ -1,0 +1,195 @@
+---
+import CtaBand from '../components/CtaBand.astro';
+import PageHero from '../components/PageHero.astro';
+import { cta } from '../data/nav';
+import { latestResult, results, type YearResult } from '../data/results';
+import { school } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const latest = latestResult();
+const newestFirst = [...results].sort((a, b) => b.year - a.year);
+const recentYears = newestFirst.slice(0, 5).map((r) => r.year);
+const earlierYears = newestFirst.slice(5).map((r) => r.year);
+
+const MEASURE = 'general percentage passed [CONFIRM: the magazine does not define this measure]';
+const percent = (value: number | null) => (value === null ? null : `${value.toFixed(2)}%`);
+const stats = (r: YearResult) => [
+  { value: percent(r.wassce), label: `WASSCE, ${r.year} [DRAFT · CONFIRM measure]` },
+  { value: percent(r.neco), label: `NECO, ${r.year} [DRAFT · CONFIRM measure]` },
+  { value: r.universityAdmission === null ? null : `${r.universityAdmission}%`, label: `university admission, ${r.year} [DRAFT]` },
+];
+---
+
+<BaseLayout
+  title={`Results | ${school.name}`}
+  description="WASSCE, NECO and university admission results for every year the school has published."
+  section="academics"
+>
+  <PageHero
+    title="Our results, year by year"
+    lead="WASSCE, NECO and university admission for every year we have published, including the harder ones. Choose a year."
+    crumbs={[{ label: 'Academics', href: '/academics/' }, { label: 'Results' }]}
+  />
+
+  <section class="bc-section year-section">
+    <div class="bc-wrap year-head">
+      <div class="year-controls" data-year-controls hidden>
+        <div class="bc-tabs" role="group" aria-label="Results year">
+          {
+            recentYears.map((year) => (
+              <button type="button" class="bc-tab" data-year-button={year} aria-pressed={year === latest.year ? 'true' : 'false'}>
+                {year}
+              </button>
+            ))
+          }
+        </div>
+        <label class="year-select">
+          <span class="bc-label">Earlier years</span>
+          <select class="bc-select" data-year-select aria-label="Choose an earlier year">
+            <option value="" selected>Choose a year</option>
+            {earlierYears.map((year) => <option value={year}>{year}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <div aria-live="polite">
+        {
+          newestFirst.map((r) => (
+            <div class="year-intro" data-year-panel={r.year} hidden={r.year !== latest.year}>
+              <h2 class="bc-h2">{r.year} at a glance [DRAFT]</h2>
+              <p class="bc-muted">WASSCE and NECO show the {MEASURE}.</p>
+              {r.bestStudent && (
+                <p class="bc-muted">
+                  Overall best student, {r.year}: {r.bestStudent} [CONFIRM: names are published only with consent]
+                </p>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-navy stats-band">
+    <div class="bc-wrap">
+      {
+        newestFirst.map((r) => (
+          <div class="bc-stats bc-stats-lg year-stats" data-year-panel={r.year} hidden={r.year !== latest.year}>
+            {stats(r).map((stat) => (
+              <div class="bc-stat">
+                {stat.value ? <b>{stat.value}</b> : <b class="stat-missing">Not yet available</b>}
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bc-section" id="all-years">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">Every year since 2009</h2>
+          <p class="bc-muted">
+            From the school magazine. Years and figures the magazine does not give are marked, not filled in. The
+            magazine's candidate numbers are empty for every year. [DRAFT]
+          </p>
+        </div>
+      </div>
+      <div class="split-body table-scroll nowrap">
+        <table class="bc-table">
+          <caption>Results by year [DRAFT]. WASSCE and NECO: {MEASURE}.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Year</th>
+              <th scope="col" class="num">WASSCE</th>
+              <th scope="col" class="num">NECO</th>
+              <th scope="col" class="num">University admission</th>
+              <th scope="col">Overall best student [CONFIRM consent]</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              newestFirst.map((r) => (
+                <tr>
+                  <th scope="row" class="row-head">{r.year}</th>
+                  {[percent(r.wassce), percent(r.neco), r.universityAdmission === null ? null : `${r.universityAdmission}%`].map((value) =>
+                    value ? <td class="num">{value}</td> : <td class="num bc-muted">Not yet available</td>,
+                  )}
+                  {r.bestStudent ? <td>{r.bestStudent}</td> : <td class="bc-muted">Not yet available</td>}
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <h2 class="bc-h2">Beyond the exams</h2>
+      </div>
+      <div class="split-body grid-2">
+        <div class="subhead">
+          <h3 class="bc-h4">JAMB and UTME</h3>
+          <p class="bc-muted">
+            More students scoring 250 and above, and several above 300 each year, with admissions into Medicine,
+            Engineering, Nursing, Pharmacy, MLS, Architecture and Computer Science. [DRAFT]
+          </p>
+        </div>
+        <div class="subhead">
+          <h3 class="bc-h4">WASSCE and NECO</h3>
+          <p class="bc-muted">
+            A steady increase in students with five credits including English and Mathematics, and frequent 100% credit
+            passes in Physics, Chemistry and Biology. [DRAFT]
+          </p>
+        </div>
+        <div class="subhead">
+          <h3 class="bc-h4">Ranking</h3>
+          <p class="bc-muted">
+            Ranked consistently among the top-performing private schools in the state's assessments. [CONFIRM wording]
+          </p>
+        </div>
+        <div class="subhead">
+          <h3 class="bc-h4">Competitions</h3>
+          <p class="bc-muted">
+            Science fairs, olympiads and quizzes. <a href="/academics/#competitions">See competitions and awards</a>. [DRAFT]
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="See where your child could go" text="Visit the labs and meet the teachers behind these results." flush>
+    <a class="bc-btn bc-btn-primary" href={cta.tour}>Book a Tour</a>
+    <a class="bc-btn bc-btn-secondary" href={cta.apply}>Start Application</a>
+  </CtaBand>
+</BaseLayout>
+
+<script>
+  const panels = document.querySelectorAll<HTMLElement>('[data-year-panel]');
+  const controls = document.querySelector<HTMLElement>('[data-year-controls]');
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-year-button]')];
+  const select = document.querySelector<HTMLSelectElement>('[data-year-select]');
+  const years = new Set([...panels].map((panel) => panel.dataset.yearPanel));
+
+  function show(year: string) {
+    panels.forEach((panel) => {
+      panel.hidden = panel.dataset.yearPanel !== year;
+    });
+    buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.yearButton === year)));
+    if (select) select.value = buttons.some((button) => button.dataset.yearButton === year) ? '' : year;
+  }
+
+  if (controls) {
+    controls.hidden = false;
+    buttons.forEach((button) => button.addEventListener('click', () => show(button.dataset.yearButton as string)));
+    select?.addEventListener('change', () => select.value && show(select.value));
+    const wanted = new URLSearchParams(location.search).get('year');
+    if (wanted && years.has(wanted)) show(wanted);
+  }
+</script>
