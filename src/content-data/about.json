@@ -1,0 +1,155 @@
+{
+  "lead": "A science-focused day and boarding secondary school in Ilorin, Kwara State, educating students from JSS1 to SS3 since 2005. [CONFIRM levels]",
+  "story": [
+    "We began in 2003 as Top Tutors, a tutorial centre in a two-room apartment at Adewole Estate, Ilorin, where specialist science teachers prepared students for external exams. [DRAFT]",
+    "In 2005 Top Tutors became Busarialao College, named in honour of the founder's father, Late Alhaji Busarialao. We moved to Irewolede, Ilorin, and opened with 12 pioneer students and 12 staff. [DRAFT]",
+    "Our founder, Alhaji Yunus Gafar, an accountant by profession, saw bright students losing interest in science because schools lacked laboratories, practical exposure and motivated teachers. He set out to build a school where science comes alive. [DRAFT]",
+    "Top Tutors remains the college’s academic arm. It sets exam questions, runs teacher training and organises seminars for Local Government and State Ministry staff. [DRAFT]"
+  ],
+  "facts": [
+    {
+      "value": "2003",
+      "label": "began as Top Tutors [DRAFT]"
+    },
+    {
+      "value": "2005",
+      "label": "became Busarialao College [DRAFT]"
+    },
+    {
+      "value": "12",
+      "label": "pioneer students [DRAFT]"
+    },
+    {
+      "value": "12",
+      "label": "pioneer staff [DRAFT]"
+    }
+  ],
+  "vision": "To be a leading centre of academic excellence where young minds are inspired, empowered, and equipped with the knowledge, skills, and character needed to thrive in a rapidly changing world. [DRAFT]",
+  "mission": [
+    "To provide a conducive learning environment that promotes quality education and intellectual curiosity.",
+    "To nurture students through a balanced blend of strong scientific education, moral guidance, and life-building skills.",
+    "To develop critical thinkers, problem-solvers, and innovators who can compete globally and contribute meaningfully to national development.",
+    "To partner with parents, educators, and the community to shape responsible, confident, and well-rounded individuals."
+  ],
+  "values": [
+    {
+      "name": "Excellence",
+      "text": "The highest standards in academics, behaviour and personal growth."
+    },
+    {
+      "name": "Discipline",
+      "text": "Focused, respectful, punctual and responsible students."
+    },
+    {
+      "name": "Integrity",
+      "text": "Honesty and transparency in everything the school does."
+    },
+    {
+      "name": "Hard Work",
+      "text": "Success through dedication and diligence."
+    },
+    {
+      "name": "Innovation & Scientific Inquiry",
+      "text": "Creativity, experimentation and solving real-world problems."
+    },
+    {
+      "name": "Godliness & Moral Uprightness",
+      "text": "Strong moral values and God-consciousness."
+    },
+    {
+      "name": "Teamwork & Community",
+      "text": "Collaboration and mutual support."
+    },
+    {
+      "name": "Leadership & Responsibility",
+      "text": "Confident students ready to take responsibility."
+    }
+  ],
+  "welcome": {
+    "paragraphs": [
+      "Welcome to Busarialao College. Since 2005, we have believed that every child can think like a scientist: ask good questions, test ideas and learn from mistakes. Our laboratories, small classes and caring staff give students room to grow in knowledge and in character.",
+      "From JSS1 to SS3, we prepare students for BECE, WASSCE and NECO, and for the choices that follow. As we mark our 20th anniversary, we remain committed to discipline, integrity and excellence, and to partnering with parents at every step.",
+      "Whether your child joins us as a day student or a boarder, they will find a community that expects their best and supports them to give it. We would be glad to welcome you on a visit."
+    ],
+    "note": "[SAMPLE: abridged; the full magazine message will replace this text.]",
+    "signature": "The Principal",
+    "signatureNote": "[SAMPLE: name and portrait are placeholders]"
+  },
+  "leadershipNote": "[CONFIRM titles and spellings]",
+  "leadership": [
+    {
+      "role": "Principal",
+      "name": "Mr. Onipede Femi",
+      "detail": "2011 to date. The magazine message is signed \"Onipede Oyewale Femi\"."
+    },
+    {
+      "role": "Vice Principal (Academy)",
+      "name": "Dr. Aileru Olawale Moruf",
+      "detail": "Master Teacher 2018; Instructional Coach 2019 to 2022; Vice Principal Academy 2023 to date."
+    },
+    {
+      "role": "Vice Principal (Admin)",
+      "name": "Mrs. Kamil Akintunde",
+      "detail": "Director of Admin 2014 to 2022; Vice Principal Admin 2023 to date."
+    },
+    {
+      "role": "Vice Principal (Special Duty)",
+      "name": "Mr. Aderogba Olusegun",
+      "detail": "2023 to date."
+    }
+  ],
+  "milestones": [
+    {
+      "year": "2003",
+      "text": "Began as Top Tutors, Adewole Estate"
+    },
+    {
+      "year": "2005",
+      "text": "Became Busarialao College and moved to Irewolede, with 12 pioneer students and 12 staff"
+    },
+    {
+      "year": "2007",
+      "text": "First field trip: Old Oyo National Park"
+    },
+    {
+      "year": "2008",
+      "text": "Parent-Teacher Association (PTA) formally inaugurated"
+    },
+    {
+      "year": "2010",
+      "text": "Hostel opened at Osere"
+    },
+    {
+      "year": "2013",
+      "text": "Hostel moved to Yidi Road, with about 80 boarders"
+    },
+    {
+      "year": "2014",
+      "text": "Vocational training programme launched"
+    },
+    {
+      "year": "2015",
+      "text": "First Vocational Day"
+    },
+    {
+      "year": "2017",
+      "text": "Technical Drawing studio commissioned"
+    },
+    {
+      "year": "2018",
+      "text": "Scholarship scheme: 80 public schools accredited across the state's 16 LGAs"
+    },
+    {
+      "year": "2019",
+      "text": "PTA donated a field-trip bus"
+    },
+    {
+      "year": "2023",
+      "text": "Vocational departments streamlined to four"
+    },
+    {
+      "year": "2025",
+      "text": "20th anniversary"
+    }
+  ]
+}

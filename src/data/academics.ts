@@ -1,123 +1,20 @@
-// Source: content/02-academics.md (magazine Chapter 2). [DRAFT] unless marked [SAMPLE].
+// The editable copy lives in src/content-data/academics.json (edited through /admin or by hand).
+// Tags ([DRAFT], [SAMPLE], [CONFIRM]) stay in the text until the school confirms the item.
+import data from '../content-data/academics.json';
+import type { PhotoId } from './sample-content-register';
+
+interface Lab {
+  name: string;
+  text: string;
+  /** A photo id from the sample-content register, or null for no photo. */
+  photo: PhotoId | null;
+  focus: string;
+}
 
 export const academics = {
-  title: 'Learning by doing, with science at the centre',
-  lead: 'A full secondary curriculum from JSS1 to SS3, with laboratory work, competitions and practical skills built in.',
-
-  curriculum: {
-    heading: 'Six years, three national exams',
-    text: 'Students sit BECE at the end of JSS3, and WASSCE and NECO at the end of SS3.',
-    stages: [
-      {
-        years: 'JSS1–JSS3',
-        name: 'Junior Secondary',
-        text: 'Broad foundation in sciences, mathematics, languages and vocational skills. [SAMPLE wording]',
-        exams: ['BECE'],
-      },
-      {
-        years: 'SS1–SS3',
-        name: 'Senior Secondary',
-        text: 'Science focus: Physics, Chemistry, Biology, Further Maths and ICT. [CONFIRM subjects]',
-        exams: ['WASSCE', 'NECO'],
-      },
-    ],
-    notes: [
-      'Teaching is inquiry-based: students are encouraged to ask questions, investigate problems and think critically. [DRAFT]',
-      'In-house assessment through Top Tutors: certification exams for all learners, and preparatory exams for JSS3 and SSS3 external exams. [DRAFT]',
-      'Extra classes, mentoring, structured revision and personalised support for different learning needs. [DRAFT]',
-    ],
-  },
-
+  ...data,
   labs: {
-    heading: 'Four labs, used every week [SAMPLE frequency]',
-    text: 'Practical work is part of every science course. [DRAFT]',
-    items: [
-      {
-        name: 'Physics',
-        text: 'Optical benches, lenses and prisms, metre bridges, circuits, galvanometers and projectile kits. A mechanics zone has pulleys, pendulums and timing devices. [DRAFT]',
-        photo: null,
-        focus: '50% 50%',
-      },
-      {
-        name: 'Chemistry',
-        text: 'Digital balances, pH meters, burner arrays, distillation units and fume chambers, with fire-safety provisions and eyewash stations. Students do titrations and qualitative analysis. [DRAFT]',
-        photo: 'chemistry-lab',
-        focus: '50% 40%',
-      },
-      {
-        name: 'Biology',
-        text: 'Microscopes and slides, organ models and microtomy kits. Food tests, dissection, ecological surveys and osmosis experiments. [DRAFT]',
-        photo: null,
-        focus: '50% 50%',
-      },
-      {
-        name: 'ICT',
-        text: 'Digital simulations and virtual experiments, computer-based testing (CBT) practice and multimedia learning tools. [DRAFT]',
-        photo: 'computer-lab',
-        focus: '40% 45%',
-      },
-    ],
-    fifthLab:
-      '[CONFIRM] The magazine describes a fifth laboratory, Technical Drawing & Basic Technology (drawing studio commissioned September 2017). Confirm with the school whether to show four or five.',
+    ...data.labs,
+    items: data.labs.items.map((lab) => ({ ...lab, photo: (lab.photo || null) as PhotoId | null })) as Lab[],
   },
-
-  fair: {
-    heading: 'Science fair and projects',
-    text: 'The annual Science Fair has student-led experiments, themed presentations (for example renewable energy, digital technology, climate change and simple machines) and an Innovation Corner for original solutions. [DRAFT]',
-    projectsHeading: 'Student projects listed in the magazine',
-    projects: [
-      'School timer',
-      'Electric heater',
-      'Bio-diesel from jatropha',
-      'Geothermal electricity',
-      'Freezer from local materials',
-      'Egg candler',
-      'Vacuum cleaner',
-      'Cycling sweeper',
-      'Board cleaner',
-      'Electric display board',
-      'Okro slicer',
-      'Remote-controlled car',
-      'Rechargeable fan',
-      'Metal testing machine',
-      'FM transmitter',
-      'Solar cooker',
-      'Solar dryer',
-      'Clap switch',
-      'Pallet machine',
-      'Manual grinding machine',
-    ],
-  },
-
-  competitions: {
-    heading: 'Competitions and awards',
-    text: 'Positions are as given in the magazine; years are not supplied. [DRAFT] [CONFIRM list and years]',
-    entered: [
-      'Science Expo at Kwara Television (okro slicer and dryer)',
-      'Cowbellpedia Mathematics Competition',
-      'National Science Olympiad contests',
-      'Mathematics Olympiads',
-      'JETS',
-    ],
-    awards: [
-      'SBIO Mathematics quiz: first position',
-      'Maths Wizard Educational Consult (MWEC) medals: 1st (senior), 2nd (junior), 3rd (senior)',
-      'National Science Odyssey (Battle of the Brains), Abuja: Best School and Overall Best Student',
-      'National Science Odyssey (Battle of the Brains), India: Award of Excellence',
-      'Champions Educational Foundation (CEF): 1st, science quiz',
-      'NTA Ilorin Spelling Bee: 1st; NTA Regional (Southwest and Kwara) Spelling Bee: 3rd',
-      "Kwara State Library Board Readers' Day: 3rd",
-      'Mathematics Association of Nigeria (Kwara branch): 2nd',
-      '1st MMGIVIT Charity Poetry Competition: Best female poet',
-      'Kwara State Universal Basic Education Board: award of recognition for scholarships',
-      'Quiz competitions: Effective International College (1st), Students Chemical Society of Nigeria (2nd), APWEN (3rd)',
-      'Awards of Excellence from Macmillan Nigeria Publishers and the National Association of Proprietors of Private Schools',
-    ],
-  },
-
-  vocational: {
-    heading: 'Practical skills for life',
-    text: 'Started in September 2014, with the first Vocational Day on 12 June 2015. Streamlined in 2023 to four areas. [DRAFT]',
-    areas: ['Make-over and beauty artistry', 'Photography and creative imaging', 'Catering: African cuisine and pastries', 'ICT: web design and digital skills'],
-  },
-} as const;
+};

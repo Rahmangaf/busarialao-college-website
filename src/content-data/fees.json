@@ -1,0 +1,78 @@
+{
+  "session": "2027/2028",
+  "title": "Fees & Payment",
+  "lead": "Termly fees by level, for day and boarding students, and how to pay them safely.",
+  "pdfUrl": null,
+  "warning": {
+    "heading": "Pay only into the school's official account.",
+    "text": "The school will never ask you to pay into a personal account. If in doubt, call the Bursary first."
+  },
+  "termly": {
+    "caption": "Fees per term, 2027/2028 [SAMPLE]",
+    "note": "Three terms per session. Amounts are per term. [SAMPLE]",
+    "rows": [
+      {
+        "level": "JSS1–JSS3",
+        "day": "₦180,000",
+        "boarding": "₦330,000"
+      },
+      {
+        "level": "SS1–SS3",
+        "day": "₦210,000",
+        "boarding": "₦360,000"
+      }
+    ]
+  },
+  "oneOff": {
+    "caption": "One-off fees [SAMPLE]",
+    "rows": [
+      {
+        "fee": "Application form",
+        "when": "When applying",
+        "amount": "₦10,000"
+      },
+      {
+        "fee": "Acceptance fee",
+        "when": "On accepting a place",
+        "amount": "₦50,000"
+      }
+    ]
+  },
+  "included": [
+    "Tuition",
+    "Laboratory use",
+    "Exam registration [SAMPLE]"
+  ],
+  "separate": [
+    "Uniforms",
+    "Books",
+    "Boarding extras [SAMPLE]"
+  ],
+  "instalments": "Termly fees can be paid in two instalments, the second before mid-term. Ask the Bursary to set this up. [SAMPLE]",
+  "sibling": "10% off tuition from the second child enrolled at the same time. [SAMPLE]",
+  "online": {
+    "text": "Card or bank transfer through the school's secure payment page. A receipt is sent by SMS and email. [SAMPLE]",
+    "status": "Payment not yet connected"
+  },
+  "account": {
+    "rows": [
+      {
+        "label": "Bank",
+        "value": "[SAMPLE bank name]"
+      },
+      {
+        "label": "Account name",
+        "value": "Busarialao College [CONFIRM]"
+      },
+      {
+        "label": "Account no.",
+        "value": "[SAMPLE 0000000000]"
+      }
+    ],
+    "note": "Use the student's name and class as the payment reference."
+  },
+  "bursary": {
+    "hours": "The Bursary is open Mon–Fri, 7:30am–4pm.",
+    "phone": "0803 000 0001 [SAMPLE]"
+  }
+}
