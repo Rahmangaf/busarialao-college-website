@@ -1,0 +1,26 @@
+---
+// Coming Soon: there is no application form design yet.
+import PageHero from '../components/PageHero.astro';
+import { cta } from '../data/nav';
+import { school } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={`Applications open soon | ${school.name}`} section="admissions">
+  <PageHero
+    title="Applications open soon"
+    lead="The online application form is not ready yet. No application can be submitted on this site. [SAMPLE]"
+    crumbs={[{ label: 'Admissions', href: '/admissions/' }, { label: 'Apply' }]}
+  >
+    <a class="bc-btn bc-btn-primary" href={cta.apply}>See how to apply</a>
+    <a class="bc-btn bc-btn-secondary" href="/contact/">Contact admissions</a>
+  </PageHero>
+  <section class="bc-section">
+    <div class="bc-wrap soon-body">
+      <p>
+        In the meantime, the steps, key dates, documents and entrance exam are on the Admissions page. To ask about a
+        place, contact the admissions office.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

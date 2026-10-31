@@ -1,0 +1,31 @@
+---
+// Placeholder: the school has not supplied a privacy notice.
+import PageHero from '../components/PageHero.astro';
+import { school } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={`Privacy | ${school.name}`}>
+  <PageHero
+    title="Privacy"
+    lead="The school's privacy notice has not been supplied yet. This page is a placeholder. [CONFIRM]"
+    crumbs={[{ label: 'Privacy' }]}
+  />
+  <section class="bc-section">
+    <div class="bc-wrap soon-body">
+      <p>What this website does today, until the school confirms its notice: [CONFIRM]</p>
+      <ul class="bc-checklist">
+        <li>
+          The contact form does not store anything on this site. It opens WhatsApp with your message ready, and you
+          choose whether to send it. [CONFIRM]
+        </li>
+        <li>This site has no accounts and takes no payments. [CONFIRM]</li>
+        <li>Student names in published results need the school's consent record. [CONFIRM]</li>
+      </ul>
+      <p>
+        The data-protection wording, the school's contact for privacy questions and how long messages are kept are to be
+        supplied by the school. [CONFIRM]
+      </p>
+    </div>
+  </section>
+</BaseLayout>

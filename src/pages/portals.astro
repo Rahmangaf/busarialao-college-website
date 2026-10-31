@@ -1,0 +1,35 @@
+---
+// Coming Soon: no portal exists yet. The four portals are listed, tagged [SAMPLE].
+import PageHero from '../components/PageHero.astro';
+import { school } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const portals = [
+  { id: 'parent', name: 'Parent portal' },
+  { id: 'student', name: 'Student portal' },
+  { id: 'staff', name: 'Staff portal' },
+  { id: 'applicant', name: 'Applicant portal' },
+];
+---
+
+<BaseLayout title={`Portals | ${school.name}`}>
+  <PageHero
+    title="Portal links coming soon"
+    lead="The school's portals are not online yet. Each link will appear here when it is ready. [SAMPLE]"
+    crumbs={[{ label: 'Portals' }]}
+  />
+  <section class="bc-section">
+    <div class="bc-wrap">
+      <ul class="portal-list">
+        {
+          portals.map((portal) => (
+            <li id={portal.id}>
+              <b>{portal.name}</b>
+              <span class="bc-muted">Link coming soon [SAMPLE]</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
