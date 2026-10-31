@@ -1,0 +1,68 @@
+---
+// Hero for the inner pages: tinted band with breadcrumb, h1, lead and actions.
+// Slots: default = action buttons, `aside` = a panel beside the text, `media` = a photograph that
+// overlaps the bottom of the band. Home has its own hero and does not use this.
+interface Crumb {
+  label: string;
+  href?: string;
+}
+interface Props {
+  title: string;
+  lead?: string;
+  /** Trail after "Home". The last item is the current page. */
+  crumbs: Crumb[];
+}
+
+const { title, lead, crumbs } = Astro.props;
+const trail: Crumb[] = [{ label: 'Home', href: '/' }, ...crumbs];
+const hasMedia = Astro.slots.has('media');
+const hasAside = Astro.slots.has('aside');
+const hasActions = Astro.slots.has('default');
+---
+
+<section class:list={['page-hero', hasMedia && 'has-media']}>
+  <div class:list={['bc-wrap', 'page-hero-grid', hasAside && 'has-aside']}>
+    <div class="page-hero-copy">
+      <nav class="bc-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          {
+            trail.map((crumb, index) => (
+              <li>
+                {crumb.href && index < trail.length - 1 ? (
+                  <a href={crumb.href}>{crumb.label}</a>
+                ) : (
+                  <span aria-current="page">{crumb.label}</span>
+                )}
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+      <h1>{title}</h1>
+      {lead && <p class="page-lead">{lead}</p>}
+      {
+        hasActions && (
+          <div class="page-hero-actions">
+            <slot />
+          </div>
+        )
+      }
+    </div>
+    {
+      hasAside && (
+        <div class="page-hero-aside">
+          <slot name="aside" />
+        </div>
+      )
+    }
+  </div>
+</section>
+{
+  hasMedia && (
+    <div class="page-hero-media">
+      <div class="bc-wrap">
+        <slot name="media" />
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,508 @@
+/*
+ * Layout shared by the inner pages (About, Academics, Admissions, Fees, Results, Boarding,
+ * News, Contact and the placeholder pages). Mobile first: base = 360px, 600px adds the tablet
+ * layout, 960px matches the 1440px desktop designs.
+ * Home Minimal is the reference: no eyebrow labels, at most one navy section, no circle motif
+ * outside Home, no flat placeholder boxes.
+ */
+
+/* Headings follow Home Minimal (weight 600) rather than the older inner-page mockups. */
+.bc :is(h1, h2, h3, h4),
+.bc :is(b, strong) {
+  font-weight: 600;
+}
+.bc [hidden] {
+  display: none !important;
+}
+
+/* ---------- Page hero ---------- */
+.page-hero {
+  background: var(--sky-50);
+  padding: 40px 0 64px;
+}
+.page-hero.has-media {
+  padding-bottom: 120px;
+}
+.page-hero-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+.page-hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+.page-hero h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 1.6rem + 1.6vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.page-lead {
+  margin: 0;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--navy-700);
+  max-width: 720px;
+}
+.page-hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-self: stretch;
+}
+.page-hero-media {
+  position: relative;
+  margin-top: -88px;
+}
+.page-hero-media .bc-media {
+  box-shadow: var(--shadow-2);
+}
+@media (min-width: 600px) {
+  .page-hero {
+    padding: 56px 0 80px;
+  }
+  .page-hero.has-media {
+    padding-bottom: 160px;
+  }
+  .page-lead {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .page-hero-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-self: auto;
+  }
+  .page-hero-media {
+    margin-top: -112px;
+  }
+}
+@media (min-width: 960px) {
+  .page-hero {
+    padding: 72px 0 80px;
+  }
+  .page-hero.has-media {
+    padding-bottom: 200px;
+  }
+  .page-hero-grid.has-aside {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: center;
+  }
+  .page-hero-grid.has-aside .page-hero-copy {
+    grid-column: span 7;
+  }
+  .page-hero-grid.has-aside .page-hero-aside {
+    grid-column: 9 / span 4;
+  }
+  .page-hero-media {
+    margin-top: -152px;
+  }
+}
+
+/* ---------- Section structure ---------- */
+.split {
+  display: grid;
+  gap: var(--space-5);
+}
+/* Grid items may shrink below their content, so a wide table scrolls inside its wrapper. */
+.split > *,
+.grid-2 > *,
+.grid-3 > *,
+.grid-4 > * {
+  min-width: 0;
+}
+.sec-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.sec-head > p,
+.bc-section-head > p {
+  margin: 0;
+}
+@media (min-width: 960px) {
+  .split {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: start;
+  }
+  .split > .split-head {
+    grid-column: span 4;
+  }
+  .split > .split-body {
+    grid-column: 6 / span 7;
+  }
+  .split.split-wide > .split-head {
+    grid-column: span 5;
+  }
+  .split.split-wide > .split-body {
+    grid-column: 7 / span 6;
+  }
+}
+
+.grid-2,
+.grid-3,
+.grid-4 {
+  display: grid;
+  gap: var(--space-5);
+}
+@media (min-width: 600px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 960px) {
+  .grid-2 {
+    gap: var(--space-6);
+  }
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.panel {
+  padding: var(--space-5);
+  gap: var(--space-4);
+  border: 0;
+}
+@media (min-width: 960px) {
+  .panel {
+    padding: var(--space-6);
+  }
+}
+.panel p {
+  margin: 0;
+}
+.statement {
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--navy-900);
+}
+.tag-note {
+  margin: var(--space-2) 0 0;
+}
+.cta-text {
+  margin: var(--space-1) 0 0;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+/* Wide tables (Results) keep each cell on one line and scroll sideways on small screens. */
+.table-scroll.nowrap .bc-table th,
+.table-scroll.nowrap .bc-table td {
+  white-space: nowrap;
+}
+.plain-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dash-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.dash-list li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: var(--space-3);
+}
+.dash-list li::before {
+  content: '–';
+  color: var(--neutral-600);
+  font-weight: 600;
+  text-align: center;
+}
+.subhead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.subhead p {
+  margin: 0;
+}
+
+/* Placeholder for something that does not exist yet (PDF, payment, channel). Not a link. */
+.bc-btn.is-disabled {
+  cursor: not-allowed;
+}
+
+/* ---------- Closing CTA band ---------- */
+@media (max-width: 599px) {
+  .bc-cta {
+    padding: var(--space-6) var(--space-5);
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .bc-cta-actions {
+    flex-direction: column;
+  }
+}
+
+/* ---------- Pathway (curriculum) ---------- */
+.bc-pathway-stage {
+  background: var(--sky-50);
+  border-color: var(--sky-50);
+}
+@media (max-width: 959px) {
+  .bc-pathway {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  .bc-pathway-arrow svg {
+    transform: rotate(90deg);
+  }
+  .bc-pathway-stage {
+    padding: var(--space-5);
+  }
+}
+.bc-pathway-exam span {
+  background: var(--surface);
+}
+
+/* ---------- About ---------- */
+.story-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.story-body p {
+  margin: 0;
+}
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-4);
+  margin: var(--space-2) 0 0;
+}
+.fact-grid dd {
+  margin: 0;
+}
+.value-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.value-grid li {
+  background: var(--sky-50);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.value-grid b {
+  font-size: 16px;
+  line-height: 22px;
+}
+.value-grid .bc-muted {
+  font-size: 15px;
+  line-height: 22px;
+}
+.value-number {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sky-600);
+  font-variant-numeric: tabular-nums;
+}
+@media (min-width: 600px) {
+  .value-grid {
+    gap: var(--space-4);
+  }
+  .value-grid li {
+    padding: var(--space-5);
+  }
+  .value-grid b {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+@media (min-width: 960px) {
+  .value-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.welcome {
+  display: grid;
+  gap: var(--space-5);
+}
+.welcome-photo {
+  max-width: 360px;
+}
+.welcome-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.welcome-body p {
+  margin: 0;
+}
+.signature {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 960px) {
+  .welcome {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: center;
+  }
+  .welcome-photo {
+    grid-column: 2 / span 4;
+    max-width: none;
+  }
+  .welcome-body {
+    grid-column: 7 / span 5;
+  }
+}
+.people {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+}
+.people li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px solid var(--neutral-200);
+  padding-top: var(--space-4);
+}
+.people b {
+  font-size: 18px;
+}
+.accreditation {
+  padding: 0;
+  background: var(--sky-50);
+}
+.accreditation-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+.accreditation-row svg {
+  flex: none;
+  fill: none;
+  stroke: var(--sky-600);
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+}
+.accreditation-row p {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---------- Contact ---------- */
+.contact-grid {
+  display: grid;
+  gap: var(--space-8);
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.contact-info h2 {
+  margin-bottom: var(--space-2);
+}
+.dept-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--neutral-200);
+}
+.dept {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--neutral-200);
+}
+.dept b {
+  display: block;
+}
+.dept a {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  min-height: var(--tap-min);
+  display: inline-flex;
+  align-items: center;
+  color: var(--sky-600);
+}
+.enquiry {
+  padding: var(--space-5);
+  gap: var(--space-5);
+  overflow: visible;
+}
+.enquiry h2 {
+  margin: 0;
+}
+.enquiry .field {
+  max-width: none;
+}
+.enquiry textarea {
+  resize: vertical;
+}
+.enquiry .consent {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+.form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+.form-actions .bc-muted {
+  font-size: 14px;
+}
+.bc-alert a {
+  color: inherit;
+  font-weight: 600;
+}
+.find-us {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+.find-us p {
+  margin: 0;
+}
+@media (min-width: 960px) {
+  .contact-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: start;
+  }
+  .contact-info {
+    grid-column: span 5;
+  }
+  .contact-form-wrap {
+    grid-column: 7 / span 6;
+  }
+  .enquiry {
+    padding: var(--space-6);
+  }
+}

@@ -1,0 +1,24 @@
+---
+// Closing call-to-action band (title, one line of text, buttons in the default slot).
+interface Props {
+  title: string;
+  text?: string;
+  /** Remove the top padding when the band follows a tinted section. */
+  flush?: boolean;
+}
+const { title, text, flush = false } = Astro.props;
+---
+
+<section class:list={['bc-section', flush && 'is-flush-top']}>
+  <div class="bc-wrap">
+    <div class="bc-cta">
+      <div>
+        <h2 class="bc-h2">{title}</h2>
+        {text && <p class="bc-muted cta-text">{text}</p>}
+      </div>
+      <div class="bc-cta-actions">
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

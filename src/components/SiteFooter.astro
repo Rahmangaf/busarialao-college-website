@@ -12,19 +12,19 @@ const year = new Date().getFullYear();
     <img src="/logo/logo-white.svg" alt={school.name} width="139" height="72" />
   </div>
   <div>
-    <h4>Explore</h4>
+    <h2 class="footer-heading">Explore</h2>
     {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
   </div>
   <div>
-    <h4>Visit</h4>
+    <h2 class="footer-heading">Visit</h2>
     {school.location}<br />{school.streetAddress}
   </div>
   <div>
-    <h4>Office hours</h4>
+    <h2 class="footer-heading">Office hours</h2>
     {contact.officeHours}
   </div>
   <div>
-    <h4>Follow</h4>
+    <h2 class="footer-heading">Follow</h2>
     {
       contact.social.map((account) =>
         account.url ? (
@@ -35,5 +35,5 @@ const year = new Date().getFullYear();
       )
     }
   </div>
-  <small>{school.accreditation} · © {year} {school.name}</small>
+  <small>{school.accreditation} · © {year} {school.name} · <a class="footer-inline" href="/privacy/">Privacy</a></small>
 </footer>

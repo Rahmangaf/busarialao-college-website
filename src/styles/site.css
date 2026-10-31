@@ -342,8 +342,15 @@ body {
   padding-bottom: 96px; /* clears the WhatsApp button */
   grid-template-columns: 1fr;
 }
-.site-footer h4 {
+/* Footer headings are h2 (not the design's h4) so the heading order has no gaps; same look. */
+.site-footer .footer-heading {
+  margin: 0 0 var(--space-3);
+  font-size: 13px;
+  line-height: 16px;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
 }
 .footer-pending {
   display: block;
@@ -363,4 +370,10 @@ body {
     padding-right: clamp(var(--space-6), 8.33vw, 120px);
     padding-bottom: var(--space-5);
   }
+}
+.bc-footer a.footer-inline {
+  display: inline;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

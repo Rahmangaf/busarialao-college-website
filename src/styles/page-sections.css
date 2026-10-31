@@ -1,0 +1,444 @@
+/*
+ * Section-level styles for individual inner pages (Admissions, Fees, Results, Academics,
+ * Boarding, News, placeholders). Shared structure lives in pages.css.
+ */
+
+/* ---------- Tabs that act as toggle buttons (results year, news filter) ---------- */
+.bc-tab[aria-pressed='true'] {
+  color: var(--navy-900);
+  border-bottom-color: var(--sky-600);
+}
+.bc-tab:hover {
+  color: var(--navy-900);
+}
+
+/* ---------- The one navy section on a page ---------- */
+.bc-section-navy :is(h2, h3, h4, p, li) {
+  color: var(--on-primary);
+}
+.bc-section-navy a:not(.bc-btn) {
+  color: var(--on-primary);
+}
+.bc-section-navy .navy-muted,
+.bc-section-navy .scholarship-note {
+  color: var(--sky-100);
+}
+.navy-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  text-underline-offset: 5px;
+}
+.bc-btn-secondary.on-navy {
+  color: var(--on-primary);
+  border-color: var(--on-primary);
+  align-self: flex-start;
+}
+.bc-btn-secondary.on-navy:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.navy-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.navy-stack .subhead p {
+  margin: 0;
+}
+.chip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.chip-list li {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 2px 10px;
+  font-size: 15px;
+  line-height: 24px;
+}
+.bc-section-navy .dash-list li::before {
+  color: var(--sky-100);
+}
+
+/* ---------- Admissions ---------- */
+.step-grid {
+  gap: var(--space-5);
+}
+@media (min-width: 600px) {
+  .step-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-6);
+    row-gap: 28px;
+  }
+}
+.step-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  font-weight: 600;
+}
+.exam-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+.exam-body p {
+  margin: 0;
+}
+.scholarship-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.scholarship-points {
+  margin: 0;
+  padding: 0 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.scholarship-note {
+  margin: 0;
+}
+
+/* ---------- Fees ---------- */
+.hero-note {
+  flex-basis: 100%;
+  margin: 0;
+}
+.fee-tables {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.row-head {
+  background: none !important;
+  font-weight: 500 !important;
+}
+.pay-button {
+  align-self: flex-start;
+}
+.pay-page {
+  background: var(--neutral-50);
+  padding: var(--space-8) var(--gutter-mobile) var(--space-10);
+}
+.pay-column {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.pay-column > p {
+  margin: 0;
+}
+
+/* ---------- Results ---------- */
+.year-section {
+  padding-bottom: var(--space-6);
+}
+.year-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.year-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.year-select {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.year-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.year-intro p {
+  margin: 0;
+}
+.stats-band {
+  padding: var(--space-10) 0;
+}
+.bc-stats-lg .bc-stat b.stat-missing {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 600px) {
+  .year-controls {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .year-controls .bc-tabs {
+    flex: 1;
+  }
+  .stats-band {
+    padding: 80px 0;
+  }
+}
+.bc-stat span {
+  display: block;
+}
+
+/* ---------- Academics ---------- */
+.stage-years {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sky-600);
+}
+.curriculum-notes {
+  margin-top: var(--space-8);
+  max-width: 800px;
+}
+.lab-card {
+  border: 0;
+}
+.lab-card .bc-card-body p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 22px;
+}
+.tile-grid .bc-tile {
+  min-height: 88px;
+}
+.tile-grid .bc-tile-label {
+  justify-content: flex-start;
+}
+.tile-grid .bc-tile-label::after {
+  content: none;
+}
+
+/* ---------- Boarding ---------- */
+.hostel-facts {
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+@media (min-width: 600px) {
+  .hostel-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.routine-timeline {
+  margin-top: var(--space-5);
+}
+.routine-panels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.club-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--neutral-200);
+}
+.club-list li {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--neutral-200);
+}
+@media (min-width: 600px) {
+  .club-list li {
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+}
+.sports-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.sports-copy p {
+  margin: 0;
+}
+@media (min-width: 960px) {
+  .sports-copy {
+    grid-column: span 5;
+  }
+}
+
+/* ---------- News ---------- */
+.news-head {
+  flex-wrap: wrap;
+}
+.news-list {
+  display: grid;
+  gap: var(--space-5);
+}
+.news-card {
+  color: inherit;
+  text-decoration: none;
+}
+.news-card:hover h3 {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.news-card .bc-card-body {
+  gap: var(--space-2);
+}
+.news-card .bc-card-body p,
+.news-card .bc-card-body h3 {
+  margin: 0;
+}
+.news-meta {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--neutral-600);
+  margin: 0;
+}
+.read-link {
+  color: var(--sky-600);
+  font-weight: 600;
+}
+.news-card.is-featured {
+  border: 0;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+.news-card.is-featured > .bc-media {
+  border-radius: var(--radius-lg);
+}
+.news-card.is-featured .bc-card-body {
+  padding: var(--space-4) 0 0;
+}
+@media (min-width: 600px) {
+  .news-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .news-card.is-featured {
+    grid-column: 1 / -1;
+  }
+}
+@media (min-width: 960px) {
+  .news-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+  .news-card.is-featured {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: center;
+    margin-bottom: var(--space-6);
+  }
+  .news-card.is-featured > .bc-media {
+    grid-column: span 7;
+  }
+  .news-card.is-featured .bc-card-body {
+    grid-column: 9 / span 4;
+    padding: 0;
+    gap: var(--space-3);
+  }
+}
+.news-empty {
+  padding: var(--space-10) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+.news-empty svg {
+  fill: none;
+  stroke: var(--sky-600);
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+}
+.news-empty b {
+  color: var(--navy-900);
+  font-size: 20px;
+}
+.news-empty .form-actions {
+  justify-content: center;
+}
+.dates-head {
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.term-table caption {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--navy-900);
+}
+.article-head {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--gutter-mobile) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.article-head h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 1.6rem + 1.6vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.prose {
+  max-width: 712px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--gutter-mobile) var(--space-10);
+}
+.prose p {
+  margin: 0 0 20px;
+  font-size: 18px;
+  line-height: 30px;
+}
+.prose h2 {
+  font-size: 24px;
+  line-height: 32px;
+  margin: 32px 0 12px;
+}
+
+/* ---------- Placeholder pages ---------- */
+.soon-body {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.soon-body p {
+  margin: 0;
+}
+.portal-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 640px;
+  border-bottom: 1px solid var(--neutral-200);
+}
+.portal-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--neutral-200);
+}
+@media (min-width: 600px) {
+  .portal-list li {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Anchored sections clear the sticky header. */
+[id] {
+  scroll-margin-top: 88px;
+}
+
+/* The sticky action bar (mobile Admissions and Fees) replaces the floating WhatsApp button. */
+body:has(.bc-actionbar) .site-fab {
+  display: none;
+}
