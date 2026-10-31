@@ -1,0 +1,75 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Media from '../../components/Media.astro';
+import { formatNewsDate, news, sortedNews } from '../../data/news';
+import { school } from '../../data/school';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const getStaticPaths = (() =>
+  news.map((item) => ({ params: { slug: item.slug }, props: { item } }))) satisfies GetStaticPaths;
+
+const { item } = Astro.props;
+const more = sortedNews().filter((other) => other.slug !== item.slug);
+---
+
+<BaseLayout title={`${item.title} | ${school.name}`} description={item.summary} section="news">
+  <article>
+    <div class="article-head">
+      <nav class="bc-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/news/">News</a></li>
+          <li><span aria-current="page">{item.title}</span></li>
+        </ol>
+      </nav>
+      <p class="news-meta">{item.category} · {formatNewsDate(item.date, 'long')}</p>
+      <h1>{item.title}</h1>
+      <p class="page-lead">{item.summary}</p>
+    </div>
+    {
+      item.photo && (
+        <div class="bc-wrap">
+          <Media photo={item.photo} ratio="16 / 9" ratioMobile="4 / 3" focus={item.focus} eager />
+        </div>
+      )
+    }
+    <div class="prose">
+      {
+        item.body.map((paragraph, index) => (
+          <>
+            {item.bodyHeading && item.bodyHeading.before === index && <h2>{item.bodyHeading.text}</h2>}
+            <p>{paragraph}</p>
+          </>
+        ))
+      }
+    </div>
+  </article>
+
+  {
+    more.length > 0 && (
+      <section class="bc-section bc-section-tint">
+        <div class="bc-wrap">
+          <div class="bc-section-head-row">
+            <h2 class="bc-h2">More news</h2>
+            <a class="bc-btn bc-btn-text" href="/news/">All news →</a>
+          </div>
+          <div class="grid-3">
+            {more.slice(0, 3).map((other) => (
+              <a class="news-card bc-card" href={`/news/${other.slug}/`}>
+                {other.photo && (
+                  <Media photo={other.photo} ratio="3 / 2" focus={other.focus} sizes="(min-width: 960px) 380px, (min-width: 600px) 50vw, 100vw" />
+                )}
+                <div class="bc-card-body">
+                  <span class="news-meta">
+                    {other.category} · {formatNewsDate(other.date)}
+                  </span>
+                  <h3 class="bc-h4">{other.title}</h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

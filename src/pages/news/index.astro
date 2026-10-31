@@ -1,0 +1,148 @@
+---
+import CtaBand from '../../components/CtaBand.astro';
+import Media from '../../components/Media.astro';
+import PageHero from '../../components/PageHero.astro';
+import { calendar } from '../../data/calendar';
+import { formatNewsDate, newsCategories, sortedNews } from '../../data/news';
+import { school } from '../../data/school';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const items = sortedNews();
+---
+
+<BaseLayout
+  title={`News & Calendar | ${school.name}`}
+  description="What is happening at school, and the term dates families need for the year ahead."
+  section="news"
+>
+  <PageHero
+    title="News & Calendar"
+    lead="What's happening at school, and the dates families need for the year ahead."
+    crumbs={[{ label: 'News & Calendar' }]}
+  >
+    <a class="bc-btn bc-btn-secondary" href="#term-dates">Jump to term dates</a>
+  </PageHero>
+
+  <section class="bc-section" id="news">
+    <div class="bc-wrap">
+      <div class="bc-section-head-row news-head">
+        <h2 class="bc-h2">Latest news</h2>
+        <div class="bc-tabs" role="group" aria-label="Filter news" data-news-filter hidden>
+          <button type="button" class="bc-tab" data-category="all" aria-pressed="true">All</button>
+          {newsCategories.map((category) => <button type="button" class="bc-tab" data-category={category} aria-pressed="false">{category}</button>)}
+        </div>
+      </div>
+
+      <div class="news-list" data-news-list>
+        {
+          items.map((item) => (
+            <a class:list={['news-card', 'bc-card', item.featured && 'is-featured']} href={`/news/${item.slug}/`} data-news-item data-category={item.category}>
+              {item.photo && (
+                <Media
+                  photo={item.photo}
+                  ratio={item.featured ? '16 / 9' : '3 / 2'}
+                  focus={item.focus}
+                  sizes={item.featured ? '(min-width: 1264px) 700px, 100vw' : '(min-width: 960px) 380px, (min-width: 600px) 50vw, 100vw'}
+                />
+              )}
+              <div class="bc-card-body">
+                <span class="news-meta">
+                  {item.category} · {formatNewsDate(item.date)}
+                </span>
+                <h3 class={item.featured ? 'bc-h2' : 'bc-h4'}>{item.title}</h3>
+                <p class="bc-muted">{item.summary}</p>
+                {item.featured && <span class="read-link">Read the story →</span>}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="bc-empty news-empty" data-news-empty hidden>
+        <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false">
+          <rect x="4" y="5" width="16" height="15" rx="2"></rect>
+          <path d="M4 10h16 M9 3v4 M15 3v4"></path>
+        </svg>
+        <b data-news-empty-title>No news yet this term.</b>
+        <span>Upcoming events are in the term calendar.</span>
+        <div class="form-actions">
+          <button type="button" class="bc-btn bc-btn-secondary" data-news-reset>Show all news</button>
+          <a class="bc-btn bc-btn-text" href="#term-dates">See term dates</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="term-dates">
+    <div class="bc-wrap">
+      <div class="bc-section-head-row dates-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">Term dates {calendar.session}</h2>
+          <p class="bc-muted">{calendar.note}</p>
+        </div>
+        {
+          calendar.pdfUrl ? (
+            <a class="bc-btn bc-btn-primary" href={calendar.pdfUrl}>Download calendar (PDF)</a>
+          ) : (
+            <span class="bc-btn bc-btn-primary is-disabled" aria-disabled="true">
+              Download calendar (PDF): Sample, not yet available
+            </span>
+          )
+        }
+      </div>
+      <div class="grid-3">
+        {
+          calendar.terms.map((term) => (
+            <table class="bc-table bc-table-dates term-table">
+              <caption>{term.name}</caption>
+              <tbody>
+                {term.dates.map((row) => (
+                  <tr>
+                    <td class="date">{row.date}</td>
+                    <td>{row.event}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={calendar.updates.heading} text={calendar.updates.text}>
+    <span class="bc-btn bc-btn-whatsapp is-disabled" aria-disabled="true">WhatsApp updates: not yet available</span>
+  </CtaBand>
+</BaseLayout>
+
+<script>
+  const filter = document.querySelector<HTMLElement>('[data-news-filter]');
+  const items = [...document.querySelectorAll<HTMLElement>('[data-news-item]')];
+  const empty = document.querySelector<HTMLElement>('[data-news-empty]');
+  const emptyTitle = document.querySelector<HTMLElement>('[data-news-empty-title]');
+  const list = document.querySelector<HTMLElement>('[data-news-list]');
+
+  function apply(category: string) {
+    let visible = 0;
+    for (const item of items) {
+      const show = category === 'all' || item.dataset.category === category;
+      item.hidden = !show;
+      if (show) visible += 1;
+    }
+    filter?.querySelectorAll<HTMLButtonElement>('[data-category]').forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.category === category));
+    });
+    if (list) list.hidden = visible === 0;
+    if (empty) empty.hidden = visible !== 0;
+    if (emptyTitle) emptyTitle.textContent = `No ${category.toLowerCase()} news yet this term.`;
+  }
+
+  if (filter) {
+    filter.hidden = false;
+    filter.addEventListener('click', (event) => {
+      const button = (event.target as Element).closest<HTMLButtonElement>('[data-category]');
+      if (button) apply(button.dataset.category as string);
+    });
+    document.querySelector('[data-news-reset]')?.addEventListener('click', () => apply('all'));
+  }
+</script>
