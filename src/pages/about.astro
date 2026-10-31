@@ -1,0 +1,158 @@
+---
+import CtaBand from '../components/CtaBand.astro';
+import Media from '../components/Media.astro';
+import PageHero from '../components/PageHero.astro';
+import { about } from '../data/about';
+import { contact } from '../data/contact';
+import { cta } from '../data/nav';
+import { school, yearsSinceFoundingInWords } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const years = yearsSinceFoundingInWords();
+---
+
+<BaseLayout title={`About | ${school.name}`} description={about.lead} section="about">
+  <PageHero
+    title={`${years} years of nurturing scientific minds`}
+    lead={about.lead}
+    crumbs={[{ label: 'About' }]}
+  >
+    <Media slot="media" photo="courtyard" ratio="16 / 9" ratioMobile="4 / 3" focus="45% 55%" eager class="hero-photo" />
+  </PageHero>
+
+  <section class="bc-section" id="story">
+    <div class="bc-wrap split split-wide">
+      <div class="split-head">
+        <h2 class="bc-h2">From Top Tutors to Busarialao College</h2>
+      </div>
+      <div class="split-body story-body">
+        {about.story.map((paragraph) => <p>{paragraph}</p>)}
+        <dl class="fact-grid">
+          {
+            about.facts.map((fact) => (
+              <div class="bc-stat">
+                <dt class="sr-only">{fact.label}</dt>
+                <dd>
+                  <b>{fact.value}</b>
+                  <span>{fact.label}</span>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="vision">
+    <div class="bc-wrap">
+      <div class="grid-2">
+        <div class="bc-card panel">
+          <h2 class="bc-h3">Vision</h2>
+          <p class="statement">{about.vision}</p>
+        </div>
+        <div class="bc-card panel">
+          <h2 class="bc-h3">Mission</h2>
+          <ul class="bc-checklist">
+            {about.mission.map((line) => <li>{line}</li>)}
+          </ul>
+          <p class="bc-muted tag-note">[DRAFT]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section" id="values">
+    <div class="bc-wrap">
+      <div class="bc-section-head">
+        <h2 class="bc-h2">What we hold to</h2>
+        <p class="bc-muted">Our eight core values. [DRAFT]</p>
+      </div>
+      <ol class="value-grid">
+        {
+          about.values.map((value, index) => (
+            <li>
+              <span class="value-number">{String(index + 1).padStart(2, '0')}</span>
+              <b>{value.name}</b>
+              <span class="bc-muted">{value.text}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="welcome">
+    <div class="bc-wrap welcome">
+      <Media photo="principal-portrait" ratio="4 / 5" focus="50% 18%" sizes="(min-width: 960px) 400px, 100vw" class="welcome-photo" />
+      <div class="welcome-body">
+        <h2 class="bc-h2">{years} years of curious minds</h2>
+        <p class="bc-muted">Principal's welcome</p>
+        {about.welcome.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <p class="bc-muted">{about.welcome.note}</p>
+        <p class="signature">
+          <b>{about.welcome.signature}</b>
+          <span class="bc-muted">{about.welcome.signatureNote}</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section" id="leadership">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">Leadership</h2>
+          <p class="bc-muted">As listed in the magazine. [DRAFT] {about.leadershipNote}</p>
+        </div>
+      </div>
+      <ul class="split-body people">
+        {
+          about.leadership.map((person) => (
+            <li>
+              <b>{person.name}</b>
+              <span>{person.role}</span>
+              <span class="bc-muted">{person.detail}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="milestones">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">Our journey so far</h2>
+          <p class="bc-muted">All dates [DRAFT].</p>
+        </div>
+      </div>
+      <ol class="bc-timeline split-body">
+        {
+          about.milestones.map((milestone) => (
+            <li>
+              <time>{milestone.year}</time>
+              <div>{milestone.text}</div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="bc-section accreditation" id="accreditation">
+    <div class="bc-wrap accreditation-row">
+      <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" focusable="false">
+        <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path>
+        <path d="M9 12l2 2 4-4"></path>
+      </svg>
+      <p>{school.accreditation}</p>
+    </div>
+  </section>
+
+  <CtaBand title="Come and meet us" text={contact.tours} flush>
+    <a class="bc-btn bc-btn-primary" href={cta.tour}>Book a Tour</a>
+    <a class="bc-btn bc-btn-secondary" href={cta.apply}>Start Application</a>
+  </CtaBand>
+</BaseLayout>
