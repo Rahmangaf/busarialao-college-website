@@ -1,0 +1,161 @@
+---
+import CtaBand from '../components/CtaBand.astro';
+import Media from '../components/Media.astro';
+import PageHero from '../components/PageHero.astro';
+import { admissions } from '../data/admissions';
+import { whatsappHref } from '../data/contact';
+import { cta } from '../data/nav';
+import { school } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={`Admissions | ${school.name}`}
+  description="How to apply to Busarialao College: the steps, the entrance exam, documents and scholarships."
+  section="admissions"
+>
+  <PageHero title={admissions.hero.title} lead={admissions.hero.lead} crumbs={[{ label: 'Admissions' }]}>
+    <a class="bc-btn bc-btn-primary" href={cta.applyForm}>Start your application</a>
+    <a class="bc-btn bc-btn-secondary" href={cta.tour}>Book a Tour</a>
+    <div slot="aside">
+      <table class="bc-table bc-table-dates">
+        <caption>Key dates, {admissions.session} [SAMPLE]</caption>
+        <tbody>
+          {
+            admissions.keyDates.map((row) => (
+              <tr>
+                <td class="date">{row.date}</td>
+                <td>{row.event}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <Media slot="media" photo="exam-session" ratio="16 / 9" ratioMobile="4 / 3" focus="58% 40%" eager />
+  </PageHero>
+
+  <section class="bc-section" id="how-to-apply">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">Seven steps from form to first day</h2>
+          <p class="bc-muted">{admissions.stepsNote}</p>
+        </div>
+      </div>
+      <ol class="bc-steps split-body step-grid">
+        {
+          admissions.steps.map((step) => (
+            <li>
+              <div>
+                <strong>{step.title}</strong>
+                <span class="bc-muted">{step.text}</span>
+                {'link' in step && step.link && (
+                  <a class="step-link" href={step.link.href}>
+                    {step.link.label}
+                  </a>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="eligibility">
+    <div class="bc-wrap grid-2">
+      <div class="bc-card panel">
+        <h2 class="bc-h3">Who can apply</h2>
+        <ul class="bc-checklist">
+          {admissions.eligibility.map((line) => <li>{line}</li>)}
+        </ul>
+      </div>
+      <div class="bc-card panel">
+        <h2 class="bc-h3">What to bring</h2>
+        <ul class="bc-checklist">
+          {admissions.documents.map((line) => <li>{line}</li>)}
+        </ul>
+        <p class="bc-muted">{admissions.documentsNote}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section" id="entrance-exam">
+    <div class="bc-wrap split split-wide">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">{admissions.exam.heading}</h2>
+          <p class="bc-muted">{admissions.exam.text}</p>
+        </div>
+      </div>
+      <div class="split-body exam-body">
+        <ul class="bc-inline-list" aria-label="Exam subjects [SAMPLE]">
+          {admissions.exam.subjects.map((subject) => <li>{subject}</li>)}
+        </ul>
+        <p class="bc-muted">{admissions.exam.subjectsNote}</p>
+        {
+          admissions.exam.samplePapersUrl ? (
+            <a class="bc-btn bc-btn-text" href={admissions.exam.samplePapersUrl}>
+              {admissions.exam.samplePapersLabel} →
+            </a>
+          ) : (
+            <span class="bc-btn bc-btn-secondary is-disabled" aria-disabled="true">
+              {admissions.exam.samplePapersLabel}: Sample, not yet available
+            </span>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-navy" id="scholarships">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="bc-stats-lg">
+          <div class="bc-stat">
+            <b>{admissions.scholarship.figure}</b>
+            <span>{admissions.scholarship.figureLabel}</span>
+          </div>
+        </div>
+      </div>
+      <div class="split-body scholarship-body">
+        <h2 class="bc-h2">{admissions.scholarship.heading} [DRAFT]</h2>
+        <ul class="scholarship-points">
+          {admissions.scholarship.points.map((point) => <li>{point}</li>)}
+        </ul>
+        <p class="scholarship-note">{admissions.scholarship.note}</p>
+        <a class="bc-btn bc-btn-secondary on-navy" href="/contact/">Ask about eligibility</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section" id="faq">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <h2 class="bc-h2">Admissions FAQ</h2>
+      </div>
+      <div class="bc-acc split-body">
+        {
+          admissions.faq.map((item, index) => (
+            <details open={index === 0}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Ready to apply?" text="Questions first? The admissions office answers on WhatsApp, Mon–Fri. [SAMPLE]" flush>
+    <a class="bc-btn bc-btn-primary" href={cta.applyForm}>Start your application</a>
+    <a class="bc-btn bc-btn-secondary" href="/fees/">See fees</a>
+    <a class="bc-btn bc-btn-whatsapp" href={whatsappHref()}>WhatsApp</a>
+  </CtaBand>
+
+  <div class="bc-actionbar">
+    <a class="bc-btn bc-btn-whatsapp" href={whatsappHref()}>WhatsApp</a>
+    <a class="bc-btn bc-btn-primary" href={cta.applyForm}>Apply Now</a>
+  </div>
+</BaseLayout>

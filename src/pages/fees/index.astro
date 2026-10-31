@@ -1,0 +1,164 @@
+---
+import CtaBand from '../../components/CtaBand.astro';
+import PageHero from '../../components/PageHero.astro';
+import { contact, telHref, whatsappHref } from '../../data/contact';
+import { fees } from '../../data/fees';
+import { school } from '../../data/school';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const bursaryTel = telHref(contact.offices.find((office) => office.id === 'bursary')!.number);
+---
+
+<BaseLayout
+  title={`Fees & Payment | ${school.name}`}
+  description="Termly fees for day and boarding students, and how to pay them safely."
+  section="admissions"
+>
+  <PageHero
+    title={fees.title}
+    lead={`${fees.lead} [SAMPLE]`}
+    crumbs={[{ label: 'Admissions', href: '/admissions/' }, { label: 'Fees & Payment' }]}
+  >
+    <span class="bc-btn bc-btn-primary is-disabled" aria-disabled="true">Pay Online</span>
+    <span class="bc-btn bc-btn-secondary is-disabled" aria-disabled="true">Download fee schedule (PDF)</span>
+    <p class="bc-muted hero-note">{fees.online.status}. Fee schedule: Sample, not yet available.</p>
+    <div slot="aside">
+      <div class="bc-alert bc-alert-warning" role="note">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l10 18H2z M12 10v5 M12 18v.5"></path></svg>
+        <div>
+          <b>{fees.warning.heading}</b>
+          <p>{fees.warning.text}</p>
+        </div>
+      </div>
+    </div>
+  </PageHero>
+
+  <section class="bc-section" id="fees">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <div class="sec-head">
+          <h2 class="bc-h2">What each term costs</h2>
+          <p class="bc-muted">{fees.termly.note}</p>
+        </div>
+      </div>
+      <div class="split-body fee-tables">
+        <div class="table-scroll">
+          <table class="bc-table">
+            <caption>{fees.termly.caption}</caption>
+            <thead>
+              <tr><th scope="col">Level</th><th scope="col" class="num">Day</th><th scope="col" class="num">Boarding</th></tr>
+            </thead>
+            <tbody>
+              {
+                fees.termly.rows.map((row) => (
+                  <tr>
+                    <th scope="row" class="row-head">{row.level}</th>
+                    <td class="num">{row.day}</td>
+                    <td class="num">{row.boarding}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+        <div class="table-scroll">
+          <table class="bc-table">
+            <caption>{fees.oneOff.caption}</caption>
+            <thead>
+              <tr><th scope="col">Fee</th><th scope="col">When</th><th scope="col" class="num">Amount</th></tr>
+            </thead>
+            <tbody>
+              {
+                fees.oneOff.rows.map((row) => (
+                  <tr>
+                    <th scope="row" class="row-head">{row.fee}</th>
+                    <td>{row.when}</td>
+                    <td class="num">{row.amount}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint">
+    <div class="bc-wrap grid-2">
+      <div class="bc-card panel">
+        <h2 class="bc-h3">Covered by the termly fee</h2>
+        <ul class="bc-checklist">
+          {fees.included.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="bc-card panel">
+        <h2 class="bc-h3">Paid separately</h2>
+        <ul class="dash-list">
+          {fees.separate.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <h2 class="bc-h2">Instalments and discounts</h2>
+      </div>
+      <div class="split-body grid-2">
+        <div class="subhead">
+          <h3 class="bc-h4">Instalments</h3>
+          <p class="bc-muted">{fees.instalments}</p>
+        </div>
+        <div class="subhead">
+          <h3 class="bc-h4">Sibling discount</h3>
+          <p class="bc-muted">{fees.sibling}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bc-section bc-section-tint" id="pay">
+    <div class="bc-wrap split">
+      <div class="split-head">
+        <h2 class="bc-h2">Online, or by bank transfer</h2>
+      </div>
+      <div class="split-body grid-2">
+        <div class="bc-card panel">
+          <h3 class="bc-h3">Pay online</h3>
+          <p class="bc-muted">{fees.online.text}</p>
+          <span class="bc-btn bc-btn-primary is-disabled pay-button" aria-disabled="true">Pay Online</span>
+          <p class="bc-muted">{fees.online.status}.</p>
+          <a href="/fees/payment-confirmed/">See the payment confirmation page (design preview) [SAMPLE]</a>
+        </div>
+        <div class="bc-card panel">
+          <h3 class="bc-h3">Official school account</h3>
+          <table class="bc-table bc-table-dates">
+            <tbody>
+              {
+                fees.account.rows.map((row) => (
+                  <tr>
+                    <td class="date">{row.label}</td>
+                    <td>{row.value}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+          <p class="bc-muted">{fees.account.note}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Questions about fees?" text={`${fees.bursary.hours} Call ${fees.bursary.phone}.`}>
+    <a class="bc-btn bc-btn-secondary" href={bursaryTel}>Call the Bursary</a>
+    <a class="bc-btn bc-btn-whatsapp" href={whatsappHref()}>WhatsApp</a>
+  </CtaBand>
+
+  <div class="bc-actionbar">
+    <a class="bc-btn bc-btn-whatsapp" href={whatsappHref()}>WhatsApp</a>
+    <a class="bc-btn bc-btn-primary" href={bursaryTel}>Call Bursary</a>
+  </div>
+</BaseLayout>

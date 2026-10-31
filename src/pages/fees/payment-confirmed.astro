@@ -1,0 +1,54 @@
+---
+// Static design state only. No payment provider is connected, so nothing here is real.
+import { fees } from '../../data/fees';
+import { school } from '../../data/school';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={`Payment confirmation (design preview) | ${school.name}`} section="admissions">
+  <section class="pay-page">
+    <div class="pay-column">
+      <div class="bc-alert bc-alert-warning" role="note">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l10 18H2z M12 10v5 M12 18v.5"></path></svg>
+        <div>
+          <b>{fees.online.status}</b>
+          <p>
+            This page is a design preview of the confirmation screen. No payment has been made or recorded, and no
+            receipt exists. [SAMPLE]
+          </p>
+        </div>
+      </div>
+
+      <div class="bc-alert bc-alert-success">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>
+        <div>
+          <b>Payment received [design preview]</b>
+          <p>Thank you. A receipt has been sent by SMS and email. [SAMPLE]</p>
+        </div>
+      </div>
+
+      <div class="bc-card enquiry">
+        <h1 class="bc-h2">Payment summary [SAMPLE]</h1>
+        <table class="bc-table bc-table-dates">
+          <tbody>
+            <tr><td class="date">Reference</td><td>BC-2027-0142 [SAMPLE]</td></tr>
+            <tr><td class="date">Student</td><td>[SAMPLE name], JSS2</td></tr>
+            <tr><td class="date">For</td><td>First term {fees.session}, day [SAMPLE]</td></tr>
+            <tr><td class="date">Amount</td><td>₦180,000 [SAMPLE]</td></tr>
+            <tr><td class="date">Paid on</td><td>[SAMPLE date]</td></tr>
+          </tbody>
+        </table>
+        <div class="form-actions">
+          <span class="bc-btn bc-btn-primary is-disabled" aria-disabled="true">Download receipt (PDF)</span>
+          <a class="bc-btn bc-btn-secondary" href="/fees/">Back to Fees</a>
+        </div>
+        <p class="bc-muted tag-note">Receipt download: Sample, not yet available.</p>
+      </div>
+
+      <p class="bc-muted">
+        Keep the reference for your records. If anything looks wrong, contact the Bursary on {fees.bursary.phone} before
+        paying again.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
