@@ -24,6 +24,9 @@ const photos = {
   'Collaborative Learning in the Computer Lab.png': 'computer-lab',
   'Schoolyard Soccer Showdown.png': 'football',
   'Focused Classroom Exam Session.png': 'exam-session',
+  'Joyful Blue Graduation Group Photo.png': 'graduation-group',
+  'Studying Together in a Bright Dormitory.png': 'dormitory-study',
+  'Formal Ceremony with Blue Drapery and Audience.png': 'ceremony-hall',
 };
 
 await mkdir(to, { recursive: true });

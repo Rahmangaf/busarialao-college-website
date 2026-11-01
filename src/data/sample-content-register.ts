@@ -6,15 +6,18 @@
 //
 // - Originals live in assets/generated-photos and are never edited.
 // - Web masters are produced by `npm run images` into src/assets/photos.
-// - Placements follow the approved design; `built: true` means the page is not built yet.
+// - Placements follow the approved design; `built: false` means the page is not built yet.
 import type { ImageMetadata } from 'astro';
 import biologyLab from '../assets/photos/biology-lab.webp';
 import chemistryLab from '../assets/photos/chemistry-lab.webp';
 import computerLab from '../assets/photos/computer-lab.webp';
+import ceremonyHall from '../assets/photos/ceremony-hall.webp';
 import courtyard from '../assets/photos/courtyard.webp';
 import dormitory from '../assets/photos/dormitory.webp';
+import dormitoryStudy from '../assets/photos/dormitory-study.webp';
 import examSession from '../assets/photos/exam-session.webp';
 import football from '../assets/photos/football.webp';
+import graduationGroup from '../assets/photos/graduation-group.webp';
 import principalPortrait from '../assets/photos/principal-portrait.webp';
 import studentsWalking from '../assets/photos/students-walking.webp';
 
@@ -38,7 +41,7 @@ export const samplePhotos = {
     image: chemistryLab,
     alt: 'Students in white lab coats running a titration in the chemistry laboratory',
     placements: [
-      { page: 'Home', spot: 'Hero', built: true },
+      { page: 'Home', spot: 'Hero carousel: slide 1', built: true },
       { page: 'Academics', spot: 'Laboratories: Chemistry card', built: true },
     ],
   },
@@ -53,7 +56,6 @@ export const samplePhotos = {
     image: dormitory,
     alt: 'Boarding dormitory with blue bunk beds and lockers',
     placements: [
-      { page: 'Home', spot: 'Day or boarding: Boarding', built: true },
       { page: 'Boarding & Student Life', spot: 'Hero', built: true },
     ],
   },
@@ -62,7 +64,7 @@ export const samplePhotos = {
     image: courtyard,
     alt: 'School courtyard with blue-roofed classroom blocks under a clear sky',
     placements: [
-      { page: 'Home', spot: 'Visit band', built: true },
+      { page: 'Home', spot: 'Closing section (full-width underlay)', built: true },
       { page: 'About', spot: 'Hero', built: true },
     ],
   },
@@ -77,6 +79,7 @@ export const samplePhotos = {
     image: biologyLab,
     alt: 'Biology teacher guiding students in white lab coats at a microscope',
     placements: [
+      { page: 'Home', spot: 'Science section', built: true },
       { page: 'Academics', spot: 'Hero', built: true },
       { page: 'News', spot: 'Featured story: Science Fair 2026', built: true },
       { page: 'News article: Science Fair 2026', spot: 'Hero', built: true },
@@ -100,11 +103,30 @@ export const samplePhotos = {
     image: examSession,
     alt: 'Students in uniform sitting a written exam in a bright classroom while an invigilator watches',
     placements: [
+      { page: 'Home', spot: 'Hero carousel: slide 3', built: true },
       { page: 'Admissions', spot: 'Hero', built: true },
       { page: 'News', spot: 'Card: Scholarship Entrance Exam Open', built: true },
       { page: 'News article: Scholarship Entrance Exam Open', spot: 'Hero', built: true },
       { page: 'News article: other stories', spot: 'More news card', built: true },
     ],
+  },
+  'graduation-group': {
+    source: 'Joyful Blue Graduation Group Photo.png',
+    image: graduationGroup,
+    alt: 'Smiling graduates in matching blue robes and graduation caps standing together on the steps of a school building',
+    placements: [{ page: 'Home', spot: 'Hero carousel: slide 2 (20th anniversary)', built: true }],
+  },
+  'dormitory-study': {
+    source: 'Studying Together in a Bright Dormitory.png',
+    image: dormitoryStudy,
+    alt: 'Two boarders in school uniform reading a book together on a bunk bed in a bright dormitory',
+    placements: [{ page: 'Home', spot: 'Day or boarding: Boarding', built: true }],
+  },
+  'ceremony-hall': {
+    source: 'Formal Ceremony with Blue Drapery and Audience.png',
+    image: ceremonyHall,
+    alt: 'Guests and graduates in blue attire seated in a large hall decorated with blue drapes and white flowers',
+    placements: [{ page: '20 Years (Coming soon today; full page later)', spot: 'Ceremony image, not placed yet', built: false }],
   },
 } satisfies Record<string, SamplePhoto>;
 
