@@ -173,7 +173,11 @@ const total = slides.length;
       timer = window.setTimeout(() => {
         if (!playing) return;
         if (hovering || focusing) return schedule();
-        if (current === last) return setPlaying(false);
+        if (current === last) {
+          // One loop is done: return to the first slide and stop.
+          show(0, false);
+          return setPlaying(false);
+        }
         show(current + 1, false).then(schedule);
       }, delay);
     };
