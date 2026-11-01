@@ -76,3 +76,14 @@ Payments (provider and webhook), enquiry delivery beyond WhatsApp, hosting and d
 2. Remaining pages: Admissions, Fees, Results, Academics, Boarding, News, plus the Apply, Portals and Privacy placeholders.
 
 Commit after each phase.
+
+
+## Editable content and the admin panel
+
+- **Copy and data live in `src/content-data/*.json`.** The files in `src/data/*.ts` are thin wrappers that import the JSON and keep the same exports, so pages did not change. Computed logic (years since founding, `whatsappHref`, `telHref`, date formatting, sorting) stays in the `.ts` files. Edit text in the JSON or through the admin panel, not in the wrappers.
+- **Placeholders in the JSON.** `admissions.json` stores the exam date and fee once; other text uses `{examDate}`, `{examDateShort}` and `{applicationFee}`, filled in by `src/data/admissions.ts`. `school.json` uses `{foundedYear}`. Leave these in place.
+- **Admin panel (Decap CMS).** Run `npm run dev` and, in a second terminal, `npm run cms`, then open `/admin/`. It is served by `integrations/dev-admin.mjs` in the dev server only, so it is not in the built site and the launch guard is unaffected. The editor's fields are defined in `cms/config.js`. The `backend` there is a placeholder: hosting and the live login are not decided.
+- **When you add or rename a field in a JSON file, add it to `cms/config.js` too**, then run `node cms/check-config.mjs`. A field the editor does not know about can be lost the next time someone saves in the admin.
+- The editor reorders JSON keys when it saves. That is cosmetic. To see real changes only, compare parsed values, not lines.
+- Photos are not editable in the admin yet. They come from `sample-content-register.ts` and `npm run images`.
+- The tag rule still applies in the admin: keep `[SAMPLE]`, `[DRAFT]` and `[CONFIRM]` until the school confirms the item.

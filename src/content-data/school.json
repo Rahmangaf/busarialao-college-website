@@ -1,0 +1,14 @@
+{
+  "school": {
+    "name": "Busarialao College",
+    "tagline": "…educating to inspire",
+    "foundedYear": 2005,
+    "location": "Irewolede, Ilorin, Kwara State",
+    "streetAddress": "[SAMPLE street address]",
+    "accreditation": "CAC registered · Approved by the State Ministry of Education [CONFIRM wording]"
+  },
+  "home": {
+    "title": "Nurturing Scientific Minds, Inspiring the Future.",
+    "subline": "A science-focused day and boarding school in Ilorin, since {foundedYear}."
+  }
+}

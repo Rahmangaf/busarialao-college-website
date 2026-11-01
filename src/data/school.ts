@@ -1,14 +1,8 @@
-// Source: content/01-school-profile.md and content/07-homepage-and-shared-copy.md.
+// The editable details live in src/content-data/school.json (edited through /admin or by hand).
 // Tags ([DRAFT], [SAMPLE], [CONFIRM]) stay in the strings until the school confirms them.
+import data from '../content-data/school.json';
 
-export const school = {
-  name: 'Busarialao College', // [CONFIRM] official spelling, see content/08-open-questions.md
-  tagline: '…educating to inspire',
-  foundedYear: 2005,
-  location: 'Irewolede, Ilorin, Kwara State',
-  streetAddress: '[SAMPLE street address]',
-  accreditation: 'CAC registered · Approved by the State Ministry of Education [CONFIRM wording]',
-} as const;
+export const school = data.school;
 
 /** Whole years since founding, computed from the stored year (never typed as a fixed number). */
 export function yearsSinceFounding(now: Date = new Date()): number {
@@ -30,6 +24,6 @@ export function yearsSinceFoundingInWords(now: Date = new Date()): string {
 }
 
 export const home = {
-  title: 'Nurturing Scientific Minds, Inspiring the Future.',
-  subline: `A science-focused day and boarding school in Ilorin, since ${school.foundedYear}.`,
-} as const;
+  title: data.home.title,
+  subline: data.home.subline.replace('{foundedYear}', String(school.foundedYear)),
+};
