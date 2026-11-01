@@ -1,0 +1,33 @@
+---
+// Coming Soon: the 20th anniversary page has no design yet. The Home hero links here.
+// The event line comes from the hero slide that links to this page, so staff edit it in one place.
+import PageHero from '../components/PageHero.astro';
+import { homePage } from '../data/home';
+import { school } from '../data/school';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const eventLine = homePage.hero.slides.find((slide) => slide.buttons.some((button) => button.href === '/20-years/'));
+---
+
+<BaseLayout title={`20th anniversary | ${school.name}`}>
+  <PageHero
+    title="20th anniversary celebration"
+    lead="The page for the celebration is coming soon. [SAMPLE]"
+    crumbs={[{ label: '20th anniversary' }]}
+  >
+    <a class="bc-btn bc-btn-primary" href="/">Back to Home</a>
+    <a class="bc-btn bc-btn-secondary" href="/contact/">Contact the school</a>
+  </PageHero>
+  <section class="bc-section">
+    <div class="bc-wrap soon-body">
+      {
+        eventLine && (
+          <p>
+            {eventLine.text} {eventLine.tag}
+          </p>
+        )
+      }
+      <p>Until the page is ready, please contact the school with any question about the day.</p>
+    </div>
+  </section>
+</BaseLayout>
