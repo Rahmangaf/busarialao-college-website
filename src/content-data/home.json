@@ -30,7 +30,7 @@
         "name": "Admissions open",
         "photo": "exam-session",
         "focusDesktop": "50% 40%",
-        "focusMobile": "30% 40%",
+        "focusMobile": "90% 40%",
         "headline": "Admissions open for {session}",
         "text": "Entrance exam {examDate}.",
         "tag": "SAMPLE",

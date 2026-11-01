@@ -1,0 +1,256 @@
+---
+// Full-bleed Home hero: a photo behind the whole band, a navy overlay, and one left-aligned text
+// column in the same place on every slide. Slides come from src/content-data/home.json.
+//
+// - Only the first slide's photo is requested up front. The other photos sit in `hidden` containers
+//   (so a lazy <img> is not fetched) until a visitor interacts or moves to them.
+// - All slide texts share the same grid rows (subgrid), so the buttons stay in the same place on
+//   every slide and nothing shifts when the slide changes.
+// - Without JavaScript the page shows the first slide and its buttons, and the controls stay hidden.
+import { heroImage, type HeroSlide } from '../data/home';
+import PhotoFill from './PhotoFill.astro';
+import Tag from './Tag.astro';
+
+interface Props {
+  label: string;
+  slides: HeroSlide[];
+  autoplay: { enabled: boolean; seconds: number };
+}
+
+const { label, slides, autoplay } = Astro.props;
+const total = slides.length;
+---
+
+<section
+  class="hero"
+  aria-roledescription="carousel"
+  aria-label={label}
+  data-hero
+  data-autoplay={autoplay.enabled ? 'true' : 'false'}
+  data-seconds={autoplay.seconds}
+>
+  <div class="hero-photos">
+    {
+      slides.map((slide, index) => (
+        <div class:list={['hero-photo', { 'is-active': index === 0 }]} data-photo hidden={index > 0}>
+          <PhotoFill
+            photo={slide.photo}
+            focus={slide.focusDesktop}
+            focusMobile={slide.focusMobile}
+            eager={index === 0}
+            sizes={heroImage.sizes}
+            widths={heroImage.widths}
+          />
+        </div>
+      ))
+    }
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <div class="hero-copy">
+    {
+      slides.map((slide, index) => {
+        const Heading = index === 0 ? 'h1' : 'h2';
+        return (
+          <div
+            class:list={['hero-text', { 'is-active': index === 0 }]}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${index + 1} of ${total}`}
+            data-text
+            inert={index > 0}
+          >
+            <Heading class="hero-headline">{slide.headline}</Heading>
+            <p class="hero-sub">{slide.text}</p>
+            <span class="hero-tagline">
+              <Tag text={slide.tag} tone="dark" />
+            </span>
+            <div class="hero-actions">
+              {slide.buttons.map((button) => (
+                <a
+                  class:list={['bc-btn', button.style === 'primary' ? 'bc-btn-primary' : 'bc-btn-secondary hero-secondary']}
+                  href={button.href}
+                >
+                  {button.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <span class="hero-photo-label">[SAMPLE] Generated photo</span>
+
+  <div class="hero-controls" hidden data-controls>
+    <button type="button" class="hero-ctl" aria-label="Previous slide" data-prev>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
+    <div class="hero-dots">
+      {
+        slides.map((slide, index) => (
+          <button
+            type="button"
+            class="hero-dot"
+            aria-label={`Slide ${index + 1}: ${slide.name}`}
+            aria-current={index === 0 ? 'true' : 'false'}
+            data-dot={index}
+          >
+            <span></span>
+          </button>
+        ))
+      }
+    </div>
+    <button type="button" class="hero-ctl" aria-label="Next slide" data-next>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"></path></svg>
+    </button>
+    <button type="button" class="hero-ctl hero-toggle" aria-label="Play slideshow" data-playing="false" data-toggle>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="icon-pause"><path d="M9 6v12M15 6v12"></path></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="icon-play"><path d="M8 5l11 7-11 7z"></path></svg>
+    </button>
+  </div>
+
+  <p class="sr-only" aria-live="polite" aria-atomic="true" data-status></p>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-hero]');
+
+  if (root) {
+    const photos = [...root.querySelectorAll<HTMLElement>('[data-photo]')];
+    const texts = [...root.querySelectorAll<HTMLElement>('[data-text]')];
+    const dots = [...root.querySelectorAll<HTMLButtonElement>('[data-dot]')];
+    const controls = root.querySelector<HTMLElement>('[data-controls]')!;
+    const toggle = root.querySelector<HTMLButtonElement>('[data-toggle]')!;
+    const status = root.querySelector<HTMLElement>('[data-status]')!;
+    const names = dots.map((dot) => dot.getAttribute('aria-label') ?? '');
+    const last = photos.length - 1;
+    const delay = Math.max(3, Number(root.dataset.seconds) || 7) * 1000;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    let current = 0;
+    let playing = false;
+    let hovering = false;
+    let focusing = false;
+    let timer = 0;
+
+    // A lazy photo is only fetched once its container is shown, so unhide it ahead of time.
+    const prime = (index: number) => {
+      const photo = photos[index];
+      if (photo) photo.hidden = false;
+    };
+
+    const whenLoaded = (index: number) => {
+      const img = photos[index].querySelector('img');
+      if (!img || img.complete) return Promise.resolve();
+      return Promise.race([
+        img.decode().catch(() => undefined),
+        new Promise<void>((resolve) => setTimeout(resolve, 1500)),
+      ]);
+    };
+
+    const show = async (target: number, announce: boolean) => {
+      const next = (target + photos.length) % photos.length;
+      if (next === current) return;
+      prime(next);
+      await whenLoaded(next);
+      photos[current].classList.remove('is-active');
+      texts[current].classList.remove('is-active');
+      texts[current].inert = true;
+      photos[next].classList.add('is-active');
+      texts[next].classList.add('is-active');
+      texts[next].inert = false;
+      dots.forEach((dot, index) => dot.setAttribute('aria-current', String(index === next)));
+      current = next;
+      prime(next + 1);
+      if (announce) status.textContent = `Slide ${next + 1} of ${photos.length}: ${names[next].replace(/^Slide \d+: /, '')}`;
+    };
+
+    // Slow autoplay: pauses while hovered or focused, and stops for good after one loop.
+    const schedule = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        if (!playing) return;
+        if (hovering || focusing) return schedule();
+        if (current === last) return setPlaying(false);
+        show(current + 1, false).then(schedule);
+      }, delay);
+    };
+
+    const setPlaying = (value: boolean) => {
+      playing = value;
+      window.clearTimeout(timer);
+      toggle.dataset.playing = String(value);
+      toggle.setAttribute('aria-label', value ? 'Pause slideshow' : 'Play slideshow');
+      if (value) schedule();
+    };
+
+    // A visitor taking control ends autoplay.
+    const manual = (target: number) => {
+      setPlaying(false);
+      show(target, true);
+    };
+
+    root.querySelector('[data-prev]')!.addEventListener('click', () => manual(current - 1));
+    root.querySelector('[data-next]')!.addEventListener('click', () => manual(current + 1));
+    dots.forEach((dot, index) => dot.addEventListener('click', () => manual(index)));
+    toggle.addEventListener('click', () => setPlaying(!playing));
+
+    controls.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') manual(current - 1);
+      if (event.key === 'ArrowRight') manual(current + 1);
+    });
+
+    // Swipe on touch screens. Vertical scrolling is left alone.
+    let startX = 0;
+    let startY = 0;
+    root.addEventListener(
+      'touchstart',
+      (event) => {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+        setPlaying(false);
+        prime(current + 1);
+        prime(current - 1);
+      },
+      { passive: true },
+    );
+    root.addEventListener(
+      'touchend',
+      (event) => {
+        const dx = event.changedTouches[0].clientX - startX;
+        const dy = event.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) manual(dx < 0 ? current + 1 : current - 1);
+      },
+      { passive: true },
+    );
+
+    root.addEventListener('mouseenter', () => {
+      hovering = true;
+      prime(current + 1);
+    });
+    root.addEventListener('mouseleave', () => (hovering = false));
+    root.addEventListener('focusin', () => {
+      focusing = true;
+      prime(current + 1);
+    });
+    root.addEventListener('focusout', (event) => {
+      if (!root.contains(event.relatedTarget as Node | null)) focusing = false;
+    });
+
+    // Reduced motion: no automatic sliding, so there is nothing to play or pause.
+    const applyMotionPreference = () => {
+      if (reduced.matches) setPlaying(false);
+      toggle.hidden = reduced.matches;
+    };
+    reduced.addEventListener('change', applyMotionPreference);
+    applyMotionPreference();
+
+    controls.hidden = false;
+    if (root.dataset.autoplay === 'true' && !reduced.matches) {
+      prime(1);
+      setPlaying(true);
+    }
+  }
+</script>

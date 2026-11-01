@@ -2,6 +2,7 @@
 import '@fontsource-variable/inter';
 import '../styles/tokens.css';
 import '../styles/bundle.css';
+import '../styles/site-tokens.css';
 import '../styles/site.css';
 import '../styles/pages.css';
 import '../styles/page-sections.css';
@@ -44,6 +45,7 @@ const {
     <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
+    <slot name="head" />
   </head>
   <body class="bc">
     <a class="skip-link" href="#main">Skip to content</a>

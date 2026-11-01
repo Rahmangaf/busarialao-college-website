@@ -86,3 +86,13 @@ export const homePage = {
     photo: photoId(filled.closing.photo, 'the closing section'),
   },
 };
+
+/**
+ * Responsive sizes for the full-bleed hero photos. On a phone the 16:9 photo is cropped to the
+ * 600px-tall hero, so it is drawn about 1067px wide; `sizes` says so, and the browser picks a
+ * width that stays sharp. The same values build the preload link, so both fetch the same file.
+ */
+export const heroImage = {
+  widths: [640, 960, 1280, 1600],
+  sizes: '(max-width: 599px) 1067px, 100vw',
+};
