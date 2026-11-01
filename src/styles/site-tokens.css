@@ -1,0 +1,30 @@
+/*
+ * Site tokens that sit on top of the design system's tokens.css (which stays an untouched copy of
+ * the handoff). Shared layout and overlay values live here once, so pages never repeat them.
+ */
+:root {
+  /* ---------- Image overlays ----------
+     The overlay colour is navy-900 as an RGB triplet, so a strength (0 to 1) can be set on its own:
+     rgb(var(--overlay-navy) / var(--hero-overlay-strong)). Change the colour or a strength here and
+     every hero slide and the closing section follow. After changing a strength, run
+     `npm run check:contrast` (white text must stay at 4.5:1 or better on every slide). */
+  --overlay-navy: 42 31 122;
+
+  /* Home hero, desktop: strong behind the text column, fading to clear on the right. */
+  --hero-overlay-strong: 0.9;
+  --hero-overlay-medium: 0.82;
+  --hero-overlay-soft: 0.76;
+  --hero-overlay-fade: 0.32;
+  /* Home hero, phone: clear at the top, strong behind the text at the bottom. */
+  --hero-overlay-mobile-mid: 0.72;
+  --hero-overlay-mobile-strong: 0.88;
+  --hero-overlay-mobile-base: 0.92;
+  /* Home closing section: navy over the courtyard photo (about 65 to 70%). */
+  --closing-overlay: 0.68;
+
+  /* ---------- Home hero size ---------- */
+  --hero-height: 620px;
+  --hero-height-mobile: 600px;
+  --hero-copy-width: 560px;
+  --hero-copy-top: 96px;
+}

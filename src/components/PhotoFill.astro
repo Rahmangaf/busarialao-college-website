@@ -1,0 +1,36 @@
+---
+// A registered sample photograph that fills its (positioned) parent, for full-bleed backgrounds:
+// the Home hero slides and the closing section. Fixed-ratio photos use Media instead.
+// The crop point can differ on phones, so faces stay in the frame when the image is cropped tall.
+import { Image } from 'astro:assets';
+import { samplePhotos, type PhotoId } from '../data/sample-content-register';
+
+interface Props {
+  photo: PhotoId;
+  /** object-position on screens 600px and up, e.g. "50% 35%". */
+  focus?: string;
+  /** object-position below 600px. */
+  focusMobile?: string;
+  eager?: boolean;
+  sizes: string;
+  widths: number[];
+  /** Decorative backgrounds pass an empty string so screen readers skip them. */
+  alt?: string;
+}
+
+const { photo, focus = '50% 50%', focusMobile = focus, eager = false, sizes, widths, alt } = Astro.props;
+const { image, alt: registeredAlt } = samplePhotos[photo];
+---
+
+<Image
+  class="photo-fill"
+  src={image}
+  alt={alt ?? registeredAlt}
+  widths={widths}
+  sizes={sizes}
+  format="webp"
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : 'auto'}
+  decoding={eager ? 'sync' : 'async'}
+  style={`--focus:${focus};--focus-m:${focusMobile}`}
+/>

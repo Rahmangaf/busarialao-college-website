@@ -1,14 +1,23 @@
 ---
-// Home Minimal (the approved home design). Content: content/07-homepage-and-shared-copy.md.
+// Home: "Home Fuller – Full Hero". All copy is in src/content-data/home.json (see src/data/home.ts);
+// the numbers band is computed from the results and the founding year.
+import { getImage } from 'astro:assets';
+import HeroCarousel from '../components/HeroCarousel.astro';
 import Media from '../components/Media.astro';
 import Motif from '../components/Motif.astro';
+import PhotoFill from '../components/PhotoFill.astro';
+import Tag from '../components/Tag.astro';
 import { admissions } from '../data/admissions';
 import { contact, whatsappHref } from '../data/contact';
+import { heroImage, homePage } from '../data/home';
 import { cta } from '../data/nav';
 import { formatPercent, latestResult } from '../data/results';
-import { home, school, yearsSinceFounding } from '../data/school';
+import { samplePhotos } from '../data/sample-content-register';
+import { school, yearsSinceFounding } from '../data/school';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/home.css';
+
+const { hero, welcome, science, dayBoarding, proof, closing } = homePage;
 
 const latest = latestResult();
 const stats = [
@@ -16,27 +25,36 @@ const stats = [
   { value: formatPercent(latest.wassce ?? 0), label: `WASSCE pass rate, ${latest.year} [DRAFT · CONFIRM measure]` },
   { value: formatPercent(latest.universityAdmission ?? 0, 0), label: `university admission, ${latest.year} [DRAFT]` },
 ];
+
+// Preload the first slide's photo (and only that one). The srcset comes from the same call the
+// <img> uses, so the preload and the image fetch the very same file.
+const firstPhoto = samplePhotos[hero.slides[0].photo].image;
+const preload = await getImage({ src: firstPhoto, widths: heroImage.widths, sizes: heroImage.sizes, format: 'webp' });
 ---
 
-<BaseLayout title="Busarialao College: Nurturing Scientific Minds, Inspiring the Future" description={home.subline}>
-  <section class="home-hero">
-    <div class="bc-wrap">
-      <div class="home-hero-copy">
-        <h1>{home.title}</h1>
-        <p class="home-sub">{home.subline}</p>
-        <div class="home-actions">
-          <a class="bc-btn bc-btn-primary" href={cta.apply}>Apply Now →</a>
-          <a class="bc-btn bc-btn-secondary" href={cta.tour}>Book a Tour</a>
-        </div>
+<BaseLayout title="Busarialao College: Nurturing Scientific Minds, Inspiring the Future" description={hero.slides[0].text}>
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    imagesrcset={preload.srcSet.attribute}
+    imagesizes={heroImage.sizes}
+    fetchpriority="high"
+  />
+
+  <HeroCarousel label={hero.label} slides={hero.slides} autoplay={hero.autoplay} />
+
+  <section class="home-section home-tint" aria-labelledby="welcome-heading">
+    <div class="bc-wrap home-split">
+      <div class="home-stack">
+        <h2 id="welcome-heading" class="home-h2 home-h2-lg">{welcome.heading}</h2>
+        <Tag text={welcome.headingTag} />
       </div>
-      <Media
-        photo="chemistry-lab"
-        ratio="16 / 9"
-        ratioMobile="4 / 5"
-        focus="50% 40%"
-        sizes="(min-width: 1264px) 1200px, 100vw"
-        eager
-      />
+      <div class="home-stack">
+        <p class="welcome-text">{welcome.text}</p>
+        <Tag text={welcome.textTag} />
+        <a class="home-link" href={welcome.linkHref}>{welcome.linkLabel}</a>
+      </div>
     </div>
   </section>
 
@@ -54,77 +72,134 @@ const stats = [
           ))
         }
       </ul>
-      <a class="home-results-link" href={cta.results}>See all results</a>
+      <a class="home-results-link" href={cta.results}>{homePage.numbersLinkLabel}</a>
     </div>
   </section>
 
-  <section class="home-band" aria-labelledby="paths-heading">
+  <section class="home-section" aria-labelledby="science-heading">
     <div class="bc-wrap">
-      <h2 id="paths-heading" class="home-h2">Day or boarding. Both, fully supported.</h2>
-      <div class="home-paths">
-        <article>
-          <Media
-            photo="students-walking"
-            ratio="4 / 5"
-            focus="45% 30%"
-            sizes="(min-width: 1264px) 584px, (min-width: 600px) 50vw, 100vw"
-          />
-          <h3 class="bc-h3">Day school</h3>
-          <p class="home-sub home-sub-sm">Classes from 7:45am to 3pm, with clubs and supervised prep. [SAMPLE]</p>
-        </article>
-        <article>
-          <Media
-            photo="dormitory"
-            ratio="4 / 5"
-            focus="40% 55%"
-            sizes="(min-width: 1264px) 584px, (min-width: 600px) 50vw, 100vw"
-          />
-          <h3 class="bc-h3">Boarding</h3>
-          <p class="home-sub home-sub-sm">A hostel on Yidi Road with house staff and a sick bay. [DRAFT]</p>
-        </article>
+      <div class="science-head">
+        <h2 id="science-heading" class="home-h2">{science.heading}</h2>
+        <Tag text={science.headingTag} />
+        <p class="home-sub">{science.lead}</p>
+      </div>
+      <Media
+        photo={science.photo}
+        ratio={science.ratio}
+        ratioMobile={science.ratioMobile}
+        focus={science.focus}
+        sizes="(min-width: 1264px) 1200px, 100vw"
+      />
+      <div class="science-details">
+        <div>
+          <h3 class="bc-h3">{science.labsHeading}</h3>
+          <Tag text={science.labsTag} />
+          <dl class="lab-list">
+            {
+              science.labs.map((lab) => (
+                <>
+                  <dt>{lab.name}</dt>
+                  <dd>{lab.text}</dd>
+                </>
+              ))
+            }
+          </dl>
+          <p class="bc-muted">{science.labsNote}</p>
+        </div>
+        <div>
+          <h3 class="bc-h3">{science.examsHeading}</h3>
+          <p class="welcome-text science-exams">{science.examsText}</p>
+          <p class="bc-muted">{science.examsNote}</p>
+        </div>
+      </div>
+      <a class="home-link science-link" href={science.linkHref}>{science.linkLabel}</a>
+    </div>
+  </section>
+
+  <section class="home-section home-tint" aria-labelledby="paths-heading">
+    <div class="bc-wrap">
+      <h2 id="paths-heading" class="home-h2 paths-title">{dayBoarding.heading}</h2>
+      <div class="paths">
+        {
+          dayBoarding.items.map((item) => (
+            <article>
+              <Media
+                photo={item.photo}
+                ratio={item.ratio}
+                focus={item.focus}
+                sizes="(min-width: 1264px) 584px, (min-width: 600px) 50vw, 100vw"
+              />
+              <div>
+                <h3 class="bc-h3">{item.title}</h3>
+                <p class="home-sub">{item.text}</p>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <section class="home-band home-join" aria-labelledby="join-heading">
-    <div class="bc-wrap">
-      <h2 id="join-heading" class="home-h2">How to join</h2>
-      <ol class="home-steps">
+  <section class="home-section" aria-labelledby="proof-heading">
+    <div class="bc-wrap home-split">
+      <div class="home-stack">
+        <h2 id="proof-heading" class="home-h2">{proof.heading}</h2>
+        <Tag text={proof.headingTag} />
+      </div>
+      <div>
+        <ul class="proof-list">
+          {
+            proof.items.map((item) => (
+              <li>
+                <p>{item.text}</p>
+                {item.tag && <span class="bc-muted">{item.tag}</span>}
+              </li>
+            ))
+          }
+        </ul>
+        <div class="proof-links">
+          {proof.links.map((link) => <a class="home-link" href={link.href}>{link.label}</a>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-closing" aria-labelledby="closing-heading">
+    <div class="closing-photo" aria-hidden="true">
+      <PhotoFill
+        photo={closing.photo}
+        focus={closing.focus}
+        focusMobile={closing.focusMobile}
+        sizes="100vw"
+        widths={[768, 1280, 1600]}
+        alt=""
+      />
+    </div>
+    <span class="closing-label">[SAMPLE] Generated photo</span>
+    <div class="bc-wrap closing-inner">
+      <div class="closing-copy">
+        <h2 id="closing-heading" class="home-h2">{closing.heading}</h2>
+        <p>{contact.tours}</p>
+        <div class="closing-actions">
+          <a class="bc-btn bc-btn-primary" href={closing.tourHref}>{closing.tourLabel}</a>
+          <a class="home-link" href={closing.applyHref}>{closing.applyLabel}</a>
+          <a class="home-link" href={whatsappHref()}>{closing.whatsappLabel}</a>
+        </div>
+      </div>
+      <ol class="closing-steps">
         {
-          admissions.joinSummary.map((step) => (
+          admissions.joinSummary.map((step, index) => (
             <li>
-              <span class="home-step-number" aria-hidden="true" />
-              <div>
-                <h3 class="bc-h3">{step.title}</h3>
-                <p class="home-sub home-sub-sm">{step.text}</p>
-              </div>
+              <h3>
+                <span aria-hidden="true">{index + 1}</span>
+                {step.title}
+              </h3>
+              <p>{step.text}</p>
             </li>
           ))
         }
       </ol>
-      <div class="home-join-cta">
-        <a class="bc-btn bc-btn-primary" href={cta.apply}>Start your application →</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="home-visit" aria-labelledby="visit-heading">
-    <div class="bc-wrap">
-      <div class="home-visit-copy">
-        <h2 id="visit-heading" class="home-h2">Ready to visit?</h2>
-        <p class="home-sub">{contact.tours}</p>
-        <div class="home-visit-actions">
-          <a class="bc-btn bc-btn-primary" href={cta.tour}>Book a Tour →</a>
-          <a class="bc-btn bc-btn-text" href={whatsappHref()}>Ask on WhatsApp</a>
-        </div>
-      </div>
-      <Media
-        photo="courtyard"
-        ratio="21 / 9"
-        ratioMobile="4 / 3"
-        focus="50% 55%"
-        sizes="(min-width: 1264px) 1200px, 100vw"
-      />
+      <a class="home-link closing-more" href={closing.stepsLinkHref}>{closing.stepsLinkLabel}</a>
     </div>
   </section>
 </BaseLayout>

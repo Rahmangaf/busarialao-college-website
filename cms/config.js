@@ -11,12 +11,15 @@ const { initCMS } = window;
 const PHOTO_OPTIONS = [
   { label: 'No photo', value: '' },
   'biology-lab',
+  'ceremony-hall',
   'chemistry-lab',
   'computer-lab',
   'courtyard',
   'dormitory',
+  'dormitory-study',
   'exam-session',
   'football',
+  'graduation-group',
   'principal-portrait',
   'students-walking',
 ];
@@ -45,6 +48,20 @@ const group = (name, label, description, files) => ({
   files,
 });
 
+// A tag shown as a small label, for example SAMPLE becomes [SAMPLE] on the page. Empty means no label.
+const tagSelect = (name, label) => ({
+  name,
+  label,
+  widget: 'select',
+  options: [{ label: 'No label', value: '' }, 'SAMPLE', 'DRAFT', 'CONFIRM'],
+  default: '',
+  required: false,
+  hint: 'Keep the label until the school confirms the item.',
+});
+const photoSelect = (name, label = 'Photo') => ({ name, label, widget: 'select', options: PHOTO_OPTIONS.filter((o) => o !== '' && typeof o === 'string') });
+const focus = (name, label, hint) => str(name, label, { hint: hint || 'Where to centre the crop, for example 50% 40%.' });
+const link = (labelName, hrefName) => [str(labelName, 'Link text'), str(hrefName, 'Link address', { hint: 'For example /academics/ or /about/#story.' })];
+
 const TAGS = 'Keep the [SAMPLE], [DRAFT] and [CONFIRM] tags until the school confirms the item.';
 
 // ---------------------------------------------------------------------------------------------
@@ -67,6 +84,99 @@ const about = entry('about', 'About', 'about', [
   str('leadershipNote', 'Leadership note'),
   list('leadership', 'Leadership', [str('role', 'Role'), str('name', 'Name'), txt('detail', 'Detail')], { summary: '{{fields.role}}: {{fields.name}}' }),
   list('milestones', 'Milestones', [str('year', 'Year'), txt('text', 'What happened')], { summary: '{{fields.year}}' }),
+]);
+
+const home = entry('home', 'Home', 'home', [
+  obj('hero', 'Top of the page: slides', [
+    str('label', 'Name of the slideshow (read by screen readers)'),
+    obj('autoplay', 'Automatic sliding', [
+      { name: 'enabled', label: 'Slide automatically', widget: 'boolean', default: false, hint: 'Off by default. When on, it slides slowly, stops when a visitor hovers or touches it, and stops after one round.' },
+      num('seconds', 'Seconds on each slide'),
+    ]),
+    list(
+      'slides',
+      'Slides (keep three; the first loads first)',
+      [
+        str('name', 'Name (used by the dots)'),
+        photoSelect('photo'),
+        focus('focusDesktop', 'Photo focus on large screens'),
+        focus('focusMobile', 'Photo focus on phones', 'Keep faces in the crop. For example 38% 35%.'),
+        txt('headline', 'Headline'),
+        txt('text', 'Supporting text', { hint: 'Leave words in curly brackets, such as {session} or {examDate}, as they are.' }),
+        tagSelect('tag', 'Label under the text'),
+        list(
+          'buttons',
+          'Buttons (one or two)',
+          [
+            str('label', 'Button text'),
+            str('href', 'Link address'),
+            { name: 'style', label: 'Look', widget: 'select', options: ['primary', 'secondary'], default: 'primary' },
+          ],
+          { summary: '{{fields.label}}', max: 2, min: 1 },
+        ),
+      ],
+      { summary: '{{fields.name}}', min: 1, max: 5 },
+    ),
+  ]),
+  obj('welcome', 'Welcome', [
+    str('heading', 'Heading'),
+    tagSelect('headingTag', 'Label under the heading'),
+    txt('text', 'Text'),
+    tagSelect('textTag', 'Label under the text'),
+    ...link('linkLabel', 'linkHref'),
+  ]),
+  str('numbersLinkLabel', 'Numbers band: link text'),
+  obj('science', 'Science', [
+    str('heading', 'Heading'),
+    tagSelect('headingTag', 'Label under the heading'),
+    txt('lead', 'Opening line'),
+    photoSelect('photo'),
+    str('ratio', 'Photo shape on large screens', { hint: 'For example 16 / 9.' }),
+    str('ratioMobile', 'Photo shape on phones', { hint: 'For example 4 / 3.' }),
+    focus('focus', 'Photo focus'),
+    str('labsHeading', 'Laboratories heading'),
+    tagSelect('labsTag', 'Label under the laboratories heading'),
+    list('labs', 'Laboratories', [str('name', 'Name'), txt('text', 'One-line description')], { summary: '{{fields.name}}' }),
+    str('labsNote', 'Note under the laboratories'),
+    str('examsHeading', 'Exams heading'),
+    txt('examsText', 'Exams text'),
+    str('examsNote', 'Note under the exams'),
+    ...link('linkLabel', 'linkHref'),
+  ]),
+  obj('dayBoarding', 'Day or boarding', [
+    str('heading', 'Heading'),
+    list(
+      'items',
+      'The two choices',
+      [
+        photoSelect('photo'),
+        str('ratio', 'Photo shape', { hint: 'Both photos use the same shape, 3 / 2, so they line up.' }),
+        focus('focus', 'Photo focus'),
+        str('title', 'Title'),
+        txt('text', 'Text'),
+      ],
+      { summary: '{{fields.title}}' },
+    ),
+  ]),
+  obj('proof', 'Proof', [
+    str('heading', 'Heading'),
+    tagSelect('headingTag', 'Label under the heading'),
+    list('items', 'Achievements', [txt('text', 'Text'), tagSelect('tag', 'Label')], { summary: '{{fields.text}}' }),
+    list('links', 'Links', [str('label', 'Link text'), str('href', 'Link address')], { summary: '{{fields.label}}' }),
+  ]),
+  obj('closing', 'Closing section', [
+    str('heading', 'Heading'),
+    photoSelect('photo', 'Photo behind the section'),
+    focus('focus', 'Photo focus on large screens'),
+    focus('focusMobile', 'Photo focus on phones'),
+    str('tourLabel', 'Tour button text'),
+    str('tourHref', 'Tour button address'),
+    str('applyLabel', 'Apply link text'),
+    str('applyHref', 'Apply link address'),
+    str('whatsappLabel', 'WhatsApp link text'),
+    str('stepsLinkLabel', 'Link under the steps: text'),
+    str('stepsLinkHref', 'Link under the steps: address'),
+  ]),
 ]);
 
 const academics = entry('academics', 'Academics', 'academics', [
@@ -354,7 +464,7 @@ initCMS({
     public_folder: '/uploads',
     locale: 'en',
     collections: [
-      group('pages', 'Pages', TAGS, [about, academics, admissions, boarding]),
+      group('pages', 'Pages', TAGS, [home, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
       group('site', 'School and contact', TAGS, [school, contact]),
       group('news', 'News', TAGS, [news]),

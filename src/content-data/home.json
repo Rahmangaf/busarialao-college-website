@@ -1,0 +1,118 @@
+{
+  "hero": {
+    "label": "Highlights",
+    "autoplay": { "enabled": false, "seconds": 7 },
+    "slides": [
+      {
+        "name": "Core message",
+        "photo": "chemistry-lab",
+        "focusDesktop": "50% 35%",
+        "focusMobile": "38% 35%",
+        "headline": "Nurturing Scientific Minds, Inspiring the Future",
+        "text": "A science-focused day and boarding school in Ilorin, since {foundedYear}.",
+        "tag": "",
+        "buttons": [
+          { "label": "Apply Now →", "href": "/admissions/#how-to-apply", "style": "primary" },
+          { "label": "Book a Tour", "href": "/contact/?interest=tour", "style": "secondary" }
+        ]
+      },
+      {
+        "name": "20th anniversary and graduation",
+        "photo": "graduation-group",
+        "focusDesktop": "55% 30%",
+        "focusMobile": "50% 30%",
+        "headline": "Twenty years of nurturing scientific minds",
+        "text": "20th anniversary and graduation, 26 September 2026.",
+        "tag": "CONFIRM",
+        "buttons": [{ "label": "See the celebration →", "href": "/20-years/", "style": "primary" }]
+      },
+      {
+        "name": "Admissions open",
+        "photo": "exam-session",
+        "focusDesktop": "50% 40%",
+        "focusMobile": "90% 40%",
+        "headline": "Admissions open for {session}",
+        "text": "Entrance exam {examDate}.",
+        "tag": "SAMPLE",
+        "buttons": [{ "label": "Start your application →", "href": "/admissions/#how-to-apply", "style": "primary" }]
+      }
+    ]
+  },
+  "welcome": {
+    "heading": "Welcome to Busarialao College.",
+    "headingTag": "SAMPLE",
+    "text": "We began in 2003 as Top Tutors, a small tutorial centre, and became a college in 2005 with 12 pioneer students and one idea: that science should come alive. Today we are a pure science school [CONFIRM], with laboratories, small classes and staff who expect the best of every student.",
+    "textTag": "SAMPLE",
+    "linkLabel": "Read our story",
+    "linkHref": "/about/#story"
+  },
+  "numbersLinkLabel": "See all results",
+  "science": {
+    "heading": "A pure science school, built to push past limits.",
+    "headingTag": "SAMPLE",
+    "lead": "A pure science college from JSS1 to SS3, and the first and only of its kind [CONFIRM].",
+    "photo": "biology-lab",
+    "ratio": "16 / 9",
+    "ratioMobile": "4 / 3",
+    "focus": "50% 30%",
+    "labsHeading": "Our laboratories",
+    "labsTag": "CONFIRM",
+    "labs": [
+      { "name": "Chemistry", "text": "Titrations, analysis and safe lab practice." },
+      { "name": "Physics", "text": "Mechanics, electricity and optics practicals." },
+      { "name": "Biology", "text": "Microscopy and life-science practicals." },
+      { "name": "ICT", "text": "Computing and web design." }
+    ],
+    "labsNote": "One-line descriptions [SAMPLE].",
+    "examsHeading": "Certification exams",
+    "examsText": "In-house certification exams for all learners, and preparatory exams for JSS3 and SSS3 before the external exams, set through Top Tutors.",
+    "examsNote": "Timing, subjects and certificates awarded [CONFIRM].",
+    "linkLabel": "See academics",
+    "linkHref": "/academics/"
+  },
+  "dayBoarding": {
+    "heading": "Day or boarding. Both, fully supported.",
+    "items": [
+      {
+        "photo": "students-walking",
+        "ratio": "3 / 2",
+        "focus": "50% 50%",
+        "title": "Day school",
+        "text": "Classes from 7:45am to 3pm, with clubs and supervised prep. [SAMPLE]"
+      },
+      {
+        "photo": "dormitory-study",
+        "ratio": "3 / 2",
+        "focus": "35% 50%",
+        "title": "Boarding",
+        "text": "A hostel on Yidi Road with house staff and a sick bay. [DRAFT]"
+      }
+    ]
+  },
+  "proof": {
+    "heading": "Proof, not promises.",
+    "headingTag": "SAMPLE",
+    "items": [
+      { "text": "Best School and Overall Best Student, National Science Odyssey, Abuja.", "tag": "DRAFT" },
+      { "text": "First position, Maths Wizard Educational Consult, senior category.", "tag": "DRAFT" },
+      { "text": "Four full scholarships every year for able students from partner public schools.", "tag": "DRAFT" }
+    ],
+    "links": [
+      { "label": "See results", "href": "/results/" },
+      { "label": "Scholarships", "href": "/admissions/#scholarships" }
+    ]
+  },
+  "closing": {
+    "heading": "Ready to visit?",
+    "photo": "courtyard",
+    "focus": "50% 60%",
+    "focusMobile": "40% 55%",
+    "tourLabel": "Book a Tour →",
+    "tourHref": "/contact/?interest=tour",
+    "applyLabel": "Start your application",
+    "applyHref": "/admissions/#how-to-apply",
+    "whatsappLabel": "Ask on WhatsApp",
+    "stepsLinkLabel": "See how to apply",
+    "stepsLinkHref": "/admissions/#how-to-apply"
+  }
+}
