@@ -32,6 +32,12 @@ body {
 .bc img {
   max-width: 100%;
 }
+/* The v4 bundle gives every .bc-btn 24px side padding, after .bc-btn-icon's own padding: 0, so an
+   icon-only button (menu, close) would squeeze its icon to nothing. Icon buttons keep no padding. */
+.bc .bc-btn.bc-btn-icon {
+  padding: 0;
+  width: 48px;
+}
 
 .sr-only {
   position: absolute;
