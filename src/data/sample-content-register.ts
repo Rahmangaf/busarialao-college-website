@@ -9,6 +9,7 @@
 // - Placements follow the approved design; `built: false` means the page is not built yet.
 import type { ImageMetadata } from 'astro';
 import biologyLab from '../assets/photos/biology-lab.webp';
+import borehole from '../assets/photos/borehole.webp';
 import chemistryLab from '../assets/photos/chemistry-lab.webp';
 import computerLab from '../assets/photos/computer-lab.webp';
 import ceremonyHall from '../assets/photos/ceremony-hall.webp';
@@ -66,6 +67,7 @@ export const samplePhotos = {
     placements: [
       { page: 'Home', spot: 'Closing section (full-width underlay)', built: true },
       { page: 'About', spot: 'Hero', built: true },
+      { page: '20 Years', spot: 'Gallery: Campus', built: true },
     ],
   },
   'principal-portrait': {
@@ -96,7 +98,10 @@ export const samplePhotos = {
     source: 'Schoolyard Soccer Showdown.png',
     image: football,
     alt: 'Students in blue and white kit playing football on the school field',
-    placements: [{ page: 'Boarding & Student Life', spot: 'Sports and fitness', built: true }],
+    placements: [
+      { page: 'Boarding & Student Life', spot: 'Sports and fitness', built: true },
+      { page: '20 Years', spot: 'Gallery: Sports competition', built: true },
+    ],
   },
   'exam-session': {
     source: 'Focused Classroom Exam Session.png',
@@ -114,7 +119,10 @@ export const samplePhotos = {
     source: 'Joyful Blue Graduation Group Photo.png',
     image: graduationGroup,
     alt: 'Smiling graduates in matching blue robes and graduation caps standing together on the steps of a school building',
-    placements: [{ page: 'Home', spot: 'Hero carousel: slide 2 (20th anniversary)', built: true }],
+    placements: [
+      { page: 'Home', spot: 'Hero carousel: slide 2 (20th anniversary)', built: true },
+      { page: '20 Years', spot: 'Gallery: Graduation', built: true },
+    ],
   },
   'dormitory-study': {
     source: 'Studying Together in a Bright Dormitory.png',
@@ -126,7 +134,13 @@ export const samplePhotos = {
     source: 'Formal Ceremony with Blue Drapery and Audience.png',
     image: ceremonyHall,
     alt: 'Guests and graduates in blue attire seated in a large hall decorated with blue drapes and white flowers',
-    placements: [{ page: '20 Years (Coming soon today; full page later)', spot: 'Ceremony image, not placed yet', built: false }],
+    placements: [{ page: '20 Years', spot: 'Gallery: Anniversary ceremony', built: true }],
+  },
+  borehole: {
+    source: 'Solar-Powered Community Borehole.jpg',
+    image: borehole,
+    alt: 'A solar-powered community borehole with a raised water tank',
+    placements: [{ page: '20 Years', spot: 'The Foundation section', built: true }],
   },
 } satisfies Record<string, SamplePhoto>;
 

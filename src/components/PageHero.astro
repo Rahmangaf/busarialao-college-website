@@ -11,16 +11,20 @@ interface Props {
   lead?: string;
   /** Trail after "Home". The last item is the current page. */
   crumbs: Crumb[];
+  /** A short muted line under the lead, such as an event date. */
+  note?: string;
+  /** Larger title and lead, for a feature page such as Celebrating 20 Years. */
+  display?: boolean;
 }
 
-const { title, lead, crumbs } = Astro.props;
+const { title, lead, crumbs, note, display = false } = Astro.props;
 const trail: Crumb[] = [{ label: 'Home', href: '/' }, ...crumbs];
 const hasMedia = Astro.slots.has('media');
 const hasAside = Astro.slots.has('aside');
 const hasActions = Astro.slots.has('default');
 ---
 
-<section class:list={['page-hero', hasMedia && 'has-media']}>
+<section class:list={['page-hero', hasMedia && 'has-media', display && 'is-display']}>
   <div class:list={['bc-wrap', 'page-hero-grid', hasAside && 'has-aside']}>
     <div class="page-hero-copy">
       <nav class="bc-breadcrumb" aria-label="Breadcrumb">
@@ -40,6 +44,7 @@ const hasActions = Astro.slots.has('default');
       </nav>
       <h1>{title}</h1>
       {lead && <p class="page-lead">{lead}</p>}
+      {note && <p class="bc-muted page-note">{note}</p>}
       {
         hasActions && (
           <div class="page-hero-actions">

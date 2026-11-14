@@ -1,33 +1,78 @@
 ---
-// Coming Soon: the 20th anniversary page has no design yet. The Home hero links here.
-// The event line comes from the hero slide that links to this page, so staff edit it in one place.
+// Celebrating 20 Years. Copy is in src/content-data/twenty-years.json (see src/data/twenty-years.ts).
+// Linked from the footer and Home hero slide 2 only, not from the main navigation.
+// No names or faces of individuals, no committee list and no directors list are published here.
+import Media from '../components/Media.astro';
 import PageHero from '../components/PageHero.astro';
-import { homePage } from '../data/home';
 import { school } from '../data/school';
+import { twentyYears } from '../data/twenty-years';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/twenty-years.css';
 
-const eventLine = homePage.hero.slides.find((slide) => slide.buttons.some((button) => button.href === '/20-years/'));
+const { week, foundation, gallery, next } = twentyYears;
 ---
 
-<BaseLayout title={`20th anniversary | ${school.name}`}>
+<BaseLayout title={`${twentyYears.title} | ${school.name}`} description={twentyYears.lead}>
   <PageHero
-    title="20th anniversary celebration"
-    lead="The page for the celebration is coming soon. [SAMPLE]"
-    crumbs={[{ label: '20th anniversary' }]}
-  >
-    <a class="bc-btn bc-btn-primary" href="/">Back to Home</a>
-    <a class="bc-btn bc-btn-secondary" href="/contact/">Contact the school</a>
-  </PageHero>
-  <section class="bc-section">
-    <div class="bc-wrap soon-body">
-      {
-        eventLine && (
-          <p>
-            {eventLine.text} {eventLine.tag}
-          </p>
-        )
-      }
-      <p>Until the page is ready, please contact the school with any question about the day.</p>
+    title={twentyYears.title}
+    lead={twentyYears.lead}
+    note={twentyYears.eventLine}
+    crumbs={[{ label: twentyYears.title }]}
+    display
+  />
+
+  <section class="ty-section" aria-labelledby="week-heading">
+    <div class="bc-wrap">
+      <h2 id="week-heading" class="ty-h2">{week.heading}</h2>
+      <ul class="week-list">
+        {week.items.map((item) => <li><h3>{item}</h3></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bc-section-navy ty-section" aria-labelledby="foundation-heading">
+    <div class="bc-wrap foundation">
+      <div class="foundation-copy">
+        <h2 id="foundation-heading" class="ty-h2">{foundation.heading}</h2>
+        {foundation.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <p class="foundation-note navy-muted">{foundation.note}</p>
+      </div>
+      <Media
+        photo={foundation.photo}
+        ratio="4 / 3"
+        focus={foundation.focus}
+        sizes="(min-width: 1264px) 480px, (min-width: 960px) 40vw, 100vw"
+      />
+    </div>
+  </section>
+
+  {
+    gallery.slots.length > 0 && (
+      <section class="ty-section ty-tint" aria-labelledby="gallery-heading">
+        <div class="bc-wrap">
+          <h2 id="gallery-heading" class="ty-h2">{gallery.heading}</h2>
+          <div class="gallery-grid">
+            {gallery.slots.map((slot) => (
+              <Media
+                photo={slot.photo}
+                ratio="1 / 1"
+                focus={slot.focus}
+                tag="[SAMPLE]"
+                sizes="(min-width: 1264px) 282px, (min-width: 720px) 25vw, 50vw"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="ty-section" aria-labelledby="next-heading">
+    <div class="bc-wrap">
+      <div class="next-chapter">
+        <h2 id="next-heading" class="ty-h2">{next.heading}</h2>
+        <a class="bc-btn bc-btn-primary" href={next.href}>{next.label}</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
