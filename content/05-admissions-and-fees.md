@@ -1,6 +1,6 @@
 # Admissions and fees
 
-The magazine has no admissions or fee details except the scholarship scheme. **Everything below is [SAMPLE] unless marked [DRAFT].** Replace all of it with the school's real information before launch.
+The PDF has no admissions or fee details except the scholarship scheme. **Everything below is [SAMPLE] unless it is sourced from the PDF.** Replace all of it with the school's real information before launch.
 
 ## Key dates, 2027/2028 **[SAMPLE]**
 
@@ -36,12 +36,13 @@ Last report card, birth certificate, two passport photographs, and a transfer ce
 
 Four papers, on campus: Mathematics, English, Basic Science, Social Studies. Sample papers PDF link: placeholder, marked "Sample, not yet available".
 
-## Scholarship **[DRAFT]**
+## Scholarship (PDF pp.32 to 33, 88)
 
-- Introduced 2018: the college accredited 80 public schools across the state's 16 local government areas to take part.
-- An entrance exam is held each year; **four learners receive full scholarships annually**.
-- Aimed at able, less-privileged students with strong interest in science.
-- Beneficiaries have gone on to become doctors, engineers and scholars (magazine claim).
+- A structured scheme to identify and support academically gifted but less privileged students, particularly in the sciences.
+- **2018:** the college formally accredited **80 public schools across the state's 16 Local Government Areas** to take part.
+- **Each year, entrance examinations select the candidates; four learners receive full scholarships annually.** For beneficiaries who continue to excel, support extends to tertiary level.
+- Beneficiaries have gone on to become doctors, engineers and accomplished scholars.
+- **Origin:** the scholarship scheme began in the 2008/2009 session and, after the founder's death, grew into the **Yunus Ajibola Gafar Foundation**, which supported over fifty students by 2018/2019. The Foundation is still registering formally (p.88).
 - Eligibility details and how to apply are not given **[CONFIRM]**.
 
 ## Admissions FAQ **[SAMPLE]**
