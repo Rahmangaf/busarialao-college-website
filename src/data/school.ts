@@ -23,7 +23,22 @@ export function yearsSinceFoundingInWords(now: Date = new Date()): string {
   return n % 10 === 0 ? tens : `${tens}-${numberWords[n % 10].toLowerCase()}`;
 }
 
+/** Fills {foundedYear}, {years} and {yearsInWords} in any string, list or object, so copy never types a year count. */
+export function fillSchool<T>(value: T, now: Date = new Date()): T {
+  if (typeof value === 'string') {
+    return value
+      .replaceAll('{foundedYear}', String(school.foundedYear))
+      .replaceAll('{yearsInWords}', yearsSinceFoundingInWords(now))
+      .replaceAll('{years}', String(yearsSinceFounding(now))) as T;
+  }
+  if (Array.isArray(value)) return value.map((item) => fillSchool(item, now)) as T;
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, fillSchool(item, now)])) as T;
+  }
+  return value;
+}
+
 export const home = {
   title: data.home.title,
-  subline: data.home.subline.replace('{foundedYear}', String(school.foundedYear)),
+  subline: fillSchool(data.home.subline),
 };

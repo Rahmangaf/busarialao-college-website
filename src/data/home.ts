@@ -6,7 +6,7 @@
 import data from '../content-data/home.json';
 import { fill } from './admissions';
 import { samplePhotos, type PhotoId } from './sample-content-register';
-import { school } from './school';
+import { fillSchool } from './school';
 
 export type TagName = 'SAMPLE' | 'DRAFT' | 'CONFIRM';
 
@@ -25,7 +25,7 @@ function photoId(id: string, where: string): PhotoId {
   return id as PhotoId;
 }
 
-const filled = fill(JSON.parse(JSON.stringify(data).replaceAll('{foundedYear}', String(school.foundedYear)))) as typeof data;
+const filled = fill(fillSchool(data)) as typeof data;
 
 export interface HeroButton {
   label: string;
