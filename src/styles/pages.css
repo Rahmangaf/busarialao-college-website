@@ -101,6 +101,44 @@
   }
 }
 
+/* Feature header (Celebrating 20 Years): a larger title and lead, as in the design. */
+.page-note {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+.page-hero.is-display {
+  padding: 48px 0 64px;
+}
+.page-hero.is-display h1 {
+  font-size: clamp(2.25rem, 1.2rem + 3vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.page-hero.is-display .page-lead {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--navy-900);
+}
+@media (min-width: 600px) {
+  .page-hero.is-display {
+    padding: 80px 0 96px;
+  }
+  .page-hero.is-display .page-lead {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+@media (min-width: 960px) {
+  .page-hero.is-display {
+    padding: 112px 0 128px;
+  }
+  .page-hero.is-display .page-lead {
+    font-size: 24px;
+    line-height: 34px;
+  }
+}
+
 /* ---------- Section structure ---------- */
 .split {
   display: grid;
@@ -396,6 +434,15 @@
 }
 .people b {
   font-size: 18px;
+}
+.vision-2035 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.vision-2035 p,
+.vision-2035 h3 {
+  margin: 0;
 }
 .accreditation {
   padding: 0;

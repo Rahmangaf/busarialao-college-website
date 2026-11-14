@@ -27,6 +27,7 @@ const photos = {
   'Joyful Blue Graduation Group Photo.png': 'graduation-group',
   'Studying Together in a Bright Dormitory.png': 'dormitory-study',
   'Formal Ceremony with Blue Drapery and Audience.png': 'ceremony-hall',
+  'Solar-Powered Community Borehole.jpg': 'borehole',
 };
 
 await mkdir(to, { recursive: true });

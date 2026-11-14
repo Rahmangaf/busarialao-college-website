@@ -371,6 +371,13 @@ body {
   padding: 4px 0;
   opacity: 0.85;
 }
+/* Footer links are 44px tall touch targets (the v4 bundle's 4px padding made them 32px). */
+.site-footer a:not(.footer-inline) {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  padding-block: 0;
+}
 .bc-footer a.footer-inline {
   display: inline;
   padding: 0;

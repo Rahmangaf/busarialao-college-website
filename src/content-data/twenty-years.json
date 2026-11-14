@@ -1,0 +1,43 @@
+{
+  "title": "Celebrating 20 Years",
+  "lead": "Two decades of nurturing scientific minds, {foundedYear} to 2026.",
+  "eventLine": "20th anniversary and graduation, 26 September 2026.",
+  "week": {
+    "heading": "Anniversary week",
+    "items": [
+      "Academic competitions: debate, spelling bee and quiz",
+      "Sports competition",
+      "The 20th Anniversary Lecture",
+      "A visit to an orphanage home in Idofian",
+      "The Grand Finale"
+    ]
+  },
+  "foundation": {
+    "heading": "The Yunus Ajibola Gafar Foundation",
+    "paragraphs": [
+      "A scholarship that began in 2008/2009 had supported over fifty students by 2018/2019. After the founder's passing, it became a foundation in his name.",
+      "On 4 June 2026, the Foundation commissioned a solar-powered borehole for Alagbado Phase II, Eyenkorin, Kwara State."
+    ],
+    "note": "The Foundation is completing its formal registration.",
+    "photo": "borehole",
+    "focus": "50% 50%"
+  },
+  "gallery": {
+    "heading": "Gallery",
+    "slots": [
+      { "name": "Anniversary ceremony", "photo": "ceremony-hall", "focus": "50% 50%" },
+      { "name": "Graduation", "photo": "graduation-group", "focus": "55% 40%" },
+      { "name": "Sports competition", "photo": "football", "focus": "50% 50%" },
+      { "name": "Campus", "photo": "courtyard", "focus": "50% 60%" },
+      { "name": "Reunion moments", "photo": "", "focus": "50% 50%" },
+      { "name": "Awards", "photo": "", "focus": "50% 50%" },
+      { "name": "Excursions", "photo": "", "focus": "50% 50%" },
+      { "name": "Alumni", "photo": "", "focus": "50% 50%" }
+    ]
+  },
+  "next": {
+    "heading": "The next chapter is already being written.",
+    "label": "Read our Vision 2035 →",
+    "href": "/about/#vision-2035"
+  }
+}

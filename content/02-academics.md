@@ -1,68 +1,72 @@
 # Academics
 
-Source: magazine Chapter 2. All items **[DRAFT]** unless marked **[SAMPLE]**.
+Source: the 20th Anniversary magazine PDF, Chapter 2 (pp.28 to 45). All items below were checked against the body text of the PDF pages cited.
 
 ## Overview
 
-- Science-focused secondary education, JSS1 to SS3 **[CONFIRM: levels]**.
-- National exams: BECE (end of JSS3), WASSCE and NECO (end of SS3), and JAMB/UTME for university entry.
-- Teaching is inquiry-based: students are encouraged to ask questions, investigate problems and think critically.
-- The curriculum combines national standards with practical, STEM-focused teaching.
-- In-house assessment through Top Tutors: certification exams for all learners, and preparatory exams for JSS3 and SSS3 external exams.
-- Extra classes, mentoring, structured revision and personalised support for different learning needs.
-- Regular staff training: workshops, seminars and peer collaboration.
+- Science-focused secondary education, JSS1 to SS3 **[CONFIRM levels]**.
+- National exams: BECE (JSS3), WASSCE and NECO (SS3), and JAMB/UTME for university entry.
+- Teaching builds scientific inquiry and critical thinking. The PDF calls the Technical Drawing lab "one of the essential laboratories required in a pure science school" (p.35), and Vision 2035 says "a leading science institution" (p.98) (the school confirmed "pure science" is accurate).
+- **Science project and workbook programme:** students are given a project topic, design an investigation, review literature, run experiments, analyse findings, and defend them before an audience (p.32).
+- **Critical thinking** is timetabled so it is explicitly taught (p.32).
+- Inquiry-based teaching, mentoring by science teachers, hands-on lab work, technology-enabled learning (multimedia lessons, ICT activities, CBT practice) and regular curriculum reviews (pp.29 to 30).
 
-## Laboratories
+## Certification and Saturday examinations (PDF pp.30 to 31)
 
-The magazine describes five laboratories. The current design shows four (Physics, Chemistry, Biology, ICT); Technical Drawing is the fifth **[CONFIRM which to show]**.
+- **Certification Examination, all learners:** a full simulation of WAEC conditions, set and invigilated by **Top Tutors**, a unit separate from the classroom teachers, to keep it objective. Questions come from WAEC past papers. From SS1, every student must pass at least **five subjects at 50% or more** (English Language, Mathematics, Physics, Chemistry and one other) **before accessing terminal exams**, every term from SS1 to SS3. Retakes are allowed until the standard is met. The syllabus compresses the three-year WAEC curriculum into two years.
+- **Incentive:** the best SS2 student each term was registered for the actual WAEC SSCE free of charge, sitting with the SS3 cohort. The sentence runs across the column break on p.31 and is complete.
+- **Saturday Examination:** Saturday-morning papers from JAMB UTME past questions, followed by practical laboratory sessions. The best performer in each class each term earns a **tuition-free term**.
+- Both exams still run (school confirmed). Subjects and certificates awarded beyond the above are not stated in the PDF.
 
-| Lab | What the magazine says |
+## Laboratories and facilities (PDF pp.33 to 36)
+
+| Facility | Notes |
 |---|---|
-| **Chemistry** | Grew from a basic setup to a lab with digital balances, pH meters, burner arrays, distillation units, fume chambers, fire-safety provisions and eyewash stations. Students do titrations and qualitative analysis. Supports WAEC and NECO practical preparation. |
-| **Physics** | Optical benches, lenses and prisms, vernier calipers, micrometers, metre bridges, circuits, galvanometers and projectile kits. Electricity and magnetism section; mechanics zone with pulleys, pendulums and timing devices. |
-| **Biology** | Preserved plants and animal samples, microscope slides, organ models, microscopes and microtomy kits. Food tests, dissection, ecological surveys and osmosis experiments, with environmental science kits. |
-| **ICT** | Digital simulations and virtual experiments, computer-based testing (CBT) practice, and multimedia learning tools. |
-| **Technical Drawing & Basic Technology** | Drawing studio commissioned September 2017. Drawing tables and boards, T-squares, set squares, instrument sets, drawing and tracing papers, and storage cabinets. |
+| **Chemistry lab** | Grew from a basic set-up to digital balances, pH meters, burner arrays, distillation units, fume chambers, fire-safety provisions and eyewash stations. Titrations, qualitative and quantitative analysis, reaction-rate and acid-base work. Supports WAEC and NECO practicals. |
+| **Physics lab** | Optical benches, lenses and prisms, vernier calipers, micrometers, metre bridges, circuits, galvanometers, projectile kits; an electricity and magnetism section and a mechanics zone. |
+| **Biology lab** | Preserved specimens, charts and models, microscopes and microtomy kits; food tests, dissection, ecological surveys, osmosis; environmental science kits; improved storage and sterilisation. |
+| **ICT lab** | Digital simulations and virtual experiments, computer-based testing (CBT) practice, multimedia tools. |
+| **Technical Drawing & Basic Technology studio** | Fully equipped and commissioned September 2017; drawing tables and boards, T-squares, set squares, instrument sets, cabinets. |
+| **Agricultural lab and CBT hall** | Shown in the photo spread (p.36) but not described in text **[CONFIRM]** |
 
-Use the **[SAMPLE]** tag on any "used every week" or frequency claim: it is not in the magazine.
+Feature four labs (Chemistry, Physics, Biology, ICT), as the school prefers; Technical Drawing can appear in the facilities list. The college also has a library and an ICT centre (p.25).
 
-## Science fair and projects
+## Science fairs, exhibitions and projects (PDF pp.39 to 40)
 
-- **Annual Science Fair:** student-led experiments, themed presentations (for example renewable energy, digital technology, climate change, simple machines), and an Innovation Corner for original solutions.
-- **Student projects listed in the magazine:** school timer, electric heater, bio-diesel from jatropha, geothermal electricity, freezer from local materials, egg candler, vacuum cleaner, cycling sweeper, board cleaner, electric display board, okro slicer, remote-controlled car, rechargeable fan, metal testing machine, FM transmitter, solar cooker, solar dryer, clap switch, pallet machine, manual grinding machine, and a research project.
+The Annual Science Fair grew from a modest gathering into a festival with students, teachers, parents and guests. Features: student-led experiments, yearly themes (Renewable Energy, Digital Technology, Climate Change, Simple Machines), and an Innovation Corner. Department exhibitions (Chemistry, Physics, Biology) extend classroom learning.
 
-## Competitions and awards
+Student-built projects listed (21): school timer, electric heater, bio-diesel from jatropha, geothermal electricity, a freezer from local materials, egg candler, vacuum cleaner, cycling sweeper, board cleaner, electric display board, okro slicer, remote-controlled car, rechargeable fan, metal testing machine, FM transmitter, solar cooker, solar dryer, clap switch, pallet machine, manual grinding machine, and a research project. Photos also show a firewall project, paint making and a traffic light project.
 
-Competitions: Science Expo at Kwara Television (okro slicer and dryer), Cowbellpedia Mathematics Competition, National Science Olympiad contests, Mathematics Olympiads, JETS **[CONFIRM list]**.
+## Competitions and awards (PDF pp.41 to 43)
 
-Awards listed in the magazine (positions as given; dates and years are not supplied **[CONFIRM]**):
+Competitions named: Science EXPO (Okro Slicer / dryer) at Kwara Television, the Cowbellpedia Mathematics Competition, National Science Olympiad contests, the JETS competition, and Mathematics Olympiads.
 
-- SBIO Mathematics quiz: first position
-- Maths Wizard Educational Consult (MWEC) medals: 1st (senior), 2nd (junior), 3rd (senior)
-- National Science Odyssey (Battle of the Brains), Abuja: Best School and Overall Best Student
-- National Science Odyssey (Battle of the Brains), India: Award of Excellence
-- Champions Educational Foundation (CEF): 1st, science quiz
-- NTA Ilorin Spelling Bee: 1st; NTA Regional (Southwest and Kwara) Spelling Bee: 3rd
-- Kwara State Library Board Readers' Day: 3rd
-- Mathematics Association of Nigeria (Kwara branch): 2nd
-- 1st MMGIVIT Charity Poetry Competition: Best female poet
-- Kwara State Universal Basic Education Board: award of recognition for scholarships
-- Quiz competitions: Effective International College (1st), Students Chemical Society of Nigeria (2nd), APWEN (3rd)
-- Awards of Excellence from Macmillan Nigeria Publishers and the National Association of Proprietors of Private Schools
+Awards, with dates as given:
 
-## Vocational training
+| Award | Result | Date |
+|---|---|---|
+| SBIO Mathematics Quiz Competition | First position | May 2025 |
+| Maths Wizard Educational Consult (MWEC) Medal Award | 1st (Senior), 2nd (Junior), 3rd (Senior) | February 2022 |
+| Champions Educational Foundation Award of Excellence (Science Quiz) | Position given | November 2021 |
+| NTA Ilorin Spelling Bee | 1st | April 2021 |
+| NTA Regional (Southwest & Kwara) Spelling Bee | 3rd | July 2021 |
+| Kwara State Library Board Readers' Day | 3rd | September 2019 |
+| Mathematics Association of Nigeria (Kwara Branch) | 2nd | July 2019 |
+| Charity Poetry Competition | Best female poet | 2017 |
+| Kwara State Universal Basic Education Board | Award of Recognition and Distinction for scholarship | 2017 to 2019 |
+| National Science Odyssey (Battle of the Brains), Abuja | Best School and Overall Best Student | 2013 |
+| National Science Odyssey (Battle of the Brains), India | Award of Excellence | 2013 |
+| Quiz competitions | Effective Int'l College 1st (2013); SCSN 2nd (2012); APWEN 3rd (2012); Macmillan 1st (2010) and Award of Excellence (2011 to 2012); Petroleum Development Trust Fund 1st (2010) | various |
 
-Started September 2014; first Vocational Day 12 June 2015. Streamlined in 2023 to four areas:
+Use the **dates** when showing awards on the site. The most recent (2025, 2022) are the strongest for the Home proof section.
 
-1. Make-over and beauty artistry
-2. Photography and creative imaging
-3. Catering: African cuisine and pastries
-4. ICT: web design and digital skills
+## Vocational training (PDF pp.55 to 56)
 
-## Page copy used in the current design **[SAMPLE wording, based on the above]**
+Started **September 2014**. Early departments: Photography, Bead Making, Tailoring, Shoemaking, Knitting, African Cuisine, Pastries, Agriculture, Make-over and Printing. First **Vocational Day: 12 June 2015**. In **2023** the departments were streamlined to four areas: make-over and beauty artistry; photography and creative imaging; catering (African cuisine and pastries); and ICT (web design and digital skills, HTML and simple CSS, graphics, online safety). Graduates have set up their own ventures. Teachers are also trained in skills such as web design and printing.
+
+## Page copy in the current design **[SAMPLE wording]**
 
 - Hero: "Learning by doing, with science at the centre"
 - Intro: "A full secondary curriculum from JSS1 to SS3, with laboratory work, competitions and practical skills built in."
 - Curriculum: "Six years, three national exams. Students sit BECE at the end of JSS3, and WASSCE and NECO at the end of SS3."
-- JSS1–JSS3: broad foundation in sciences, mathematics, languages and vocational skills; ends with BECE.
-- SS1–SS3: science focus (Physics, Chemistry, Biology, Further Maths, ICT); ends with WASSCE and NECO **[CONFIRM subjects]**.
+- Certification exams: "In-house certification exams for all learners, and preparatory exams for JSS3 and SS3 before the external exams, set through Top Tutors." Timing, subjects and certificates awarded **[CONFIRM]**.

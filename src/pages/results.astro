@@ -11,23 +11,25 @@ const newestFirst = [...results].sort((a, b) => b.year - a.year);
 const recentYears = newestFirst.slice(0, 5).map((r) => r.year);
 const earlierYears = newestFirst.slice(5).map((r) => r.year);
 
-const MEASURE = 'general percentage passed [CONFIRM: the magazine does not define this measure]';
+// The school chose "general percentage passed" as the headline measure. No credits definition is added.
 const percent = (value: number | null) => (value === null ? null : `${value.toFixed(2)}%`);
+const admission = (r: YearResult) => (r.universityAdmission === null ? null : `${r.universityAdmission}%`);
+// A missing figure shows its note ("Awaiting", "In view") when there is one.
 const stats = (r: YearResult) => [
-  { value: percent(r.wassce), label: `WASSCE, ${r.year} [DRAFT · CONFIRM measure]` },
-  { value: percent(r.neco), label: `NECO, ${r.year} [DRAFT · CONFIRM measure]` },
-  { value: r.universityAdmission === null ? null : `${r.universityAdmission}%`, label: `university admission, ${r.year} [DRAFT]` },
+  { value: percent(r.wassce), note: null, label: `WASSCE, general percentage passed, ${r.year}` },
+  { value: percent(r.neco), note: r.necoNote, label: `NECO, general percentage passed, ${r.year}` },
+  { value: admission(r), note: r.universityAdmissionNote, label: `university admission, ${r.year}` },
 ];
 ---
 
 <BaseLayout
   title={`Results | ${school.name}`}
-  description="WASSCE, NECO and university admission results for every year the school has published."
+  description="WASSCE and NECO general percentage passed, and university admission, for every year since 2009."
   section="academics"
 >
   <PageHero
     title="Our results, year by year"
-    lead="WASSCE, NECO and university admission for every year we have published, including the harder ones. Choose a year."
+    lead="WASSCE and NECO general percentage passed, and university admission, for every year since 2009, including the harder ones. Choose a year."
     crumbs={[{ label: 'Academics', href: '/academics/' }, { label: 'Results' }]}
   />
 
@@ -56,13 +58,11 @@ const stats = (r: YearResult) => [
         {
           newestFirst.map((r) => (
             <div class="year-intro" data-year-panel={r.year} hidden={r.year !== latest.year}>
-              <h2 class="bc-h2">{r.year} at a glance [DRAFT]</h2>
-              <p class="bc-muted">WASSCE and NECO show the {MEASURE}.</p>
-              {r.bestStudent && (
-                <p class="bc-muted">
-                  Overall best student, {r.year}: {r.bestStudent} [CONFIRM: names are published only with consent]
-                </p>
-              )}
+              <h2 class="bc-h2">{r.year} at a glance</h2>
+              <p class="bc-muted">
+                WASSCE and NECO show the general percentage passed.
+                {r.candidates !== null && ` ${r.candidates} candidates.`}
+              </p>
             </div>
           ))
         }
@@ -77,7 +77,7 @@ const stats = (r: YearResult) => [
           <div class="bc-stats bc-stats-lg year-stats" data-year-panel={r.year} hidden={r.year !== latest.year}>
             {stats(r).map((stat) => (
               <div class="bc-stat">
-                {stat.value ? <b>{stat.value}</b> : <b class="stat-missing">Not yet available</b>}
+                {stat.value ? <b>{stat.value}</b> : <b class="stat-missing">{stat.note ?? 'Not yet available'}</b>}
                 <span>{stat.label}</span>
               </div>
             ))}
@@ -93,21 +93,21 @@ const stats = (r: YearResult) => [
         <div class="sec-head">
           <h2 class="bc-h2">Every year since 2009</h2>
           <p class="bc-muted">
-            From the school magazine. Years and figures the magazine does not give are marked, not filled in. The
-            magazine's candidate numbers are empty for every year. [DRAFT]
+            From the school's 20th anniversary magazine, including the harder years. The 2026 row is partial: NECO
+            results are awaited and university admission is in view.
           </p>
         </div>
       </div>
       <div class="split-body table-scroll nowrap">
         <table class="bc-table">
-          <caption>Results by year [DRAFT]. WASSCE and NECO: {MEASURE}.</caption>
+          <caption>Results by year. WASSCE and NECO show the general percentage passed.</caption>
           <thead>
             <tr>
               <th scope="col">Year</th>
-              <th scope="col" class="num">WASSCE</th>
-              <th scope="col" class="num">NECO</th>
+              <th scope="col" class="num">Candidates</th>
+              <th scope="col" class="num">WASSCE general percentage passed</th>
+              <th scope="col" class="num">NECO general percentage passed</th>
               <th scope="col" class="num">University admission</th>
-              <th scope="col">Overall best student [CONFIRM consent]</th>
             </tr>
           </thead>
           <tbody>
@@ -115,10 +115,14 @@ const stats = (r: YearResult) => [
               newestFirst.map((r) => (
                 <tr>
                   <th scope="row" class="row-head">{r.year}</th>
-                  {[percent(r.wassce), percent(r.neco), r.universityAdmission === null ? null : `${r.universityAdmission}%`].map((value) =>
-                    value ? <td class="num">{value}</td> : <td class="num bc-muted">Not yet available</td>,
+                  {[
+                    { value: r.candidates === null ? null : String(r.candidates), note: null },
+                    { value: percent(r.wassce), note: null },
+                    { value: percent(r.neco), note: r.necoNote },
+                    { value: admission(r), note: r.universityAdmissionNote },
+                  ].map((cell) =>
+                    cell.value ? <td class="num">{cell.value}</td> : <td class="num bc-muted">{cell.note ?? 'Not yet available'}</td>,
                   )}
-                  {r.bestStudent ? <td>{r.bestStudent}</td> : <td class="bc-muted">Not yet available</td>}
                 </tr>
               ))
             }
@@ -138,26 +142,26 @@ const stats = (r: YearResult) => [
           <h3 class="bc-h4">JAMB and UTME</h3>
           <p class="bc-muted">
             More students scoring 250 and above, and several above 300 each year, with admissions into Medicine,
-            Engineering, Nursing, Pharmacy, MLS, Architecture and Computer Science. [DRAFT]
+            Engineering, Nursing, Pharmacy, MLS, Architecture and Computer Science.
           </p>
         </div>
         <div class="subhead">
           <h3 class="bc-h4">WASSCE and NECO</h3>
           <p class="bc-muted">
             A steady increase in students with five credits including English and Mathematics, and frequent 100% credit
-            passes in Physics, Chemistry and Biology. [DRAFT]
+            passes in Physics, Chemistry and Biology.
           </p>
         </div>
         <div class="subhead">
           <h3 class="bc-h4">Ranking</h3>
           <p class="bc-muted">
-            Ranked consistently among the top-performing private schools in the state's assessments. [CONFIRM wording]
+            Consistent ranking among the top-performing private schools in the State's assessments.
           </p>
         </div>
         <div class="subhead">
           <h3 class="bc-h4">Competitions</h3>
           <p class="bc-muted">
-            Science fairs, olympiads and quizzes. <a href="/academics/#competitions">See competitions and awards</a>. [DRAFT]
+            Science fairs, olympiads and quizzes. <a href="/academics/#competitions">See competitions and awards</a>.
           </p>
         </div>
       </div>

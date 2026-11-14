@@ -95,7 +95,7 @@ export const admissionsMega = {
       title: 'Costs',
       links: [
         { label: 'Fees & payment', hint: 'Per term, day and boarding', href: '/fees/' },
-        { label: 'Scholarships', hint: 'Four full awards each year [DRAFT]', href: '/admissions/#scholarships' },
+        { label: 'Scholarships', hint: 'Four full awards each year', href: '/admissions/#scholarships' },
         { label: 'Pay fees online', hint: 'Official account only', href: '/fees/#pay' },
       ],
     },
@@ -132,4 +132,5 @@ export const footerLinks: NavLink[] = [
   { label: 'Fees & Payment', href: '/fees/' },
   { label: 'Results', href: '/results/' },
   { label: 'Term dates', href: '/news/#term-dates' },
+  { label: 'Celebrating 20 Years', href: '/20-years/' },
 ];

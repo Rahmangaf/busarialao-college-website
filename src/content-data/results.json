@@ -2,122 +2,131 @@
   "items": [
     {
       "year": 2009,
-      "wassce": null,
-      "neco": null,
-      "bestStudent": null,
+      "candidates": 9,
+      "wassce": 95.83,
+      "neco": 85.6,
       "universityAdmission": 95
     },
     {
       "year": 2010,
+      "candidates": 28,
       "wassce": 91.81,
       "neco": 54.75,
-      "bestStudent": "Adua Kauthar Adenike",
       "universityAdmission": 100
     },
     {
       "year": 2011,
+      "candidates": 30,
       "wassce": 76.89,
-      "neco": null,
-      "bestStudent": "Abdulgafar Abdulbasit Tobi",
+      "neco": 85.46,
       "universityAdmission": 100
     },
     {
       "year": 2012,
+      "candidates": 29,
       "wassce": 82.84,
       "neco": 71.36,
-      "bestStudent": "Abdulrasheed Sodiq A.",
       "universityAdmission": 98
     },
     {
       "year": 2013,
+      "candidates": 23,
       "wassce": 80.09,
       "neco": 86.1,
-      "bestStudent": "Jimoh Abdulgafar Tobi",
       "universityAdmission": 100
     },
     {
       "year": 2014,
-      "wassce": null,
-      "neco": null,
-      "bestStudent": "Alli Hannat",
+      "candidates": 21,
+      "wassce": 81.06,
+      "neco": 76.39,
       "universityAdmission": 100
     },
     {
       "year": 2015,
-      "wassce": null,
-      "neco": null,
-      "bestStudent": "Salah M. Mardhyah",
+      "candidates": 27,
+      "wassce": 85.05,
+      "neco": 83.5,
       "universityAdmission": 95
     },
     {
       "year": 2016,
-      "wassce": null,
-      "neco": null,
-      "bestStudent": "Abiodun O. Promise",
+      "candidates": 36,
+      "wassce": 80.07,
+      "neco": 79.63,
       "universityAdmission": 100
     },
     {
       "year": 2017,
+      "candidates": 23,
       "wassce": 85.5,
       "neco": 90.35,
-      "bestStudent": "Abdulwahab Faridah O.",
       "universityAdmission": 95
     },
     {
       "year": 2018,
+      "candidates": 41,
       "wassce": 78.44,
       "neco": 93.37,
-      "bestStudent": "Busari Habeebat",
       "universityAdmission": 100
     },
     {
       "year": 2019,
+      "candidates": 36,
       "wassce": 67.39,
       "neco": 93.7,
-      "bestStudent": "Muhammed Musa Ndako",
       "universityAdmission": 96
     },
     {
       "year": 2020,
+      "candidates": 41,
       "wassce": 73.71,
       "neco": 94.93,
-      "bestStudent": "Olufadi Ammar",
       "universityAdmission": 100
     },
     {
       "year": 2021,
+      "candidates": 44,
       "wassce": 74.73,
       "neco": 92.26,
-      "bestStudent": "Giwa Ameerah Temitope",
       "universityAdmission": 100
     },
     {
       "year": 2022,
+      "candidates": 43,
       "wassce": 98.95,
       "neco": 83.94,
-      "bestStudent": "Yusuf Amidah",
       "universityAdmission": 98
     },
     {
       "year": 2023,
+      "candidates": 27,
       "wassce": 83.64,
       "neco": 94.79,
-      "bestStudent": "Umar Zakari Aisha",
       "universityAdmission": 100
     },
     {
       "year": 2024,
+      "candidates": 53,
       "wassce": 95.55,
       "neco": 88.78,
-      "bestStudent": "Olaoye Sultan",
       "universityAdmission": 100
     },
     {
       "year": 2025,
+      "candidates": 47,
       "wassce": 95.48,
       "neco": 74.29,
-      "bestStudent": "Mustapha Amina",
       "universityAdmission": 90
+    },
+    {
+      "year": 2026,
+      "candidates": 48,
+      "wassce": 74.49,
+      "neco": null,
+      "necoNote": "Awaiting",
+      "universityAdmission": null,
+      "universityAdmissionNote": "In view"
     }
   ]
 }

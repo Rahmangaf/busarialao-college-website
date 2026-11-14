@@ -14,6 +14,8 @@ interface Props {
   /** Hero images load eagerly; everything else is lazy. */
   eager?: boolean;
   sizes?: string;
+  /** The label on the photo. Small tiles use a shorter one, such as "[SAMPLE]". */
+  tag?: string;
   class?: string;
 }
 
@@ -24,6 +26,7 @@ const {
   focus = '50% 50%',
   eager = false,
   sizes = '(min-width: 1264px) 1200px, 100vw',
+  tag = '[SAMPLE] Generated photo',
   class: className,
 } = Astro.props;
 
@@ -43,5 +46,5 @@ const { image, alt } = samplePhotos[photo];
     fetchpriority={eager ? 'high' : 'auto'}
     decoding={eager ? 'sync' : 'async'}
   />
-  <span class="bc-media-tag">[SAMPLE] Generated photo</span>
+  <span class="bc-media-tag">{tag}</span>
 </figure>

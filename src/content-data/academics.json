@@ -3,7 +3,7 @@
   "lead": "A full secondary curriculum from JSS1 to SS3, with laboratory work, competitions and practical skills built in.",
   "curriculum": {
     "heading": "Six years, three national exams",
-    "text": "Students sit BECE at the end of JSS3, and WASSCE and NECO at the end of SS3.",
+    "text": "Students sit BECE at the end of JSS3, and WASSCE and NECO at the end of SS3. JAMB/UTME is the route to university.",
     "stages": [
       {
         "years": "JSS1–JSS3",
@@ -24,46 +24,48 @@
       }
     ],
     "notes": [
-      "Teaching is inquiry-based: students are encouraged to ask questions, investigate problems and think critically. [DRAFT]",
-      "In-house assessment through Top Tutors: certification exams for all learners, and preparatory exams for JSS3 and SSS3 external exams. [DRAFT]",
-      "Extra classes, mentoring, structured revision and personalised support for different learning needs. [DRAFT]"
+      "Teaching is inquiry-based: students ask questions, investigate problems and think critically. Critical thinking is timetabled, so it is explicitly taught.",
+      "The science project and workbook programme gives each student a topic. They design an investigation, review the literature, run experiments, analyse findings and defend them before an audience.",
+      "Certification Examination, for all learners: a full simulation of WAEC conditions, set and invigilated by Top Tutors, a unit separate from the classroom teachers, so it stays objective. From SS1, every student must pass at least five subjects at 50% or more (English Language, Mathematics, Physics, Chemistry and one other) before accessing terminal exams, every term from SS1 to SS3. Retakes are allowed until the standard is met.",
+      "The best SS2 student each term was registered for the actual WAEC SSCE free of charge, sitting with the SS3 cohort.",
+      "Saturday Examination: papers drawn from JAMB UTME past questions on Saturday mornings, followed by practical laboratory sessions. The best performer in each class each term earns a tuition-free term."
     ]
   },
   "labs": {
     "heading": "Four labs, used every week [SAMPLE frequency]",
-    "text": "Practical work is part of every science course. [DRAFT]",
+    "text": "Practical work is part of every science course.",
     "items": [
       {
-        "name": "Physics",
-        "text": "Optical benches, lenses and prisms, metre bridges, circuits, galvanometers and projectile kits. A mechanics zone has pulleys, pendulums and timing devices. [DRAFT]",
-        "photo": null,
-        "focus": "50% 50%"
-      },
-      {
         "name": "Chemistry",
-        "text": "Digital balances, pH meters, burner arrays, distillation units and fume chambers, with fire-safety provisions and eyewash stations. Students do titrations and qualitative analysis. [DRAFT]",
+        "text": "Grew from a basic set-up to digital balances, pH meters, burner arrays, distillation units, fume chambers, fire-safety provisions and eyewash stations. Titrations, qualitative and quantitative analysis, reaction-rate and acid-base work. Supports WAEC and NECO practicals.",
         "photo": "chemistry-lab",
         "focus": "50% 40%"
       },
       {
+        "name": "Physics",
+        "text": "Optical benches, lenses and prisms, vernier calipers, micrometers, metre bridges, circuits, galvanometers and projectile kits. An electricity and magnetism section and a mechanics zone.",
+        "photo": null,
+        "focus": "50% 50%"
+      },
+      {
         "name": "Biology",
-        "text": "Microscopes and slides, organ models and microtomy kits. Food tests, dissection, ecological surveys and osmosis experiments. [DRAFT]",
+        "text": "Preserved specimens, charts and models, microscopes and microtomy kits. Food tests, dissection, ecological surveys and osmosis experiments, with environmental science kits and improved storage and sterilisation.",
         "photo": null,
         "focus": "50% 50%"
       },
       {
         "name": "ICT",
-        "text": "Digital simulations and virtual experiments, computer-based testing (CBT) practice and multimedia learning tools. [DRAFT]",
+        "text": "Digital simulations and virtual experiments, computer-based testing (CBT) practice and multimedia tools.",
         "photo": "computer-lab",
         "focus": "40% 45%"
       }
     ],
-    "fifthLab": "[CONFIRM] The magazine describes a fifth laboratory, Technical Drawing & Basic Technology (drawing studio commissioned September 2017). Confirm with the school whether to show four or five."
+    "facilitiesNote": "Also on campus: a Technical Drawing and Basic Technology studio, commissioned in September 2017, a library and an ICT centre."
   },
   "fair": {
     "heading": "Science fair and projects",
-    "text": "The annual Science Fair has student-led experiments, themed presentations (for example renewable energy, digital technology, climate change and simple machines) and an Innovation Corner for original solutions. [DRAFT]",
-    "projectsHeading": "Student projects listed in the magazine",
+    "text": "The Annual Science Fair grew from a modest gathering into a festival for students, teachers, parents and guests. It has student-led experiments, yearly themes (Renewable Energy, Digital Technology, Climate Change and Simple Machines) and an Innovation Corner. Department exhibitions in Chemistry, Physics and Biology extend classroom learning.",
+    "projectsHeading": "Student projects",
     "projects": [
       "School timer",
       "Electric heater",
@@ -84,42 +86,43 @@
       "Solar dryer",
       "Clap switch",
       "Pallet machine",
-      "Manual grinding machine"
+      "Manual grinding machine",
+      "Research project"
     ]
   },
   "competitions": {
     "heading": "Competitions and awards",
-    "text": "Positions are as given in the magazine; years are not supplied. [DRAFT] [CONFIRM list and years]",
+    "text": "Positions and dates are as given in the 20th anniversary magazine.",
     "entered": [
-      "Science Expo at Kwara Television (okro slicer and dryer)",
+      "Science EXPO at Kwara Television (okro slicer and dryer)",
       "Cowbellpedia Mathematics Competition",
       "National Science Olympiad contests",
-      "Mathematics Olympiads",
-      "JETS"
+      "JETS competition",
+      "Mathematics Olympiads"
     ],
     "awards": [
-      "SBIO Mathematics quiz: first position",
-      "Maths Wizard Educational Consult (MWEC) medals: 1st (senior), 2nd (junior), 3rd (senior)",
-      "National Science Odyssey (Battle of the Brains), Abuja: Best School and Overall Best Student",
-      "National Science Odyssey (Battle of the Brains), India: Award of Excellence",
-      "Champions Educational Foundation (CEF): 1st, science quiz",
-      "NTA Ilorin Spelling Bee: 1st; NTA Regional (Southwest and Kwara) Spelling Bee: 3rd",
-      "Kwara State Library Board Readers' Day: 3rd",
-      "Mathematics Association of Nigeria (Kwara branch): 2nd",
-      "1st MMGIVIT Charity Poetry Competition: Best female poet",
-      "Kwara State Universal Basic Education Board: award of recognition for scholarships",
-      "Quiz competitions: Effective International College (1st), Students Chemical Society of Nigeria (2nd), APWEN (3rd)",
-      "Awards of Excellence from Macmillan Nigeria Publishers and the National Association of Proprietors of Private Schools"
+      "SBIO Mathematics Quiz Competition: first position, May 2025",
+      "Maths Wizard Educational Consult (MWEC) Medal Award: 1st (senior), 2nd (junior), 3rd (senior), February 2022",
+      "Champions Educational Foundation Award of Excellence (science quiz), November 2021",
+      "NTA Ilorin Spelling Bee: 1st, April 2021",
+      "NTA Regional (Southwest and Kwara) Spelling Bee: 3rd, July 2021",
+      "Kwara State Library Board Readers' Day: 3rd, September 2019",
+      "Mathematics Association of Nigeria (Kwara branch): 2nd, July 2019",
+      "Charity Poetry Competition: best female poet, 2017",
+      "Kwara State Universal Basic Education Board: award of recognition and distinction for scholarship, 2017 to 2019",
+      "National Science Odyssey (Battle of the Brains), Abuja: Best School and Overall Best Student, 2013",
+      "National Science Odyssey (Battle of the Brains), India: Award of Excellence, 2013",
+      "Quiz competitions: Effective International College, 1st (2013); SCSN, 2nd (2012); APWEN, 3rd (2012); Macmillan, 1st (2010) and Award of Excellence (2011 to 2012); Petroleum Development Trust Fund, 1st (2010)"
     ]
   },
   "vocational": {
     "heading": "Practical skills for life",
-    "text": "Started in September 2014, with the first Vocational Day on 12 June 2015. Streamlined in 2023 to four areas. [DRAFT]",
+    "text": "Started in September 2014, with the first Vocational Day on 12 June 2015. Early departments included Photography, Bead Making, Tailoring, Shoemaking, Knitting, African Cuisine, Pastries, Agriculture, Make-over and Printing. In 2023 they were streamlined to four areas. Graduates have set up their own ventures.",
     "areas": [
       "Make-over and beauty artistry",
       "Photography and creative imaging",
       "Catering: African cuisine and pastries",
-      "ICT: web design and digital skills"
+      "ICT: web design and digital skills, HTML and simple CSS, graphics and online safety"
     ]
   }
 }
