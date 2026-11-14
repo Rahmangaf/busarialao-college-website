@@ -22,8 +22,8 @@ const { hero, welcome, science, dayBoarding, proof, closing } = homePage;
 const latest = latestResult();
 const stats = [
   { value: String(yearsSinceFounding()), label: `years of teaching, since ${school.foundedYear}` },
-  { value: formatPercent(latest.wassce ?? 0), label: `WASSCE pass rate, ${latest.year} [DRAFT · CONFIRM measure]` },
-  { value: formatPercent(latest.universityAdmission ?? 0, 0), label: `university admission, ${latest.year} [DRAFT]` },
+  { value: formatPercent(latest.wassce ?? 0), label: `WASSCE general percentage passed, ${latest.year}` },
+  { value: formatPercent(latest.universityAdmission ?? 0, 0), label: `university admission, ${latest.year}` },
 ];
 
 // Preload the first slide's photo (and only that one). The srcset comes from the same call the

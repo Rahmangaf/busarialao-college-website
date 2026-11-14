@@ -1,7 +1,10 @@
 {
   "hero": {
     "label": "Highlights",
-    "autoplay": { "enabled": false, "seconds": 7 },
+    "autoplay": {
+      "enabled": false,
+      "seconds": 7
+    },
     "slides": [
       {
         "name": "Core message",
@@ -12,8 +15,16 @@
         "text": "A science-focused day and boarding school in Ilorin, since {foundedYear}.",
         "tag": "",
         "buttons": [
-          { "label": "Apply Now →", "href": "/admissions/#how-to-apply", "style": "primary" },
-          { "label": "Book a Tour", "href": "/contact/?interest=tour", "style": "secondary" }
+          {
+            "label": "Apply Now →",
+            "href": "/admissions/#how-to-apply",
+            "style": "primary"
+          },
+          {
+            "label": "Book a Tour",
+            "href": "/contact/?interest=tour",
+            "style": "secondary"
+          }
         ]
       },
       {
@@ -21,10 +32,16 @@
         "photo": "graduation-group",
         "focusDesktop": "55% 30%",
         "focusMobile": "50% 30%",
-        "headline": "Twenty years of nurturing scientific minds",
+        "headline": "Twenty years of nurturing scientific minds.",
         "text": "20th anniversary and graduation, 26 September 2026.",
-        "tag": "CONFIRM",
-        "buttons": [{ "label": "See the celebration →", "href": "/20-years/", "style": "primary" }]
+        "tag": "",
+        "buttons": [
+          {
+            "label": "See the celebration →",
+            "href": "/20-years/",
+            "style": "primary"
+          }
+        ]
       },
       {
         "name": "Admissions open",
@@ -34,14 +51,20 @@
         "headline": "Admissions open for {session}",
         "text": "Entrance exam {examDate}.",
         "tag": "SAMPLE",
-        "buttons": [{ "label": "Start your application →", "href": "/admissions/#how-to-apply", "style": "primary" }]
+        "buttons": [
+          {
+            "label": "Start your application →",
+            "href": "/admissions/#how-to-apply",
+            "style": "primary"
+          }
+        ]
       }
     ]
   },
   "welcome": {
     "heading": "Welcome to Busarialao College.",
     "headingTag": "SAMPLE",
-    "text": "We began in 2003 as Top Tutors, a small tutorial centre, and became a college in 2005 with 12 pioneer students and one idea: that science should come alive. Today we are a pure science school [CONFIRM], with laboratories, small classes and staff who expect the best of every student.",
+    "text": "We began in 2003 as Top Tutors, a small tutorial centre, and became a college in 2006 with nine pioneer learners and one idea: that science should come alive. Today we are a science-focused school [CONFIRM \"pure science\"], with laboratories, small classes and staff who expect the best of every student.",
     "textTag": "SAMPLE",
     "linkLabel": "Read our story",
     "linkHref": "/about/#story"
@@ -50,22 +73,34 @@
   "science": {
     "heading": "A pure science school, built to push past limits.",
     "headingTag": "SAMPLE",
-    "lead": "A pure science college from JSS1 to SS3, and the first and only of its kind [CONFIRM].",
+    "lead": "A pure science college from JSS1 to SS3, and the first dedicated science college in Ilorin.",
     "photo": "biology-lab",
     "ratio": "16 / 9",
     "ratioMobile": "4 / 3",
     "focus": "50% 30%",
     "labsHeading": "Our laboratories",
-    "labsTag": "CONFIRM",
+    "labsTag": "",
     "labs": [
-      { "name": "Chemistry", "text": "Titrations, analysis and safe lab practice." },
-      { "name": "Physics", "text": "Mechanics, electricity and optics practicals." },
-      { "name": "Biology", "text": "Microscopy and life-science practicals." },
-      { "name": "ICT", "text": "Computing and web design." }
+      {
+        "name": "Chemistry",
+        "text": "Titrations, analysis and safe lab practice."
+      },
+      {
+        "name": "Physics",
+        "text": "Mechanics, electricity and optics practicals."
+      },
+      {
+        "name": "Biology",
+        "text": "Microscopy and life-science practicals."
+      },
+      {
+        "name": "ICT",
+        "text": "Computing and web design."
+      }
     ],
     "labsNote": "One-line descriptions [SAMPLE].",
     "examsHeading": "Certification exams",
-    "examsText": "In-house certification exams for all learners, and preparatory exams for JSS3 and SSS3 before the external exams, set through Top Tutors.",
+    "examsText": "In-house certification exams for all learners, and preparatory exams for JSS3 and SS3 before the external exams, set through Top Tutors.",
     "examsNote": "Timing, subjects and certificates awarded [CONFIRM].",
     "linkLabel": "See academics",
     "linkHref": "/academics/"
@@ -85,7 +120,7 @@
         "ratio": "3 / 2",
         "focus": "35% 50%",
         "title": "Boarding",
-        "text": "A hostel on Yidi Road with house staff and a sick bay. [DRAFT]"
+        "text": "A hostel on Yidi Road with house staff and 24-hour solar power."
       }
     ]
   },
@@ -93,13 +128,28 @@
     "heading": "Proof, not promises.",
     "headingTag": "SAMPLE",
     "items": [
-      { "text": "Best School and Overall Best Student, National Science Odyssey, Abuja.", "tag": "DRAFT" },
-      { "text": "First position, Maths Wizard Educational Consult, senior category.", "tag": "DRAFT" },
-      { "text": "Four full scholarships every year for able students from partner public schools.", "tag": "DRAFT" }
+      {
+        "text": "First position, SBIO Mathematics Quiz Competition, May 2025.",
+        "tag": ""
+      },
+      {
+        "text": "First position, Maths Wizard Educational Consult, senior category, February 2022.",
+        "tag": ""
+      },
+      {
+        "text": "Four full scholarships every year for able students from partner public schools.",
+        "tag": ""
+      }
     ],
     "links": [
-      { "label": "See results", "href": "/results/" },
-      { "label": "Scholarships", "href": "/admissions/#scholarships" }
+      {
+        "label": "See results",
+        "href": "/results/"
+      },
+      {
+        "label": "Scholarships",
+        "href": "/admissions/#scholarships"
+      }
     ]
   },
   "closing": {
