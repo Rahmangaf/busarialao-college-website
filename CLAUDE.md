@@ -26,7 +26,7 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 
 ## Layout
 
-- `content/` is the source of truth for all copy. Read it before writing page copy or data. `content/00-README.md` has the tag rules; `content/08-open-questions.md` lists what the school must confirm.
+- `content/` is the source of truth for all copy (the school's 20th anniversary brochure; the PDF itself is not in the repo and must not be committed). Read it before writing page copy or data. `content/00-README.md` has the tag rules; `content/08-open-questions.md` lists what the school must confirm; `content/09-brochure-vs-draft-changes.md` lists what changed from the earlier draft.
 - `src/data/` holds typed data (`school`, `contact`, `admissions`, `results`, `nav`) and `sample-content-register.ts`, the list of every generated photo, its alt text and where it is used.
 - `design-system/` is an untouched copy of the handoff CSS and tokens (the v4 "structural alignment pass"), for diffing when the design changes. The site loads the copies in `src/styles/` (identical except the Google Fonts `@import` is removed).
 - `src/styles/site-tokens.css` holds the site's own tokens that sit on top of the design system: the overlay colour and strengths (hero and closing section), the hero height, text width and top offset. Change them there, not in a page.
@@ -35,14 +35,16 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 - `integrations/launch-guard.mjs` is the build check described above.
 - `src/pages/` has one file per page; shared page structure is `PageHero` and `CtaBand` in `src/components/`, styled by `src/styles/pages.css` and `page-sections.css`.
 - Home is `src/pages/index.astro` with `HeroCarousel`, `PhotoFill` (a photo that fills its parent) and `Tag` (a small label on its own line) in `src/components/`, styled by `src/styles/home.css`. Its copy is `src/content-data/home.json`, read through `src/data/home.ts`.
+- Celebrating 20 Years is `src/pages/20-years.astro`, with copy in `src/content-data/twenty-years.json` (read through `src/data/twenty-years.ts`) and styles in `src/styles/twenty-years.css`. It is linked from the footer and Home hero slide 2 only, never from the main navigation.
 
 ## Content rules
 
-1. **Tags.** `[DRAFT]` (from the draft magazine), `[SAMPLE]` (invented for the mockup) and `[CONFIRM]` (unclear in the source) stay in the copy until the school confirms the item. Never remove a tag without that confirmation. Tags are literal text in the data and templates, so the launch guard can find them.
+1. **Tags.** `[SAMPLE]` (invented for the mockup) and `[CONFIRM]` (unclear in the source) stay in the copy until the school confirms the item. Never remove a tag without that confirmation. Facts taken from the brochure are untagged (`[DRAFT]` is retired; the guard still treats any that appear as blockers). Tags are literal text in the data and templates, so the launch guard can find them.
 2. Do not invent school facts, statistics, testimonials, facilities or policies. If a page needs content that does not exist, flag it.
 3. Write plain, short sentences. British/Nigerian spelling. Naira as ₦180,000. Verbs first on buttons.
 4. Use the name **Busarialao College** (the spelling is itself `[CONFIRM]`).
-5. Anything that changes over time (such as years since founding) is computed from a stored year, never typed.
+5. Anything that changes over time (such as years since founding) is computed from a stored year, never typed. The founding year, **2006**, is stored once in `school.json`; copy uses `{foundedYear}`, `{years}` and `{yearsInWords}`, filled in by `fillSchool()` in `src/data/school.ts`. The anniversary headline on Home slide 2 ("Twenty years…") is event copy, not a computed figure.
+7. **Privacy.** Do not publish names or faces of individuals (the founder, Yunus Ajibola Gafar, is the one named person, with the Foundation that carries his name). No committee list, no directors list, no student names in Results, and Leadership shows roles and years only. Gallery slots with no photo are hidden.
 6. Every photograph is a generated sample with a visible `[SAMPLE] Generated photo` tag and an entry in the sample-content register. Hide a section rather than fill it with flat placeholder boxes.
 
 ## Decisions
@@ -52,6 +54,8 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 - **Container line.** Everything sits on one line, `--edge` (the distance from the viewport edge to the 1200px container, 20px on phones). The top bar, header, footer, sections and the hero text, controls and photo label all use it. Do not give a component its own side padding.
 - **Home hero.** Slides, buttons and photos come from `home.json`. The text column is 560px wide, in the same place on every slide (the slides share grid rows, so the buttons stay level). The hero is 620px tall (600px on phones, capped to leave the headline and main button above the fold). Autoplay is off by default (`hero.autoplay.enabled`); when on it is slow, pauses on hover, focus and touch, stops after one loop and never runs under reduced motion. Only the first photo is preloaded and eager.
 - **Tags on pages.** A tag is written `SAMPLE`, `DRAFT` or `CONFIRM` in `home.json` and shown as the literal `[SAMPLE]` etc. on its own line under the heading (`Tag` component). Tags inside a sentence stay in the sentence. The brackets are part of the text so the launch guard can find them.
+- **Results** use the school's measure, "general percentage passed" (WASSCE and NECO), with no credits definition. The selector opens on the latest complete year (2025); 2026 is shown with NECO "Awaiting" and admission "In view". The Home numbers band features the latest complete year.
+- **About** shows exactly seven core values (the brochure skips number 6). **Labs** are four: Chemistry, Physics, Biology, ICT.
 - Invented achievement claims from the mockup (JAMB 312, top-five candidate grades, teacher ratio, testimonials) are not built. Structural placeholders (fees, dates, hours, phone numbers) are built and tagged `[SAMPLE]`.
 - "Apply Now" and "Start your application" link to the Admissions page's application steps (`/admissions/#how-to-apply`). `/apply/` is a simple "Applications open soon" page for the form itself.
 - "Book a Tour" links to `/contact/?interest=tour`, which preselects "Book a tour" as the level of interest.
