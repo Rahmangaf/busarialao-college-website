@@ -11,6 +11,7 @@ const { initCMS } = window;
 const PHOTO_OPTIONS = [
   { label: 'No photo', value: '' },
   'biology-lab',
+  'borehole',
   'ceremony-hall',
   'chemistry-lab',
   'computer-lab',
@@ -81,8 +82,15 @@ const about = entry('about', 'About', 'about', [
     str('signature', 'Signature'),
     str('signatureNote', 'Signature note'),
   ]),
-  str('leadershipNote', 'Leadership note'),
-  list('leadership', 'Leadership', [str('role', 'Role'), str('name', 'Name'), txt('detail', 'Detail')], { summary: '{{fields.role}}: {{fields.name}}' }),
+  str('leadershipNote', 'Line under the Leadership heading'),
+  obj('vision2035', 'Vision 2035', [
+    str('heading', 'Heading'),
+    txt('vision', 'Vision'),
+    txt('mission', 'Mission'),
+    str('prioritiesHeading', 'Priorities heading'),
+    strList('priorities', 'Priorities'),
+  ]),
+  list('leadership', 'Leadership (roles and years only; names are not published)', [str('role', 'Role'), str('years', 'Years in post')], { summary: '{{fields.role}}: {{fields.years}}' }),
   list('milestones', 'Milestones', [str('year', 'Year'), txt('text', 'What happened')], { summary: '{{fields.year}}' }),
 ]);
 
@@ -179,6 +187,34 @@ const home = entry('home', 'Home', 'home', [
   ]),
 ]);
 
+const twentyYears = entry('twentyYears', 'Celebrating 20 Years', 'twenty-years', [
+  str('title', 'Page title'),
+  txt('lead', 'Opening line', { hint: 'Leave {foundedYear} as it is; it is filled in from the founding year.' }),
+  str('eventLine', 'Date line'),
+  obj('week', 'Anniversary week', [str('heading', 'Heading'), strList('items', 'Highlights (one per item, no numbers)', { field: { name: 'item', label: 'Highlight', widget: 'string' } })]),
+  obj('foundation', 'The Foundation (navy section)', [
+    str('heading', 'Heading'),
+    strList('paragraphs', 'Paragraphs'),
+    str('note', 'Note'),
+    photoSelect('photo'),
+    focus('focus', 'Photo focus'),
+  ]),
+  obj('gallery', 'Gallery', [
+    str('heading', 'Heading'),
+    list(
+      'slots',
+      'Photo slots (a slot with no photo is hidden)',
+      [
+        str('name', 'Slot name (not shown on the page)'),
+        { name: 'photo', label: 'Photo', widget: 'select', options: PHOTO_OPTIONS, required: false, default: '' },
+        focus('focus', 'Photo focus'),
+      ],
+      { summary: '{{fields.name}}' },
+    ),
+  ]),
+  obj('next', 'Looking ahead', [str('heading', 'Heading'), str('label', 'Button text'), str('href', 'Button address')]),
+]);
+
 const academics = entry('academics', 'Academics', 'academics', [
   str('title', 'Page title'),
   txt('lead', 'Opening line'),
@@ -207,7 +243,7 @@ const academics = entry('academics', 'Academics', 'academics', [
       ],
       { summary: '{{fields.name}}' },
     ),
-    txt('fifthLab', 'Note about a fifth lab'),
+    txt('facilitiesNote', 'Other facilities (shown under the four labs)'),
   ]),
   obj('fair', 'Science fair and projects', [
     str('heading', 'Heading'),
@@ -297,10 +333,10 @@ const boarding = entry('boarding', 'Boarding & student life', 'boarding', [
     ]),
     obj('care', 'Visiting and care', [str('heading', 'Heading'), strList('lines', 'Lines')]),
   ]),
+  obj('cafeteria', 'School cafeteria', [str('heading', 'Heading'), txt('text', 'Text')]),
   obj('clubs', 'Clubs and societies', [
     str('heading', 'Heading'),
     txt('text', 'Text'),
-    txt('note', 'Note'),
     list('items', 'Clubs', [str('name', 'Name'), str('purpose', 'Purpose')], { summary: '{{fields.name}}' }),
   ]),
   obj('sports', 'Sports and fitness', [
@@ -372,10 +408,12 @@ const results = entry('results', 'Results', 'results', [
     'Results by year',
     [
       num('year', 'Year'),
-      num('wassce', 'WASSCE pass rate (%)', { value_type: 'float', step: 0.01, required: false, hint: 'Leave empty if there is no figure. Never guess.' }),
-      num('neco', 'NECO pass rate (%)', { value_type: 'float', step: 0.01, required: false, hint: 'Leave empty if there is no figure. Never guess.' }),
-      str('bestStudent', 'Best student', { required: false, hint: 'Only with the family’s consent.' }),
+      num('candidates', 'Candidates', { required: false }),
+      num('wassce', 'WASSCE general percentage passed (%)', { value_type: 'float', step: 0.01, required: false, hint: 'Leave empty if there is no figure. Never guess.' }),
+      num('neco', 'NECO general percentage passed (%)', { value_type: 'float', step: 0.01, required: false, hint: 'Leave empty if there is no figure. Never guess.' }),
+      str('necoNote', 'NECO note when there is no figure yet', { required: false, hint: 'For example Awaiting.' }),
       num('universityAdmission', 'University admission (%)', { value_type: 'float', step: 0.01, required: false }),
+      str('universityAdmissionNote', 'Admission note when there is no figure yet', { required: false, hint: 'For example In view.' }),
     ],
     { summary: '{{fields.year}}' },
   ),
@@ -464,7 +502,7 @@ initCMS({
     public_folder: '/uploads',
     locale: 'en',
     collections: [
-      group('pages', 'Pages', TAGS, [home, about, academics, admissions, boarding]),
+      group('pages', 'Pages', TAGS, [home, twentyYears, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
       group('site', 'School and contact', TAGS, [school, contact]),
       group('news', 'News', TAGS, [news]),
