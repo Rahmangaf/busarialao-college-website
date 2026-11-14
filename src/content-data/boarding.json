@@ -1,24 +1,24 @@
 {
   "title": "A second home, and a full life outside class",
-  "lead": "Supervised boarding on Yidi Road, and clubs, sport and practical skills for every student, day or boarding. [DRAFT]",
+  "lead": "Supervised boarding on Yidi Road, and clubs, sport and practical skills for every student, day or boarding.",
   "hostel": {
     "heading": "The hostel",
-    "text": "Boarding helps students manage time between academics, practical work and personal activities, building discipline and independence. [DRAFT]",
+    "text": "Boarding builds discipline and independence: students learn to wake early, attend prep, do lab work and follow daily routines. The hostel is homely, with good catering, healthcare and social provision, and 24-hour electricity through solar power.",
     "facts": [
       {
         "value": "2010",
-        "label": "hostel opened at Osere [DRAFT]"
+        "label": "hostel opened at Osere"
       },
       {
         "value": "2013",
-        "label": "moved to Yidi Road, with almost 80 students [DRAFT]"
+        "label": "moved to Yidi Road, with almost 80 students"
       },
       {
         "value": "10",
-        "label": "hostel staff for welfare, safety, discipline and guidance [DRAFT]"
+        "label": "hostel staff for welfare, safety, discipline and guidance, including academic and moral support"
       }
     ],
-    "weekend": "Weekend routine: hostelites do aerobic exercise on Saturday and Sunday, 6:30 to 7:30 a.m., under a trained fitness instructor. [DRAFT]"
+    "weekend": "Weekend routine: hostelites do aerobics on Saturday and Sunday, 6:30 to 7:30 a.m., with a trained fitness expert."
   },
   "routine": {
     "heading": "Daily routine",
@@ -71,8 +71,7 @@
   },
   "clubs": {
     "heading": "Clubs and societies",
-    "text": "Seven clubs, each with a teacher coordinator and student executives. [DRAFT]",
-    "note": "[CONFIRM] The design listed Mathematics, Debate, ICT and Science clubs, which are not in the magazine. The magazine’s seven are shown here.",
+    "text": "Seven clubs, each with a teacher coordinator and student executives.",
     "items": [
       {
         "name": "Health Science",
@@ -106,23 +105,24 @@
   },
   "sports": {
     "heading": "Sports and fitness",
-    "facilities": "A football pitch; volleyball, basketball and badminton courts; table tennis equipment; fitness and aerobic materials. [DRAFT]",
+    "facilities": "Every student takes part in at least one physical activity each week. A football pitch; volleyball, basketball and badminton courts; table tennis and fitness equipment.",
     "activities": [
-      "Football: inter-class, friendlies and the annual inter-house",
-      "Athletics: sprints, long-distance, javelin, high jump, relays",
-      "Indoor games: chess, scrabble, darts, table tennis",
-      "PE health sessions"
+      "Football, the most popular sport: inter-class matches, friendlies and the annual inter-house",
+      "Athletics and track events",
+      "Indoor games: chess, scrabble, darts and table tennis",
+      "PHE (physical and health education) sessions"
     ],
-    "competitions": "Learners compete at zonal, local-government and state level. [DRAFT]",
-    "schedule": "Learners' sporting activities are on Wednesdays, 2:00 to 4:00 p.m. [DRAFT]"
+    "competitions": "Teams compete at zonal, local-government and state level, and have won medals in football, athletics and indoor games.",
+    "schedule": "Learners' sport is on Wednesdays, 2:00 to 4:00 p.m. Staff exercise on Wednesdays, 7:00 to 7:35 a.m."
   },
   "character": {
     "heading": "Character and leadership",
-    "text": "The school promotes discipline and self-control, integrity and honesty, respect and tolerance, responsibility and accountability, hard work and perseverance. [DRAFT]",
+    "text": "The school teaches discipline, integrity and honesty, respect and tolerance, responsibility and hard work, through the code of conduct, assemblies, counselling, staff role-modelling and clubs.",
     "points": [
-      "A student council: Head Boy/Girl, Sports Captain and Club Heads",
-      "A two-week certified leadership training at Sea School, Apapa, Lagos",
-      "Teacher mentors, alumni mentorship and industry visits"
+      "Guidance and counselling: orientation for new students, academic and career counselling, personal and social support, exam preparation, moral re-orientation and work with parents",
+      "A student council: Head Boy and Head Girl, Sports Captain and Club Heads, with the science clubs",
+      "A two-week leadership training and certification at Sea School, Apapa, Lagos, an excursion for SS2 students",
+      "Mentors: teachers, alumni and industry"
     ]
   },
   "excursions": {
@@ -130,13 +130,12 @@
     "text": "Educational trips each session. [SAMPLE: confirm the current programme with the school]",
     "list": [
       "Old Oyo National Park: the first field trip, May 2007",
-      "Republic of Benin: an international excursion",
+      "Republic of Benin: first in August 2010, now for SS3 (Porto-Novo, Cotonou and Ouidah)",
       "Sea School, Lagos",
-      "Erin-Ijesa (Olumirin) Waterfall",
+      "Erin-Ijesa Waterfall",
       "International Aviation College, Ilorin",
-      "Arinta Falls and Ikogunsi warm spring (Ekiti)",
-      "Idanre Hill (Osun)",
-      "Farms, research institutes, universities and industrial visits"
+      "Kainji Lake National Park: yearly, for JSS3 and SS1",
+      "Esie museum, Arinta Falls, Ikogosi Warm Spring, Idanre Hill, the University of Ilorin and local industries"
     ]
   },
   "faq": [
@@ -152,5 +151,9 @@
       "q": "What happens if my child is unwell?",
       "a": "They are seen in the sick bay, and parents are contacted. [SAMPLE]"
     }
-  ]
+  ],
+  "cafeteria": {
+    "heading": "The school cafeteria",
+    "text": "The cafeteria is open to students and staff. It serves healthy, affordable meals, with variety, snacks and drinks. It is clean and well managed, and table-manners messages are displayed."
+  }
 }
