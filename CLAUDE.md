@@ -19,6 +19,7 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 | `npm run build:draft` | Production build with the guard off (`LAUNCH_GUARD=off`). Use this while the site is still being built. |
 | `npm run check` | `astro check` (types and Astro diagnostics). |
 | `npm run check:links` | Checks every internal link and `#fragment` in `dist/` (run `build:draft` first). |
+| `npm run check:contrast` | Checks that white text stays at 4.5:1 or better on every Home hero slide and on the closing section, at eight widths. Run it after changing an overlay strength, a focus point or a hero photo. |
 | `npm run images` | Regenerate the WebP masters from `assets/generated-photos`. |
 | `npm run logos` | Regenerate `public/logo/*.svg` from `assets/logo/busarialao-logo-clean.svg`. |
 | `npm run favicons` | Regenerate the favicon set in `public/` from the logo emblem. |
@@ -27,11 +28,13 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 
 - `content/` is the source of truth for all copy. Read it before writing page copy or data. `content/00-README.md` has the tag rules; `content/08-open-questions.md` lists what the school must confirm.
 - `src/data/` holds typed data (`school`, `contact`, `admissions`, `results`, `nav`) and `sample-content-register.ts`, the list of every generated photo, its alt text and where it is used.
-- `design-system/` is an untouched copy of the handoff CSS and tokens, for diffing when the design changes. The site loads the copies in `src/styles/` (identical except the Google Fonts `@import` is removed).
+- `design-system/` is an untouched copy of the handoff CSS and tokens (the v4 "structural alignment pass"), for diffing when the design changes. The site loads the copies in `src/styles/` (identical except the Google Fonts `@import` is removed).
+- `src/styles/site-tokens.css` holds the site's own tokens that sit on top of the design system: the overlay colour and strengths (hero and closing section), the hero height, text width and top offset. Change them there, not in a page.
 - `design-references/` has desktop screenshots of the approved design. The full design (desktop, mobile and states) is the Claude design handoff canvas.
 - `site.config.mjs` holds the central `developmentNoindex` flag (see Launch checklist).
 - `integrations/launch-guard.mjs` is the build check described above.
 - `src/pages/` has one file per page; shared page structure is `PageHero` and `CtaBand` in `src/components/`, styled by `src/styles/pages.css` and `page-sections.css`.
+- Home is `src/pages/index.astro` with `HeroCarousel`, `PhotoFill` (a photo that fills its parent) and `Tag` (a small label on its own line) in `src/components/`, styled by `src/styles/home.css`. Its copy is `src/content-data/home.json`, read through `src/data/home.ts`.
 
 ## Content rules
 
@@ -45,7 +48,10 @@ Marketing and admissions site for Busarialao College, a science-focused day and 
 ## Decisions
 
 - Breakpoints: 600px and 960px (design tokens) for page layout. The site chrome (top bar, full navigation, mega-menu) starts at **1100px**; below that the header is the mobile header, because six nav labels, the logo and Apply Now do not fit on one line any narrower. Tablet (check at 768px) has no separate design.
-- Home Minimal is the design reference for every page: one slim top bar, no eyebrow labels, at most one navy section per page, circle motif on Home only, no flat placeholder boxes (a section without a real photo has none).
+- Home Minimal is the design reference for every inner page: one slim top bar, no eyebrow labels, at most one navy section per page, circle motif on Home only, no flat placeholder boxes (a section without a real photo has none). **Home itself is now "Home Fuller – Full Hero"** (full-bleed hero carousel). Its numbers band is the one navy section; the closing section is a photo under a navy overlay.
+- **Container line.** Everything sits on one line, `--edge` (the distance from the viewport edge to the 1200px container, 20px on phones). The top bar, header, footer, sections and the hero text, controls and photo label all use it. Do not give a component its own side padding.
+- **Home hero.** Slides, buttons and photos come from `home.json`. The text column is 560px wide, in the same place on every slide (the slides share grid rows, so the buttons stay level). The hero is 620px tall (600px on phones, capped to leave the headline and main button above the fold). Autoplay is off by default (`hero.autoplay.enabled`); when on it is slow, pauses on hover, focus and touch, stops after one loop and never runs under reduced motion. Only the first photo is preloaded and eager.
+- **Tags on pages.** A tag is written `SAMPLE`, `DRAFT` or `CONFIRM` in `home.json` and shown as the literal `[SAMPLE]` etc. on its own line under the heading (`Tag` component). Tags inside a sentence stay in the sentence. The brackets are part of the text so the launch guard can find them.
 - Invented achievement claims from the mockup (JAMB 312, top-five candidate grades, teacher ratio, testimonials) are not built. Structural placeholders (fees, dates, hours, phone numbers) are built and tagged `[SAMPLE]`.
 - "Apply Now" and "Start your application" link to the Admissions page's application steps (`/admissions/#how-to-apply`). `/apply/` is a simple "Applications open soon" page for the form itself.
 - "Book a Tour" links to `/contact/?interest=tour`, which preselects "Book a tour" as the level of interest.

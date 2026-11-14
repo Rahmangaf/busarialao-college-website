@@ -194,6 +194,11 @@
 .table-scroll {
   overflow-x: auto;
 }
+/* Tables inside a card (bank details, term dates) may break a long value, so the card never clips them. */
+.panel .bc-table th,
+.panel .bc-table td {
+  overflow-wrap: anywhere;
+}
 /* Wide tables (Results) keep each cell on one line and scroll sideways on small screens. */
 .table-scroll.nowrap .bc-table th,
 .table-scroll.nowrap .bc-table td {

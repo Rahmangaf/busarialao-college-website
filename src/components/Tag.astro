@@ -1,0 +1,13 @@
+---
+// A small label such as [SAMPLE], on its own line under a heading or paragraph.
+// `text` is the literal tag, brackets included, so the launch guard can find it in the built page.
+interface Props {
+  text: string | null | undefined;
+  /** "dark" is for use on a navy or photo background. */
+  tone?: 'light' | 'dark';
+}
+
+const { text, tone = 'light' } = Astro.props;
+---
+
+{text && <span class:list={['tag', { 'tag-dark': tone === 'dark' }]}>{text}</span>}

@@ -248,3 +248,50 @@
 .bc-inline-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);font-size:20px;line-height:30px;font-weight:600;color:var(--navy-900)}
 .bc-inline-list li+li::before{content:"·";margin-right:var(--space-4);color:var(--sky-500)}
 .bc-mobile .bc-inline-list{font-size:17px;line-height:26px}
+
+/* ===== v4 — structural alignment pass ===== */
+/* One container line for everything: --edge is the distance from the viewport edge to the container edge */
+.bc{--gutter-desktop:32px;--edge:max(var(--gutter-desktop),calc((100% - var(--container)) / 2))}
+.bc-wrap{max-width:none;padding-inline:var(--edge)}
+.bc-strip,.bc-utility,.bc-header,.bc-footer,.hm-top{padding-left:var(--edge)!important;padding-right:var(--edge)!important}
+/* Header: one line, items centred with logo and Apply Now, evenly spaced */
+.bc-header{flex-wrap:nowrap;gap:var(--space-6)}
+.bc-nav{flex-wrap:nowrap;white-space:nowrap;gap:var(--space-1)}
+.bc-nav a{padding:0 var(--space-3)}
+.bc-nav a:last-child{margin-right:calc(-1 * var(--space-3))}
+@media (max-width:1180px){.bc-nav a{padding:0 var(--space-2);font-size:14px}}
+@media (max-width:1023px){.bc-nav{display:none}}
+/* Mega-menu sits on the container */
+.bc-mega{margin-inline:0}
+/* Footer follows the 12-column page grid */
+.bc-footer{grid-template-columns:repeat(4,minmax(0,1fr))!important;column-gap:var(--space-6)!important;row-gap:var(--space-6);align-items:start}
+.bc-footer h4{margin:0 0 var(--space-3);line-height:16px;white-space:nowrap}
+.bc-footer a{padding:4px 0;line-height:24px}
+.bc-footer small{padding-bottom:0}
+.bc-footer-logo{grid-column:1/-1}
+@media (max-width:767px){.bc-footer{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+/* Mobile: one 20px side margin everywhere */
+.bc.bc-mobile{--edge:var(--gutter-mobile)}
+@media (max-width:599px){.bc{--edge:var(--gutter-mobile)}}
+.bc-mobile .bc-strip,.bc-mobile .bc-utility,.bc-mobile .bc-header,.bc-mobile .bc-footer{padding-left:var(--gutter-mobile)!important;padding-right:var(--gutter-mobile)!important}
+.bc-mobile .bc-footer{grid-template-columns:1fr!important;padding-bottom:var(--space-12)!important}
+.bc-mobile .bc-mmenu-nav,.bc-mobile .bc-mmenu-bar,.bc-mobile .bc-actionbar{padding-left:var(--gutter-mobile);padding-right:var(--gutter-mobile)}
+.bc-fab{right:var(--gutter-mobile)}
+.bc,.bc *{max-width:100%}
+.bc{overflow-x:clip}
+/* Buttons: one height, padding, radius, text size per type; same baseline in rows */
+.bc-btn{min-height:48px;padding:0 var(--space-5);font-size:16px;line-height:20px;font-weight:600;border-radius:var(--radius-md);vertical-align:middle}
+.bc-btn-text,.lnk{padding:0!important;min-height:var(--tap-min);font-size:16px;font-weight:600;line-height:20px}
+.bc-hero-actions,.bc-cta-actions{align-items:center;gap:var(--space-3)}
+/* Section heads: one gap to content everywhere */
+.bc-section-head{margin-bottom:var(--space-8)}
+.bc-section-head-row{margin-bottom:var(--space-6)}
+/* Rows: shared top line, equal heights */
+.bc-card{height:100%}
+.bc-stats>*,.bc-steps>li{align-self:start}
+/* Media tag: same corner and inset on every image */
+.bc-media-tag,.fh-lab{left:var(--space-3)!important;right:auto!important;bottom:var(--space-3)!important;top:auto!important}
+/* Tables: text left, numbers right; forms: one label gap */
+.bc-table th,.bc-table td{text-align:left}
+.bc-table .num{text-align:right}
+.bc-field{gap:var(--space-2)}
