@@ -11,6 +11,11 @@ import heroPhoto from '../../assets/preview-home-v3/hero-chemistry-experiment.we
 import chemistryLab from '../../assets/preview-home-v3/chemistry-lab.webp';
 import microscopy from '../../assets/preview-home-v3/biology-lab-microscopy.webp';
 import awards from '../../assets/preview-home-v3/awards-ceremony.webp';
+import biologyLab from '../../assets/preview-home-v3/biology-lab.webp';
+import courtyard from '../../assets/preview-home-v3/courtyard.webp';
+import dormitoryStudy from '../../assets/preview-home-v3/dormitory-study.webp';
+import examSession from '../../assets/preview-home-v3/exam-session.webp';
+import studentsWalking from '../../assets/preview-home-v3/students-walking.webp';
 import graduatingClass from '../../assets/preview-home-v3/graduating-class.webp';
 import computerLab from '../../assets/photos/computer-lab.webp';
 import step1 from '../../assets/preview-home-v3/step-1-apply.svg';
@@ -68,12 +73,12 @@ import step3 from '../../assets/preview-home-v3/step-3-offer.svg';
         <h2 class="h2">The numbers behind Ilorin's next generation of scientists</h2>
       </div>
       <div class="bento">
-        <div class="bt g1"><img src="https://busarialao-college-website.vercel.app/_astro/exam-session.C2SJTU3p_2tOpvs.webp" alt="" loading="lazy"></div>
+        <div class="bt g1"><Image src={examSession} alt="" widths={[480, 800, 1200]} sizes="(max-width: 1020px) 50vw, 600px" loading="lazy" /></div>
         <div class="bt g2"><h4>WASSCE general percentage passed</h4><span class="n">95.5%</span><small>Class of 2025</small></div>
         <div class="bt g3"><h4>University admission</h4><span class="n">90%</span><small>Of 2025 graduates, into medicine, engineering and the sciences</small></div>
         <div class="bt g4"><img class="tile-logo" src="/logo/logo-white.svg" alt="Busarialao College" width="150" height="78"></div>
-        <div class="bt g5"><img src="https://busarialao-college-website.vercel.app/_astro/biology-lab.BG5WXMKJ_ZyUGwD.webp" alt="" loading="lazy"></div>
-        <div class="bt g6"><img src="https://busarialao-college-website.vercel.app/_astro/students-walking.DlV07s5y_Z1M8RUV.webp" alt="" loading="lazy"></div>
+        <div class="bt g5"><Image src={biologyLab} alt="" widths={[480, 800, 1200]} sizes="(max-width: 1020px) 50vw, 600px" loading="lazy" /></div>
+        <div class="bt g6"><Image src={studentsWalking} alt="" widths={[480, 800, 1200]} sizes="(max-width: 1020px) 50vw, 600px" loading="lazy" /></div>
         <div class="bt g7"><p>Making science come alive.</p></div>
         <div class="bt g8"><h4>Years of teaching science in Ilorin</h4><span class="n" style="color:var(--navy)">20</span><small style="opacity:.6">Since 2006, from nine pioneer learners</small></div>
       </div>
@@ -92,9 +97,9 @@ import step3 from '../../assets/preview-home-v3/step-3-offer.svg';
         <div class="track" id="track">
           <article class="pc"><Image src={chemistryLab} alt="" loading="lazy" style="object-position:50% 40%" /><span class="tag">Chemistry lab</span><div class="row"><div><h3>Titrations, analysis, safe practice</h3><p>Students handle real reagents from JSS1, under close supervision.</p></div><a class="btn b-white" href="#">Explore our labs <i>↗</i></a></div></article>
           <article class="pc"><Image src={microscopy} alt="" widths={[780, 1200, 1672]} sizes="(max-width: 640px) 86vw, 780px" loading="lazy" style="object-position:42% 40%" /><span class="tag">Biology lab</span><div class="row"><div><h3>Microscopy and life science</h3><p>Practicals that turn the syllabus into something students can see.</p></div><a class="btn b-white" href="#">See the curriculum <i>↗</i></a></div></article>
-          <article class="pc"><img src="https://busarialao-college-website.vercel.app/_astro/exam-session.C2SJTU3p_2tOpvs.webp" alt="" loading="lazy" style="object-position:50% 40%"><span class="tag">Certification</span><div class="row"><div><h3>Ready before the real exam</h3><p>In-house certification for all learners; JSS3 and SS3 mock exams set through Top Tutors.</p></div><a class="btn b-white" href="#">How exams work <i>↗</i></a></div></article>
+          <article class="pc"><Image src={examSession} alt="" widths={[780, 1200, 1600]} sizes="(max-width: 640px) 86vw, 780px" loading="lazy" style="object-position:50% 40%" /><span class="tag">Certification</span><div class="row"><div><h3>Ready before the real exam</h3><p>In-house certification for all learners; JSS3 and SS3 mock exams set through Top Tutors.</p></div><a class="btn b-white" href="#">How exams work <i>↗</i></a></div></article>
           <article class="pc"><Image src={computerLab} alt="" widths={[780, 1200, 1600]} sizes="(max-width: 640px) 86vw, 780px" loading="lazy" style="object-position:40% 45%" /><span class="tag">Day school</span><div class="row"><div><h3>7:45am to 3pm, with clubs and prep</h3><p>A full day of classes, clubs and supervised prep.</p></div><a class="btn b-white" href="#">Day school life <i>↗</i></a></div></article>
-          <article class="pc"><img src="https://busarialao-college-website.vercel.app/_astro/dormitory-study.BI0AXEaL_1l9I3a.webp" alt="" loading="lazy" style="object-position:35% 50%"><span class="tag">Boarding</span><div class="row"><div><h3>A home on Yidi Road</h3><p>A hostel with house staff and 24-hour solar power.</p></div><a class="btn b-white" href="#">Explore boarding <i>↗</i></a></div></article>
+          <article class="pc"><Image src={dormitoryStudy} alt="" widths={[780, 1200, 1600]} sizes="(max-width: 640px) 86vw, 780px" loading="lazy" style="object-position:35% 50%" /><span class="tag">Boarding</span><div class="row"><div><h3>A home on Yidi Road</h3><p>A hostel with house staff and 24-hour solar power.</p></div><a class="btn b-white" href="#">Explore boarding <i>↗</i></a></div></article>
         </div>
         <div class="tabs" id="tabs"><button class="on">Chemistry</button><button>Biology</button><button>Certification</button><button>Day school</button><button>Boarding</button></div>
       </div>
@@ -121,9 +126,9 @@ import step3 from '../../assets/preview-home-v3/step-3-offer.svg';
       </div>
       <div class="voices up">
         <div class="vc"><Image src={awards} alt="" widths={[420, 640, 1086]} sizes="(max-width: 640px) 100vw, 300px" loading="lazy" style="object-position:44% 28%" /><small>May 2025</small><p>First position, SBIO Mathematics Quiz Competition.</p></div>
-        <div class="vc"><img src="https://busarialao-college-website.vercel.app/_astro/exam-session.C2SJTU3p_2tOpvs.webp" alt="" loading="lazy"><small>February 2022</small><p>First position, Maths Wizard Educational Consult, senior category.</p></div>
+        <div class="vc"><Image src={examSession} alt="" widths={[420, 640, 900]} sizes="(max-width: 640px) 100vw, 300px" loading="lazy" /><small>February 2022</small><p>First position, Maths Wizard Educational Consult, senior category.</p></div>
         <div class="vc"><Image src={graduatingClass} alt="" loading="lazy" /><small>Class of 2025</small><p>95.5% WASSCE pass rate and 90% university admission.</p></div>
-        <div class="vc"><img src="https://busarialao-college-website.vercel.app/_astro/courtyard.F0pnCcZe_Z1DYhb3.webp" alt="" loading="lazy"><small>Every year</small><p>Four full scholarships for partner public-school students.</p></div>
+        <div class="vc"><Image src={courtyard} alt="" widths={[420, 640, 900]} sizes="(max-width: 640px) 100vw, 300px" loading="lazy" /><small>Every year</small><p>Four full scholarships for partner public-school students.</p></div>
       </div>
     </div></section>
     
@@ -142,7 +147,7 @@ import step3 from '../../assets/preview-home-v3/step-3-offer.svg';
     
     <!-- VISIT BAND -->
     <section class="visit" id="visit">
-      <img src="https://busarialao-college-website.vercel.app/_astro/courtyard.F0pnCcZe_Z1DYhb3.webp" alt="" loading="lazy">
+      <Image src={courtyard} alt="" widths={[828, 1280, 1600]} sizes="(max-width: 1272px) 100vw, 1240px" loading="lazy" />
       <div class="cta up">
         <h2>Come and see Busarialao for yourself</h2>
         <p>Tours run Monday to Friday, 9am to 2pm. Leave your number and our admissions office will call to book a time.</p>
@@ -171,7 +176,7 @@ import step3 from '../../assets/preview-home-v3/step-3-offer.svg';
         <div><h5>Contact</h5><ul><li><a href="tel:+2347069285276">+234 706 928 5276</a></li><li><a href="mailto:busarialaocollege2006@gmail.com">busarialaocollege2006@gmail.com</a></li><li><a href="#">Student portal · Results &amp; fees</a></li></ul></div>
       </div>
       <div class="foot-bar">
-        <span>© 2026 Busarialao College · <a href="#">Privacy</a> · CAC registered · Approved by the State Ministry of Education · Illustrations by <a href="https://storyset.com" target="_blank" rel="noopener">Storyset</a></span>
+        <span>© 2026 Busarialao College · <a href="#">Privacy</a> · Illustrations by <a href="https://storyset.com" target="_blank" rel="noopener">Storyset</a></span>
         <a class="totop" href="#">Back to top ↑</a>
       </div>
     </footer>
