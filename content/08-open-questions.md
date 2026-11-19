@@ -21,7 +21,7 @@ Resolve these before launch content is final. Until then keep the tags in place.
 7. **Pioneers.** Nine learners and nine staff (p.21). Confirm no other source says twelve.
 8. **Results definition.** What do "general percentage passed (WASSCE/NECO)" measure? Which figures should the Home page feature given the 2026 WASSCE result (74.49%) and the pending NECO and admission figures?
 9. **Claims to substantiate.** "First dedicated science college in Ilorin", "pure science school", "zero tolerance for examination malpractice", "top-performing private schools in the State's assessments".
-10. **Registration.** Exact CAC and Ministry wording and registration numbers.
+10. **Registration.** Exact CAC and Ministry wording and registration numbers. The "CAC registered · Approved by the State Ministry of Education" line was removed from the Home v3 preview footer until the school confirms the wording and numbers.
 11. **Laboratories.** Show four, five, or include the Agric lab and CBT hall?
 12. **Graduation.** The banner ties the 20th anniversary to a graduation on 26 September 2026. What was the graduation, and was it the same event as the anniversary?
 13. **Scholarship origin.** The scheme began in 2008/2009 and was formally extended in 2018. Confirm how to describe it, and how it relates to the Yunus Ajibola Gafar Foundation (still registering).
