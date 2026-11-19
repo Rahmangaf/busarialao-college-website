@@ -1,0 +1,200 @@
+---
+// Design preview: "Prototype v3" of the Home page, built from the standalone prototype file.
+// Kept exactly as designed (including its SAMPLE and CONFIRM labels, the preview note, the contact
+// details and the pinned horizontal scroll). Not linked from the navigation, the footer or anywhere
+// else, and always noindex. It deliberately does not use BaseLayout, so nothing here touches the
+// site's global tokens, components or other pages.
+import { Image } from 'astro:assets';
+import '../../styles/preview-home-v3-fonts.css';
+import '../../styles/preview-home-v3.css';
+import chemistryLabHero from '../../assets/preview-home-v3/chemistry-lab-hero.webp';
+import crest from '../../assets/preview-home-v3/crest.webp';
+import graduatingClass from '../../assets/preview-home-v3/graduating-class.webp';
+import footerLogo from '../../assets/preview-home-v3/footer-logo.webp';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <title>Busarialao College — Prototype v3</title>
+  </head>
+  <body>
+    <div class="note">Prototype v3 · design preview only · some photos load from the live Busarialao site</div>
+    
+    <!-- HERO -->
+    <header class="hero">
+      <Image src={chemistryLabHero} alt="Students in the chemistry lab" loading="eager" fetchpriority="high" />
+      <div class="hero-in">
+        <nav class="nav">
+          <a class="frost logo" href="#"><Image src={crest} alt="Busarialao College crest" loading="eager" /><span class="wm">Busarialao College<small>…educating to inspire</small></span></a>
+          <div class="frost menu"><a href="#">About</a><a href="#">Academics</a><a href="#">Admissions</a><a href="#">Boarding &amp; Life</a><a href="#">News &amp; Calendar</a><a href="#">Contact</a></div>
+          <a class="btn b-blue" href="#apply">Apply Now <i>↗</i></a>
+        </nav>
+        <div class="hero-copy">
+          <span class="chip">Admissions open · Entrance exam 20 March 2027 <span class="s">SAMPLE</span></span>
+          <h1>Nurturing Scientific Minds, Inspiring the Future.</h1>
+          <div class="ctas">
+            <a class="btn b-blue" href="#apply">Apply for 2027/28 <i>↗</i></a>
+            <a class="btn b-ghost" href="#visit">Book a campus tour <i>↗</i></a>
+          </div>
+        </div>
+      </div>
+      
+    </header>
+    
+    <!-- WHO WE ARE -->
+    <section class="sec"><div class="wrap who up">
+      <div class="card on-light">
+        <span class="eyebrow"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>Who we are</span>
+        <h2 class="reveal-text" data-reveal>We're not a tutorial centre any more. We're the science college Ilorin builds its future on.</h2>
+        <p>We began in 2003 as Top Tutors and became a college in 2006 with nine pioneer learners and one idea: that science should come alive. Today: laboratories, small classes, and staff who expect the best of every student. <span class="s">CONFIRM "pure science"</span></p>
+        <p style="margin-top:28px"></p>
+        <a class="btn b-blue" href="#">Read our story <i>↗</i></a>
+      </div>
+      <div class="pic"><Image src={graduatingClass} alt="Busarialao graduating class on the school steps" loading="lazy" /><span class="cap">Graduating class, in school aso-oke</span></div>
+    </div></section>
+    
+    <!-- IMPACT -->
+    <section class="sec"><div class="wrap"><div class="impact up">
+      <div class="center">
+        <span class="eyebrow"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="5" cy="5" r="3"/><circle cx="11" cy="11" r="3"/></svg>Our record</span>
+        <h2 class="h2">The numbers behind Ilorin's next generation of scientists</h2>
+      </div>
+      <div class="bento">
+        <div class="bt g1"><img src="https://busarialao-college-website.vercel.app/_astro/exam-session.C2SJTU3p_2tOpvs.webp" alt="" loading="lazy"></div>
+        <div class="bt g2"><h4>WASSCE general percentage passed</h4><span class="n">95.5%</span><small>Class of 2025</small></div>
+        <div class="bt g3"><h4>University admission</h4><span class="n">90%</span><small>Of 2025 graduates, into medicine, engineering and the sciences</small></div>
+        <div class="bt g4"><Image src={crest} alt="" style="position:static;width:96px;height:96px;border-radius:50%;box-shadow:0 0 0 4px #1e8fd9,0 20px 40px rgba(0,0,0,.35)" loading="lazy" /></div>
+        <div class="bt g5"><img src="https://busarialao-college-website.vercel.app/_astro/biology-lab.BG5WXMKJ_ZyUGwD.webp" alt="" loading="lazy"></div>
+        <div class="bt g6"><img src="https://busarialao-college-website.vercel.app/_astro/students-walking.DlV07s5y_Z1M8RUV.webp" alt="" loading="lazy"></div>
+        <div class="bt g7"><p>Making science come alive.</p></div>
+        <div class="bt g8"><h4>Years of teaching science in Ilorin</h4><span class="n" style="color:var(--navy)">20</span><small style="opacity:.6">Since 2006, from nine pioneer learners</small></div>
+      </div>
+    </div></div></section>
+    
+    <!-- ACADEMICS: pinned horizontal scroll -->
+    <section class="pin" id="pin">
+      <div class="pin-stick">
+        <div class="pin-head">
+          <div>
+            <span class="eyebrow"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z"/></svg>Academics</span>
+            <h2 class="h2" style="margin-top:10px">Everything a young scientist needs, in one school.</h2>
+            <p>From JSS1 to SS3 <span class="dim">— one pure-science journey, four laboratories, one standard.</span></p>
+          </div>
+        </div>
+        <div class="track" id="track">
+          <article class="pc"><Image src={chemistryLabHero} alt="" loading="lazy" /><span class="tag">Chemistry lab</span><div class="row"><div><h3>Titrations, analysis, safe practice</h3><p>Students handle real reagents from JSS1, under close supervision.</p></div><a class="btn b-white" href="#">Explore our labs <i>↗</i></a></div></article>
+          <article class="pc"><img src="https://busarialao-college-website.vercel.app/_astro/biology-lab.BG5WXMKJ_ZyUGwD.webp" alt="" loading="lazy"><span class="tag">Biology lab</span><div class="row"><div><h3>Microscopy and life science</h3><p>Practicals that turn the syllabus into something students can see.</p></div><a class="btn b-white" href="#">See the curriculum <i>↗</i></a></div></article>
+          <article class="pc"><img src="https://busarialao-college-website.vercel.app/_astro/exam-session.C2SJTU3p_2tOpvs.webp" alt="" loading="lazy"><span class="tag">Certification</span><div class="row"><div><h3>Ready before the real exam</h3><p>In-house certification for all learners; JSS3 and SS3 mock exams set through Top Tutors. <span class="s">CONFIRM</span></p></div><a class="btn b-white" href="#">How exams work <i>↗</i></a></div></article>
+          <article class="pc"><img src="https://busarialao-college-website.vercel.app/_astro/students-walking.DlV07s5y_Z1M8RUV.webp" alt="" loading="lazy"><span class="tag">Day school</span><div class="row"><div><h3>7:45am to 3pm, with clubs and prep</h3><p>A full day of classes, clubs and supervised prep. <span class="s">SAMPLE</span></p></div><a class="btn b-white" href="#">Day school life <i>↗</i></a></div></article>
+          <article class="pc"><img src="https://busarialao-college-website.vercel.app/_astro/dormitory-study.BI0AXEaL_1l9I3a.webp" alt="" loading="lazy"><span class="tag">Boarding</span><div class="row"><div><h3>A home on Yidi Road</h3><p>A hostel with house staff and 24-hour solar power.</p></div><a class="btn b-white" href="#">Explore boarding <i>↗</i></a></div></article>
+        </div>
+        <div class="tabs" id="tabs"><button class="on">Chemistry</button><button>Biology</button><button>Certification</button><button>Day school</button><button>Boarding</button></div>
+      </div>
+    </section>
+    
+    <!-- AUDIENCES -->
+    <section class="sec"><div class="wrap">
+      <div class="center up">
+        <span class="eyebrow"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="5" r="3"/><path d="M2 15c0-3.3 2.7-6 6-6s6 2.7 6 6z"/></svg>Who we serve</span>
+        <h2 class="h2">Everyone has a place at Busarialao</h2>
+      </div>
+      <div class="aud up">
+        <div class="ac"><div class="art"><svg viewBox="0 0 120 120" fill="none" stroke="#2a1f7a" stroke-width="5" stroke-linecap="round"><path d="M45 20v30L25 92a8 8 0 007 12h56a8 8 0 007-12L75 50V20"/><path d="M38 20h44"/><path d="M33 78h54" stroke="#1f63e0"/><circle cx="52" cy="90" r="4" fill="#1f63e0" stroke="none"/><circle cx="68" cy="86" r="3" fill="#1f63e0" stroke="none"/></svg></div><h3>Prospective students</h3><p>Curious minds ready for a pure-science pathway from JSS1.</p><a href="#">Start your application →</a></div>
+        <div class="ac"><div class="art"><svg viewBox="0 0 120 120" fill="none" stroke="#2a1f7a" stroke-width="5" stroke-linecap="round"><circle cx="42" cy="38" r="12"/><circle cx="80" cy="44" r="9" stroke="#1f63e0"/><path d="M20 98c0-14 10-26 22-26s22 12 22 26"/><path d="M64 98c0-11 7-20 16-20s16 9 16 20" stroke="#1f63e0"/></svg></div><h3>Parents &amp; guardians</h3><p>Fees, term dates, boarding and portals, all in one place.</p><a href="#">Parent information →</a></div>
+        <div class="ac"><div class="art"><svg viewBox="0 0 120 120" fill="none" stroke="#2a1f7a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 46l46-22 46 22-46 22z"/><path d="M34 56v24c0 8 12 14 26 14s26-6 26-14V56"/><path d="M106 46v26" stroke="#1f63e0"/></svg></div><h3>Partner schools &amp; alumni</h3><p>Four full scholarships every year for able students from partner public schools.</p><a href="#">Scholarships →</a></div>
+      </div>
+    </div></section>
+    
+    <!-- PROOF / VOICES -->
+    <section class="sec"><div class="wrap">
+      <div class="center up" style="text-align:left;margin-left:0">
+        <span class="eyebrow"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l2.2 4.5 4.8.7-3.5 3.4.8 4.9L8 12.2 3.7 14.5l.8-4.9L1 6.2l4.8-.7z"/></svg>Proof, not promises</span>
+        <h2 class="h2 two-tone">Real students. <span class="dim">Real results.</span></h2>
+      </div>
+      <div class="voices up">
+        <div class="vc"><img src="https://busarialao-college-website.vercel.app/_astro/biology-lab.BG5WXMKJ_ZyUGwD.webp" alt="" loading="lazy"><small>May 2025</small><p>First position, SBIO Mathematics Quiz Competition.</p></div>
+        <div class="vc"><img src="https://busarialao-college-website.vercel.app/_astro/exam-session.C2SJTU3p_2tOpvs.webp" alt="" loading="lazy"><small>February 2022</small><p>First position, Maths Wizard Educational Consult, senior category.</p></div>
+        <div class="vc"><Image src={graduatingClass} alt="" loading="lazy" /><small>Class of 2025</small><p>95.5% WASSCE pass rate and 90% university admission.</p></div>
+        <div class="vc"><img src="https://busarialao-college-website.vercel.app/_astro/courtyard.F0pnCcZe_Z1DYhb3.webp" alt="" loading="lazy"><small>Every year</small><p>Four full scholarships for partner public-school students.</p></div>
+      </div>
+    </div></section>
+    
+    <!-- APPLY steps (kept, restyled as FH centred list) -->
+    <section class="sec" id="apply"><div class="wrap">
+      <div class="center up">
+        <span class="eyebrow"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 2h10v2H3zM3 7h10v2H3zM3 12h7v2H3z"/></svg>Admissions</span>
+        <h2 class="h2 two-tone">Three steps to your offer. <span class="dim">Form, exam, interview.</span></h2>
+      </div>
+      <div class="aud up">
+        <div class="ac" style="text-align:left;min-height:260px;background:#16122e;color:#fff"><span class="tag" style="align-self:flex-start;background:var(--blue)">Step 01</span><div style="margin-top:auto"><h3>Apply</h3><p style="color:rgba(255,255,255,.7);margin:0">Buy the form online or at the school and pay the ₦10,000 fee. <span class="s">SAMPLE</span></p></div></div>
+        <div class="ac" style="text-align:left;min-height:260px;background:#16122e;color:#fff;border-radius:24px"><span class="tag" style="align-self:flex-start;background:var(--blue)">Step 02</span><div style="margin-top:auto"><h3>Sit the entrance exam</h3><p style="color:rgba(255,255,255,.7);margin:0">On campus, 20 March 2027. Maths, English, Basic Science, Social Studies. <span class="s">SAMPLE</span></p></div></div>
+        <div class="ac" style="text-align:left;min-height:260px;background:#16122e;color:#fff"><span class="tag" style="align-self:flex-start;background:var(--blue)">Step 03</span><div style="margin-top:auto"><h3>Receive your offer</h3><p style="color:rgba(255,255,255,.7);margin:0">After a short interview, the admission list is published.</p></div></div>
+      </div>
+    </div></section>
+    
+    <!-- CLOSING + FOOTER -->
+    <footer class="closing" id="visit">
+      <img src="https://busarialao-college-website.vercel.app/_astro/courtyard.F0pnCcZe_Z1DYhb3.webp" alt="" loading="lazy">
+      <div class="cta up">
+        <h2>Come and see Busarialao for yourself</h2>
+        <p>Tours run Monday to Friday, 9am to 2pm. Leave your number and our admissions office will call to book a time. <span class="s">SAMPLE</span></p>
+        <form class="form" onsubmit="return false"><input placeholder="Your phone number" aria-label="Phone number"><button class="btn b-blue" style="border:0;cursor:pointer">Book a tour <i>↗</i></button></form>
+        <a class="alt" href="#">or ask on WhatsApp →</a>
+      </div>
+      <div class="fcard">
+        <div class="ftop">
+          <Image src={footerLogo} alt="Busarialao College — educating to inspire" loading="lazy" />
+          <div class="quick">
+            <a class="qa" href="tel:+2347069285276"><b>☎</b><span>Call the school<small>+234 706 928 5276</small></span></a>
+            <a class="qa" href="mailto:busarialaocollege2006@gmail.com"><b>✉</b><span>Email us<small>busarialaocollege2006@gmail.com</small></span></a>
+            <a class="qa" href="#"><b>↗</b><span>Student portal<small>Results &amp; fees</small></span></a>
+          </div>
+        </div>
+        <div class="fgrid">
+          <div class="fabout">
+            <p>A science-focused day and boarding school in Ilorin, nurturing scientific minds since 2006.</p>
+            <span class="hours"><i></i>Open Mon–Fri · 7am–5pm</span>
+            <div class="soc">
+              <a href="https://www.facebook.com/busarialaocollegeilorin/" target="_blank" rel="noopener" aria-label="Facebook" class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+              <a href="#" aria-label="Instagram" class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a>
+              <a href="#" aria-label="WhatsApp" class="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+            </div>
+          </div>
+          <div><h5>School</h5><ul><li><a href="#">About us</a></li><li><a href="#">Academics</a></li><li><a href="#">Boarding &amp; Student Life</a></li><li><a href="#">Results</a></li><li><a href="#">Celebrating 20 Years</a></li></ul></div>
+          <div><h5>Admissions</h5><ul><li><a href="#">How to apply</a></li><li><a href="#">Fees &amp; Payment</a></li><li><a href="#">Scholarships</a></li><li><a href="#">Term dates</a></li><li><a href="#">Book a tour</a></li></ul></div>
+          <div><h5>Find us</h5><ul><li>13, Prince Oyedeji Crescent,<br>New Yidi Road, Oko Erin,<br>Ilorin, Kwara State</li><li><a href="tel:+2347069285276">+234 706 928 5276</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=13+Prince+Oyedeji+Crescent+New+Yidi+Road+Oko+Erin+Ilorin" target="_blank" rel="noopener">Get directions ↗</a></li></ul></div>
+        </div>
+        <div class="bigword" aria-hidden="true">Busarialao</div>
+      </div>
+      <div class="fbar"><span>CAC registered · Approved by the State Ministry of Education <span class="s">CONFIRM</span> · © 2026 Busarialao College · <a href="#">Privacy</a></span><a class="totop" href="#">Back to top ↑</a></div>
+    </footer>
+    <script is:inline>
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* fade-up */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.up').forEach(el=>io.observe(el));
+/* scroll text reveal (FH "Who we are") */
+const rt=document.querySelector('[data-reveal]');
+rt.innerHTML=rt.textContent.split(' ').map(w=>'<span>'+w+'</span>').join(' ');
+const words=[...rt.children];
+/* pinned horizontal scroll (FH programmes) */
+const pin=document.getElementById('pin'),track=document.getElementById('track'),tabs=[...document.querySelectorAll('#tabs button')];
+function sizePin(){const extra=track.scrollWidth-innerWidth;pin.style.setProperty('--pin-h',(innerHeight+Math.max(extra,0))+'px')}
+function tick(){
+  const r=rt.getBoundingClientRect();const p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(innerHeight*.55)));
+  const n=reduce?words.length:Math.round(p*words.length);words.forEach((w,i)=>w.classList.toggle('lit',i<n));
+  const pr=pin.getBoundingClientRect();const dist=pin.offsetHeight-innerHeight;const t=Math.min(1,Math.max(0,-pr.top/dist||0));
+  const extra=Math.max(track.scrollWidth-innerWidth,0);track.style.transform='translate3d('+(-t*extra)+'px,0,0)';
+  const idx=Math.min(tabs.length-1,Math.round(t*(tabs.length-1)));tabs.forEach((b,i)=>b.classList.toggle('on',i===idx));
+}
+tabs.forEach((b,i)=>b.onclick=()=>{const dist=pin.offsetHeight-innerHeight;scrollTo({top:pin.offsetTop+dist*i/(tabs.length-1),behavior:'smooth'})});
+addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});
+addEventListener('resize',()=>{sizePin();tick()});
+addEventListener('load',()=>{sizePin();tick()});sizePin();tick();
+</script>
+  </body>
+</html>
