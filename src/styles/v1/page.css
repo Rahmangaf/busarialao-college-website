@@ -798,18 +798,21 @@
 }
 
 /* ================= About ================= */
+/* Wrapping rows whose last row stretches, so an odd count never leaves an empty cell. */
 .pg .facts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
-@media (min-width: 700px) {
-  .pg .facts {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
 .pg .fact {
+  flex: 1 1 calc(50% - 6px);
+  min-width: 0;
   padding: 24px;
+}
+@media (min-width: 700px) {
+  .pg .fact {
+    flex-basis: calc(33.333% - 8px);
+  }
 }
 .pg .fact b {
   display: block;
@@ -838,6 +841,7 @@
 }
 
 .pg .vm {
+  align-items: start;
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
@@ -863,7 +867,7 @@
   line-height: 1.65;
 }
 .pg .vm-empty {
-  min-height: 120px;
+  min-height: 0;
   border: 1px dashed var(--border);
   border-radius: 14px;
   display: grid;
@@ -872,26 +876,21 @@
   text-align: center;
   font-size: 15px;
 }
-@media (min-width: 700px) {
-  .pg .vm-empty {
-    min-height: 160px;
-  }
-}
 
+/* Seven values: four in the first row, three stretched across the second (two per row on phones). */
 .pg .values {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 40px;
 }
-@media (min-width: 700px) {
-  .pg .values {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.pg .value {
+  flex: 1 1 calc(50% - 6px);
+  min-width: 0;
 }
-@media (min-width: 1100px) {
-  .pg .values {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+@media (min-width: 960px) {
+  .pg .value {
+    flex-basis: calc(25% - 9px);
   }
 }
 .pg .value {
