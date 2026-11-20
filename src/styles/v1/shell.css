@@ -1,0 +1,466 @@
+/*
+ * Site shell for the v1 preview pages: header, mobile menu panel and footer.
+ * Colours come only from the theme roles in tokens.css (--bg, --text, --card, ...), so the shell
+ * follows data-theme on the root. Classes are prefixed sh- (header) and sf- (footer) so they cannot
+ * collide with any page's own CSS. Mobile first; the desktop layout starts at 1100px.
+ */
+
+.sh,
+.sf {
+  font-family: Inter, 'Inter Variable', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.sh *,
+.sf * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.sh a,
+.sf a {
+  color: inherit;
+  text-decoration: none;
+}
+.sh button,
+.sf button {
+  font: inherit;
+}
+.sh :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.sf :focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+}
+
+/* ---------- Header ---------- */
+.sh {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: var(--bg);
+  color: var(--text);
+}
+/* Over a hero the header is transparent and sits on top of the photo. */
+.sh-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+}
+.sh-plate {
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: 52px;
+  padding: 4px 10px;
+  background: var(--plate);
+  border: 1px solid var(--nav-pill-border);
+  border-radius: 14px;
+}
+.sh-plate img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+.sh-nav {
+  display: none;
+}
+.sh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 10px 0 18px;
+  border-radius: 10px;
+  border: 0;
+  background: var(--action);
+  color: var(--on-action);
+  font: 600 14px Inter, 'Inter Variable', sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease-out;
+}
+.sh-btn:hover {
+  background: var(--action-hover);
+}
+.sh-btn i {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.22);
+  font-style: normal;
+  font-size: 12px;
+}
+.sh-apply {
+  margin-left: auto;
+}
+.sh-menu {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--nav-pill-border);
+  background: var(--nav-pill);
+  color: var(--text);
+  cursor: pointer;
+}
+.sh-menu svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Mobile menu: a native popover, so Escape closes it and focus returns to the menu button. */
+.sh-panel {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 16px 20px 32px;
+  border: 0;
+  overflow: auto;
+  background: var(--bg);
+  color: var(--text);
+}
+.sh-panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.sh-panel nav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.sh-panel nav a {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  border-bottom: 1px solid var(--border);
+  font: 600 20px Inter, 'Inter Variable', sans-serif;
+  color: var(--text);
+}
+.sh-panel nav a[aria-current='page'] {
+  color: var(--accent);
+}
+.sh-panel .sh-btn {
+  height: 48px;
+  margin-top: 24px;
+  font-size: 15px;
+}
+
+@media (min-width: 1100px) {
+  .sh {
+    gap: 16px;
+    justify-content: space-between;
+    padding: 20px max(32px, calc((100% - 1200px) / 2));
+  }
+  .sh-plate {
+    height: 58px;
+    padding: 4px 14px;
+  }
+  .sh-plate img {
+    height: 50px;
+  }
+  .sh-nav {
+    display: flex;
+    align-items: center;
+    height: 58px;
+    padding: 5px;
+    border-radius: 14px;
+    background: var(--nav-pill);
+    border: 1px solid var(--nav-pill-border);
+  }
+  .sh-overlay .sh-nav {
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  .sh-nav a {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 13px;
+    border-radius: 9px;
+    font: 500 14.5px Inter, 'Inter Variable', sans-serif;
+    white-space: nowrap;
+    color: var(--text);
+    transition: background-color 0.15s ease-out;
+  }
+  .sh-nav a:hover,
+  .sh-nav a[aria-current='page'] {
+    background: var(--nav-pill-border);
+  }
+  .sh-apply {
+    margin-left: 0;
+    height: 48px;
+    font-size: 15px;
+  }
+  .sh-menu,
+  .sh-panel {
+    display: none !important;
+  }
+}
+
+/* ---------- Footer ---------- */
+.sf {
+  padding: 16px;
+  background: var(--bg);
+}
+.sf-card {
+  padding: 28px 24px 20px;
+  background: var(--card);
+  color: var(--card-text);
+  border-radius: 20px;
+}
+.sf-logo {
+  display: block;
+  width: 104px;
+  height: auto;
+}
+.sf-blurb {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--card-muted);
+  max-width: 42ch;
+}
+.sf h5 {
+  font: 600 13px/20px Inter, 'Inter Variable', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--card-muted);
+}
+.sf-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font: 500 15px/1.4 Inter, 'Inter Variable', sans-serif;
+  color: var(--card-text);
+  white-space: nowrap;
+  transition: color 0.15s ease-out;
+}
+.sf-link:hover {
+  color: var(--action);
+}
+.sf-address {
+  font: 500 15px/1.6 Inter, 'Inter Variable', sans-serif;
+  font-style: normal;
+  color: var(--card-text);
+}
+.sf-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  font: 500 13px Inter, 'Inter Variable', sans-serif;
+  white-space: nowrap;
+}
+.sf-pill i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pill-dot);
+}
+.sf-soc {
+  display: flex;
+  gap: 8px;
+}
+.sf-soc a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: #fff;
+}
+.sf-soc svg {
+  width: 20px;
+  height: 20px;
+}
+.sf-soc .facebook {
+  background: #1877f2;
+}
+.sf-soc .instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.sf-soc .whatsapp {
+  background: #128c4a;
+}
+.sf-bar {
+  display: flex;
+  gap: 4px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--card-muted);
+  border-top: 1px solid var(--card-border);
+}
+.sf-bar-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 6px;
+}
+.sf-bar a:not(.sf-top-link) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sf-top-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--brand);
+  white-space: nowrap;
+}
+[data-theme='dark'] .sf-top-link {
+  color: var(--sky-600);
+}
+
+/* Mobile footer: Contact first, then School and Admissions as collapsible rows. */
+.sf-m .sf-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.sf-contact {
+  margin-top: 28px;
+}
+.sf-contact h5 {
+  margin-bottom: 8px;
+}
+.sf-contact .sf-link,
+.sf-contact .sf-addr-row {
+  border-top: 1px solid var(--card-border);
+}
+.sf-contact .sf-addr-row {
+  padding: 12px 0 0;
+}
+.sf-contact .sf-link.directions {
+  border-top: 0;
+}
+.sf-contact .sf-pill {
+  margin-top: 4px;
+}
+.sf-rows {
+  margin-top: 28px;
+  border-bottom: 1px solid var(--card-border);
+}
+.sf-rows details {
+  border-top: 1px solid var(--card-border);
+}
+.sf-rows summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  cursor: pointer;
+  list-style: none;
+  font: 600 13px/20px Inter, 'Inter Variable', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--card-muted);
+}
+.sf-rows summary::-webkit-details-marker {
+  display: none;
+}
+.sf-rows .chev {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease-out;
+}
+.sf-rows details[open] .chev {
+  transform: rotate(180deg);
+}
+.sf-rows .sf-links {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 8px;
+}
+.sf-m .sf-soc {
+  margin-top: 24px;
+}
+.sf-m .sf-bar {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 28px;
+  padding-top: 16px;
+}
+
+.sf-d {
+  display: none;
+}
+@media (min-width: 1100px) {
+  .sf {
+    padding: 24px max(32px, calc((100% - 1200px) / 2));
+  }
+  .sf-card {
+    padding: 40px 40px 28px;
+  }
+  .sf-m {
+    display: none;
+  }
+  .sf-d {
+    display: block;
+  }
+  .sf-d .sf-top {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .sf-d .sf-logo {
+    width: 116px;
+    flex: none;
+  }
+  .sf-d .sf-soc {
+    margin-left: auto;
+    padding-left: 24px;
+  }
+  .sf-cols {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+    align-items: start;
+  }
+  .sf-cols h5 {
+    margin-bottom: 12px;
+  }
+  .sf-cols ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .sf-cols .sf-address {
+    padding: 8px 0 4px;
+  }
+  .sf-cols .sf-pill {
+    margin-top: 8px;
+  }
+  .sf-d .sf-bar {
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 40px;
+    padding-top: 12px;
+  }
+}
