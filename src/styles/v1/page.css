@@ -1155,9 +1155,6 @@
 }
 
 /* ================= Boarding & Life ================= */
-.pg .split-center {
-  align-items: center;
-}
 .pg .split-56 {
   gap: 32px;
 }
@@ -1223,35 +1220,6 @@
   text-align: right;
 }
 
-.pg .stat3 {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-}
-@media (min-width: 700px) {
-  .pg .stat3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-.pg .stat3 .card {
-  padding: 24px;
-}
-.pg .stat3 b {
-  display: block;
-  font: 600 24px/1.15 Inter, 'Inter Variable', sans-serif;
-  letter-spacing: -0.02em;
-  color: var(--text);
-}
-@media (min-width: 960px) {
-  .pg .stat3 b {
-    font-size: 28px;
-  }
-}
-.pg .stat3 span {
-  display: block;
-  margin-top: 8px;
-  font-size: 15px;
-}
 
 .pg .timeline {
   position: relative;

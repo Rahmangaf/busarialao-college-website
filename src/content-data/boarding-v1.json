@@ -48,12 +48,7 @@
   "hostel": {
     "eyebrow": "Boarding",
     "heading": "The hostel",
-    "text": "Our hostel, run by house staff.",
-    "facts": [
-      { "value": "On campus", "label": "Where the hostel is" },
-      { "value": "Day or boarding", "label": "How students can join" },
-      { "value": "Open to all students", "label": "Who can board" }
-    ]
+    "text": "Our hostel is on campus, run by house staff and open to all students."
   },
   "routine": {
     "eyebrow": "A boarder's day",

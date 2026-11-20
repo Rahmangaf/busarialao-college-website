@@ -758,8 +758,7 @@ const boardingV1 = entry('boarding-v1', 'Boarding & Life', 'boarding-v1', [
   obj('hostel', 'The hostel', [
     str('eyebrow', 'Small label'),
     str('heading', 'Heading'),
-    txt('text', 'Text'),
-    list('facts', 'Three facts', [str('value', 'Headline'), str('label', 'Label')], { allow_add: false, summary: '{{fields.value}}' }),
+    txt('text', 'One short line'),
   ]),
   obj('routine', 'Daily routine', [
     str('eyebrow', 'Small label'),

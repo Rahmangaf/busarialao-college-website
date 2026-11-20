@@ -63,20 +63,10 @@ const galleryItems = c.gallery.items as GalleryItem[];
     </section>
 
     <section class="sec">
-      <div class="wrap split split-center split-56">
-        <div>
-          <span class="eb">{c.hostel.eyebrow}</span>
-          <h2 class="h2" style="margin-top:10px">{c.hostel.heading}</h2>
-          <p class="muted" style="margin-top:14px;font-size:17px;line-height:1.6">{c.hostel.text}</p>
-        </div>
-        <div class="stat3">
-          {c.hostel.facts.map((fact) => (
-            <div class="card">
-              <b>{fact.value}</b>
-              <span class="muted">{fact.label}</span>
-            </div>
-          ))}
-        </div>
+      <div class="wrap">
+        <span class="eb">{c.hostel.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.hostel.heading}</h2>
+        <p class="muted" style="margin-top:14px;font-size:17px;line-height:1.6;max-width:60ch">{c.hostel.text}</p>
       </div>
     </section>
 
