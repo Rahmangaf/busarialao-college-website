@@ -4,8 +4,6 @@
 import data from '../content-data/contact-v1.json';
 import { site } from './site';
 
-const social = (key: string) => site.footer.socials.find((s) => s.key === key);
-
 export const contactV1 = {
   ...data,
   visit: { ...data.visit, whatsapp: { label: data.visit.whatsapp.label, href: site.footer.contact.whatsappHref } },
@@ -19,6 +17,4 @@ export const contactV1 = {
     directionsHref: site.footer.findUs.directionsHref,
     hours: site.footer.hours,
   },
-  socials: site.footer.socials,
-  facebook: social('facebook'),
 };

@@ -1,6 +1,6 @@
 // Checks that the editor config matches the JSON files, so saving in /admin cannot silently drop data.
 // Run from the project root:  node cms/check-config.mjs
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -28,6 +28,19 @@ function checkFields(fields, value, where) {
 }
 
 for (const col of config.collections) {
+  // Folder collections: one JSON file per entry (for example the v1 news posts).
+  if (col.folder) {
+    const names = readdirSync(col.folder).filter((n) => n.endsWith('.' + (col.extension || 'json')));
+    if (!names.length) report(`${col.folder}: folder collection has no entries`);
+    for (const name of names) {
+      const file = `${col.folder}/${name}`;
+      process.stdout.write(`${file}\n`);
+      let json;
+      try { json = JSON.parse(readFileSync(file, 'utf8')); } catch (e) { report(`cannot read: ${e.message}`); continue; }
+      checkFields(col.fields, json, 'root');
+    }
+    continue;
+  }
   for (const f of col.files) {
     process.stdout.write(`${f.file}\n`);
     let json;

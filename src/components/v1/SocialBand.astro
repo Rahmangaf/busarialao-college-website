@@ -1,0 +1,36 @@
+---
+// Navy band with a heading and the social links (Facebook, Instagram, WhatsApp). The links come from
+// site.json, so they are edited in one place. Used on Contact and on News & Calendar.
+import SocialIcon from './SocialIcon.astro';
+import { site } from '../../data/site';
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  /** Show the pale circle in the corner (Contact does, News does not). */
+  circle?: boolean;
+}
+const { eyebrow, heading, circle = false } = Astro.props;
+const external = (href: string) => (href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {});
+---
+
+<section class:list={['navy', !circle && 'navy-plain']}>
+  {circle && <span class="circle" aria-hidden="true"></span>}
+  <div class="wrap">
+    <div class="follow">
+      <div>
+        <span class="eb">{eyebrow}</span>
+        <h2>{heading}</h2>
+      </div>
+      <div class="socials">
+        {
+          site.footer.socials.map((s) => (
+            <a class:list={['social', s.key]} href={s.href} {...external(s.href)}>
+              <span class="chip"><SocialIcon name={s.key} /></span>{s.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

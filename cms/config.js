@@ -865,6 +865,85 @@ const contactV1 = entry('contact-v1', 'Contact', 'contact-v1', [
   ]),
 ]);
 
+const newsV1 = entry('news-v1', 'News & Calendar', 'news-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [v1Crumb, str('eyebrow', 'Small label'), str('title', 'Title'), txt('lead', 'Lead line')]),
+  obj('feature', 'Featured story (the 20 years card)', [
+    str('href', 'Link address'),
+    str('eyebrow', 'Small label', { hint: 'Leave {years} as it is; it is filled in from the founding year.' }),
+    str('heading', 'Heading'),
+    txt('text', 'Text', { hint: 'Leave {yearsInWords} as it is; it is filled in from the founding year.' }),
+    str('linkLabel', 'Link text'),
+    v1Photo('photo', 'Photo'),
+    focus('focus', 'Photo focus'),
+    str('alt', 'Photo description'),
+  ]),
+  obj('latest', 'Latest news', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('filterLabel', 'Filter group name for screen readers'),
+    str('allLabel', 'Text of the "all" filter'),
+    strList('categories', 'Categories (the filters, in order)', {
+      field: { name: 'item', label: 'Category', widget: 'string' },
+      hint: 'Filters show only when there are six or more posts. Posts pick one of these.',
+    }),
+    str('emptyCard', 'Text of the dashed card', { hint: 'The dashed card disappears once the posts fill a row.' }),
+  ]),
+  obj('calendar', 'Key dates', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('caption', 'Table name for screen readers'),
+    list(
+      'rows',
+      'Dates',
+      [
+        str('label', 'Event'),
+        str('value', 'Date', { hint: 'Leave {examDate} as it is; it is filled in from the admissions entry.' }),
+        { name: 'confirmed', label: 'Date is confirmed (shown in bold)', widget: 'boolean', default: false, required: false },
+      ],
+      { summary: '{{fields.label}}' },
+    ),
+    str('note', 'Note under the table'),
+  ]),
+  obj('follow', 'Stay in touch (navy band)', [str('eyebrow', 'Small label'), str('heading', 'Heading')]),
+  obj('visit', 'Come and see us band', [
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    v1Photo('photo', 'Background photo'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones', 'Where to centre the crop on a phone, for example 62% 50%.'),
+    obj('form', 'Phone field', [str('label', 'Field name for screen readers'), str('placeholder', 'Placeholder'), str('button', 'Button text')]),
+    obj('whatsapp', 'WhatsApp link', [str('label', 'Link text')]),
+  ]),
+]);
+
+// One JSON file per news post, in src/content-data/news-v1/. Add a post here and it appears on the page.
+const newsV1Posts = {
+  name: 'news-v1-posts',
+  label: 'News posts (v1)',
+  label_singular: 'News post',
+  description: 'The stories on /preview/news-v1/. Filters appear from six posts; the dashed card disappears once a row is full.',
+  folder: 'src/content-data/news-v1',
+  extension: 'json',
+  format: 'json',
+  create: true,
+  slug: '{{slug}}',
+  identifier_field: 'title',
+  summary: '{{order}}. {{title}}',
+  sortable_fields: ['order', 'title'],
+  editor: { preview: false },
+  fields: [
+    str('title', 'Title'),
+    str('label', 'Small line above the title', { hint: 'For example May 2025 or Class of 2025.' }),
+    { name: 'category', label: 'Category', widget: 'select', options: ['News', 'Results', 'Events'], hint: 'Must be one of the categories on the News page entry.' },
+    num('order', 'Order on the page', { hint: '1 is first.' }),
+    v1Photo('photo', 'Photo'),
+    { ...focus('focus', 'Photo focus'), required: false },
+    str('alt', 'Photo description', { required: false }),
+    str('href', 'Link address (leave empty if the story has no page)', { required: false }),
+  ],
+};
+
 const news = entry('news', 'News', 'news', [
   list(
     'items',
@@ -901,7 +980,8 @@ initCMS({
       group('pages', 'Pages', TAGS, [home, twentyYears, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
       group('site', 'School and contact', TAGS, [school, contact, siteShell]),
-      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1, aboutV1, boardingV1, contactV1]),
+      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1, aboutV1, boardingV1, contactV1, newsV1]),
+      newsV1Posts,
       group('news', 'News', TAGS, [news]),
     ],
   },

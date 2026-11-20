@@ -9,7 +9,7 @@
 import SiteV1Layout from '../../layouts/SiteV1Layout.astro';
 import '../../styles/v1/page.css';
 import PageIntro from '../../components/v1/PageIntro.astro';
-import SocialIcon from '../../components/v1/SocialIcon.astro';
+import SocialBand from '../../components/v1/SocialBand.astro';
 import VisitBand from '../../components/v1/VisitBand.astro';
 import { contactV1 as c } from '../../data/contact-v1';
 import { site } from '../../data/site';
@@ -129,24 +129,7 @@ const external = (href: string) => (href.startsWith('http') ? { target: '_blank'
       </div>
     </section>
 
-    <section class="navy">
-      <span class="circle" aria-hidden="true"></span>
-      <div class="wrap">
-        <div class="follow">
-          <div>
-            <span class="eb">{c.follow.eyebrow}</span>
-            <h2>{c.follow.heading}</h2>
-          </div>
-          <div class="socials">
-            {c.socials.map((s) => (
-              <a class:list={['social', s.key]} href={s.href} {...external(s.href)}>
-                <span class="chip"><SocialIcon name={s.key} /></span>{s.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+    <SocialBand eyebrow={c.follow.eyebrow} heading={c.follow.heading} circle />
 
     <VisitBand
       heading={c.visit.heading}
