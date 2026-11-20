@@ -1,0 +1,156 @@
+---
+// Design preview: Boarding & Life (the "2" frames). Built with the v1 shell and shared v1 components.
+// Not linked from the navigation; always noindex. The existing /boarding/ page is untouched.
+// The gallery is built but hidden: it shows only when gallery.enabled is true in boarding-v1.json,
+// which stays false until real photos exist.
+import SiteV1Layout from '../../layouts/SiteV1Layout.astro';
+import '../../styles/v1/page.css';
+import Faq from '../../components/v1/Faq.astro';
+import NavyBand from '../../components/v1/NavyBand.astro';
+import PageIntro from '../../components/v1/PageIntro.astro';
+import V1Photo from '../../components/v1/V1Photo.astro';
+import VisitBand from '../../components/v1/VisitBand.astro';
+import { boardingV1 as c } from '../../data/boarding-v1';
+import { site } from '../../data/site';
+
+type GalleryItem = { caption: string; photo?: string; focus?: string; alt?: string };
+const galleryItems = c.gallery.items as GalleryItem[];
+---
+
+<SiteV1Layout title={c.meta.title} description={c.meta.description}>
+  <div class="pg pg-h1-sm">
+    <PageIntro
+      eyebrow={c.hero.eyebrow}
+      title={c.hero.title}
+      lead={c.hero.lead}
+      titleMax="20ch"
+      leadMax="62ch"
+      actions={[
+        { label: c.hero.primary.label, href: c.hero.primary.href },
+        { label: c.hero.secondary.label, href: c.hero.secondary.href, kind: 'secondary' },
+      ]}
+    >
+      <nav slot="before" class="crumb" aria-label="Breadcrumb">
+        <a href={site.home.href}>{c.hero.breadcrumb.home}</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">{c.hero.breadcrumb.current}</span>
+      </nav>
+      <div class="ph wide-photo">
+        <V1Photo name={c.hero.photo} alt={c.hero.alt} focus={c.hero.focus} focusMobile={c.hero.focusMobile} sizes="(max-width: 1200px) 100vw, 1200px" widths={[640, 1000, 1400, 1800]} loading="eager" />
+      </div>
+    </PageIntro>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eb">{c.ways.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.ways.heading}</h2>
+        <div class="ways">
+          {c.ways.cards.map((card) => (
+            <article class="card way">
+              <div class="ph"><V1Photo name={card.photo} alt={card.alt} focus={card.focus} sizes="(max-width: 700px) 100vw, 590px" widths={[480, 828, 1200]} /></div>
+              <div class="body">
+                <h3>{card.title}</h3>
+                <p class="muted">{card.text}</p>
+                <ul class="rows">
+                  {card.rows.map((row) => (
+                    <li><span>{row.label}</span><span class="muted">{row.value}</span></li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap split split-center split-56">
+        <div>
+          <span class="eb">{c.hostel.eyebrow}</span>
+          <h2 class="h2" style="margin-top:10px">{c.hostel.heading}</h2>
+          <p class="muted" style="margin-top:14px;font-size:17px;line-height:1.6">{c.hostel.text}</p>
+        </div>
+        <div class="stat3">
+          {c.hostel.facts.map((fact) => (
+            <div class="card">
+              <b>{fact.value}</b>
+              <span class="muted">{fact.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap split split-56">
+        <div>
+          <span class="eb">{c.routine.eyebrow}</span>
+          <h2 class="h2" style="margin-top:10px">{c.routine.heading}</h2>
+          <ol class="timeline">
+            <span class="rail" aria-hidden="true"></span>
+            {c.routine.steps.map((step) => <li><span>{step}</span></li>)}
+          </ol>
+          <p class="muted note">{c.routine.note}</p>
+        </div>
+        <div class="info-pair">
+          <div class="card info-card">
+            <h3>{c.routine.bring.title}</h3>
+            <ul class="checks">
+              {c.routine.bring.items.map((item) => <li>{item}</li>)}
+            </ul>
+            <p class="muted">{c.routine.bring.note}</p>
+          </div>
+          <div class="card info-card">
+            <h3>{c.routine.care.title}</h3>
+            <p class="muted">{c.routine.care.text}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <NavyBand eyebrow={c.life.eyebrow} heading={c.life.heading}>
+      <div class="ph life-photo">
+        <V1Photo name={c.life.photo} alt={c.life.alt} focus={c.life.focus} sizes="(max-width: 1200px) 100vw, 1200px" widths={[640, 1000, 1400, 1800]} />
+      </div>
+      <div class="life-grid">
+        {c.life.cards.map((card) => (
+          <div class="glass">
+            <h3>{card.title}</h3>
+            {card.items.length > 0 ? <ul>{card.items.map((item) => <li>{item}</li>)}</ul> : <p>{card.text}</p>}
+          </div>
+        ))}
+      </div>
+    </NavyBand>
+
+    {c.gallery.enabled && (
+      <section class="sec">
+        <div class="wrap">
+          <span class="eb">{c.gallery.eyebrow}</span>
+          <h2 class="h2" style="margin-top:10px">{c.gallery.heading}</h2>
+          <div class="gallery">
+            {galleryItems.map((item) => (
+              <figure class:list={[item.photo && 'has-photo']}>
+                {item.photo && (
+                  <div class="ph"><V1Photo name={item.photo} alt={item.alt ?? ''} focus={item.focus} sizes="(max-width: 960px) 50vw, 400px" widths={[360, 600, 900]} /></div>
+                )}
+                <figcaption>{item.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <Faq eyebrow={c.faq.eyebrow} heading={c.faq.heading} items={c.faq.items} />
+
+    <VisitBand
+      heading={c.visit.heading}
+      text={c.visit.text}
+      photo={c.visit.photo}
+      photoFocus={c.visit.focus}
+      photoFocusMobile={c.visit.focusMobile}
+      form={c.visit.form}
+      alt={c.visit.whatsapp}
+    />
+    <div class="end-space"></div>
+  </div>
+</SiteV1Layout>

@@ -716,6 +716,99 @@ const aboutV1 = entry('about-v1', 'About', 'about-v1', [
   v1Visit,
 ]);
 
+const v1Faq = obj('faq', 'Questions', [
+  str('eyebrow', 'Small label'),
+  str('heading', 'Heading'),
+  list('items', 'Questions', [str('q', 'Question'), txt('a', 'Answer'), { name: 'open', label: 'Open when the page loads', widget: 'boolean', default: false, required: false }], { summary: '{{fields.q}}' }),
+]);
+const v1Crumb = obj('breadcrumb', 'Breadcrumb', [str('home', 'Home link text'), str('current', 'This page')]);
+
+const boardingV1 = entry('boarding-v1', 'Boarding & Life', 'boarding-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    v1Crumb,
+    str('eyebrow', 'Small label'),
+    str('title', 'Title'),
+    txt('lead', 'Lead line'),
+    v1Action('primary', 'Main button'),
+    v1Action('secondary', 'Second button'),
+    v1Photo('photo', 'Photo under the title'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones'),
+    str('alt', 'Photo description'),
+  ]),
+  obj('ways', 'Day school or boarding', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'cards',
+      'Cards',
+      [
+        str('title', 'Title'),
+        txt('text', 'Text'),
+        v1Photo(),
+        focus('focus', 'Photo focus'),
+        str('alt', 'Photo description'),
+        list('rows', 'Rows', [str('label', 'Label'), str('value', 'Value')], { summary: '{{fields.label}}' }),
+      ],
+      { allow_add: false, summary: '{{fields.title}}' },
+    ),
+  ]),
+  obj('hostel', 'The hostel', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    list('facts', 'Three facts', [str('value', 'Headline'), str('label', 'Label')], { allow_add: false, summary: '{{fields.value}}' }),
+  ]),
+  obj('routine', 'Daily routine', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    strList('steps', 'Steps of the day (in order)', { field: { name: 'item', label: 'Step', widget: 'string' } }),
+    str('note', 'Note under the timeline'),
+    obj('bring', 'What to bring', [
+      str('title', 'Title'),
+      strList('items', 'Items', { field: { name: 'item', label: 'Item', widget: 'string' } }),
+      str('note', 'Note'),
+    ]),
+    obj('care', 'Visiting and care', [str('title', 'Title'), txt('text', 'Text')]),
+  ]),
+  obj('life', 'Student life (navy band)', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    v1Photo('photo', 'Photo'),
+    focus('focus', 'Photo focus'),
+    str('alt', 'Photo description'),
+    list(
+      'cards',
+      'Cards',
+      [
+        str('title', 'Title'),
+        strList('items', 'List (leave empty to show the text instead)', { field: { name: 'item', label: 'Item', widget: 'string' }, required: false }),
+        txt('text', 'Text (used when the list is empty)', { required: false }),
+      ],
+      { summary: '{{fields.title}}' },
+    ),
+  ]),
+  obj('gallery', 'Gallery', [
+    { name: 'enabled', label: 'Show the gallery on the page', widget: 'boolean', default: false, hint: 'Keep this off until real photos exist.' },
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'items',
+      'Gallery items',
+      [
+        str('caption', 'Caption'),
+        optionalV1Photo,
+        { ...focus('focus', 'Photo focus'), required: false },
+        str('alt', 'Photo description', { required: false }),
+      ],
+      { summary: '{{fields.caption}}' },
+    ),
+  ]),
+  v1Faq,
+  v1Visit,
+]);
+
 const news = entry('news', 'News', 'news', [
   list(
     'items',
@@ -752,7 +845,7 @@ initCMS({
       group('pages', 'Pages', TAGS, [home, twentyYears, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
       group('site', 'School and contact', TAGS, [school, contact, siteShell]),
-      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1, aboutV1]),
+      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1, aboutV1, boardingV1]),
       group('news', 'News', TAGS, [news]),
     ],
   },
