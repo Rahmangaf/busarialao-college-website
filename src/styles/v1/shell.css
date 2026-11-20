@@ -268,7 +268,7 @@
   border-radius: 999px;
   background: var(--pill-bg);
   color: var(--pill-text);
-  font: 500 13px Inter, 'Inter Variable', sans-serif;
+  font: 500 14px Inter, 'Inter Variable', sans-serif;
   white-space: nowrap;
 }
 .sf-pill i {
@@ -305,7 +305,7 @@
 .sf-bar {
   display: flex;
   gap: 4px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--card-muted);
   border-top: 1px solid var(--card-border);
@@ -375,7 +375,7 @@
   min-height: 52px;
   cursor: pointer;
   list-style: none;
-  font: 600 13px/20px Inter, 'Inter Variable', sans-serif;
+  font: 600 14px/20px Inter, 'Inter Variable', sans-serif;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--card-muted);

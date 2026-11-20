@@ -176,7 +176,7 @@
 }
 .pg .tag {
   display: inline-block;
-  font: 700 10.5px Inter, 'Inter Variable', sans-serif;
+  font: 700 12px Inter, 'Inter Variable', sans-serif;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 6px 9px;
@@ -590,6 +590,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+  min-width: 44px;
   color: var(--action);
 }
 [data-theme='dark'] .pg .crumb a {
@@ -652,7 +653,7 @@
 .pg .stage .pill {
   margin-top: 8px;
   align-self: flex-start;
-  font: 600 13px Inter, 'Inter Variable', sans-serif;
+  font: 600 14px Inter, 'Inter Variable', sans-serif;
   padding: 7px 12px;
   border-radius: 999px;
   background: var(--nav-pill);
@@ -901,7 +902,7 @@
   gap: 12px;
 }
 .pg .value span {
-  font: 600 13px Inter, 'Inter Variable', sans-serif;
+  font: 600 14px Inter, 'Inter Variable', sans-serif;
   letter-spacing: 0.04em;
   color: var(--accent);
 }
@@ -1047,7 +1048,7 @@
   position: relative;
 }
 .pg .bt small {
-  font-size: 12.5px;
+  font-size: 14px;
   line-height: 1.4;
   margin-top: 12px;
   position: relative;
@@ -1526,7 +1527,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font: 500 13px Inter, 'Inter Variable', sans-serif;
+  font: 500 14px Inter, 'Inter Variable', sans-serif;
   padding: 7px 12px;
   border-radius: 999px;
   background: var(--pill-bg);
@@ -1601,7 +1602,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font: 500 13px Inter, 'Inter Variable', sans-serif;
+  font: 500 14px Inter, 'Inter Variable', sans-serif;
   color: var(--red-600);
 }
 .pg .ferr[hidden] {
@@ -1816,7 +1817,7 @@
   padding: 20px 22px 24px;
 }
 .pg .post small {
-  font: 600 12px Inter, 'Inter Variable', sans-serif;
+  font: 600 13px Inter, 'Inter Variable', sans-serif;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
