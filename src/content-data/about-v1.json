@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "title": "About — Busarialao College",
+    "description": "A science-focused day and boarding secondary school in Ilorin, Kwara State, educating students from JSS1 to SS3 since {foundedYear}."
+  },
+  "hero": {
+    "breadcrumb": { "home": "Home", "current": "About" },
+    "eyebrow": "About us",
+    "title": "{yearsInWords} years of nurturing scientific minds",
+    "lead": "A science-focused day and boarding secondary school in Ilorin, Kwara State, educating students from JSS1 to SS3 since {foundedYear}.",
+    "photo": "courtyard",
+    "focus": "50% 60%",
+    "focusMobile": "60% 50%",
+    "alt": "The school courtyard with blue-roofed classroom blocks"
+  },
+  "story": {
+    "eyebrow": "Our story",
+    "heading": "From Top Tutors to Busarialao College",
+    "text": "We began in 2003 as Top Tutors, a tutorial centre. In {foundedYear} we became Busarialao College, opening with nine pioneer learners.",
+    "facts": [
+      { "value": "2003", "label": "began as Top Tutors" },
+      { "value": "{foundedYear}", "label": "became Busarialao College" },
+      { "value": "9", "label": "pioneer learners" }
+    ]
+  },
+  "visionMission": {
+    "eyebrow": "Vision and mission",
+    "heading": "What guides us",
+    "items": [
+      { "title": "Vision", "text": "", "placeholder": "Text to be supplied by the school" },
+      { "title": "Mission", "text": "", "placeholder": "Text to be supplied by the school" }
+    ]
+  },
+  "values": {
+    "eyebrow": "Core values",
+    "heading": "What we hold to",
+    "text": "Our seven core values.",
+    "items": [
+      "Excellence",
+      "Discipline",
+      "Integrity",
+      "Hard Work",
+      "Innovation & Scientific Inquiry",
+      "Teamwork & Community",
+      "Leadership & Responsibility"
+    ]
+  },
+  "principal": {
+    "portraitLabel": "Portrait placeholder",
+    "eyebrow": "Principal's welcome",
+    "heading": "{yearsInWords} years of curious minds",
+    "paragraphs": [
+      "Welcome to Busarialao College. Since {foundedYear} we have believed that every child can think like a scientist: ask good questions, test ideas and learn from mistakes. Our laboratories, small classes and caring staff give students room to grow in knowledge and in character.",
+      "From JSS1 to SS3, we prepare them for BECE, WASSCE and NECO, and for the choices that follow. As we mark our 20th anniversary, we remain committed to discipline, integrity and excellence, and to partnering with parents at every step.",
+      "Whether your child joins us as a day student or a boarder, they will find a community that expects their best and supports them to give it. We would be glad to welcome you on a visit."
+    ],
+    "signoff": "The Principal"
+  },
+  "milestones": {
+    "eyebrow": "Milestones",
+    "heading": "Our journey so far",
+    "items": [
+      { "year": "2003", "text": "Began as Top Tutors" },
+      { "year": "{foundedYear}", "text": "Became Busarialao College, with nine pioneer learners" },
+      { "year": "2026", "text": "20th anniversary" }
+    ],
+    "linkLabel": "Celebrating 20 Years →",
+    "linkHref": "/20-years/"
+  },
+  "record": {
+    "eyebrow": "Our record",
+    "heading": "The numbers behind Ilorin's next generation of scientists",
+    "examPhoto": { "photo": "exam-session", "focus": "40% 45%" },
+    "wassce": { "title": "WASSCE general percentage passed", "value": "95.5%", "note": "Class of 2025" },
+    "university": { "title": "University admission", "value": "90%", "note": "Of 2025 graduates, into medicine, engineering and the sciences" },
+    "logoAlt": "Busarialao College",
+    "labPhoto": { "photo": "biology-lab", "focus": "50% 30%" },
+    "walkingPhoto": { "photo": "students-walking", "focus": "50% 30%" },
+    "quote": "Making science come alive.",
+    "years": { "title": "Years of teaching science in Ilorin", "value": "{years}", "note": "Since {foundedYear}, from nine pioneer learners" }
+  },
+  "visit": {
+    "heading": "Come and see Busarialao for yourself",
+    "text": "Tours run Monday to Friday, 9am to 2pm. Leave your number and our admissions office will call to book a time.",
+    "photo": "courtyard",
+    "focus": "50% 55%",
+    "focusMobile": "62% 50%",
+    "form": { "label": "Phone number", "placeholder": "Your phone number", "button": "Book a tour" },
+    "whatsapp": { "label": "or ask on WhatsApp →", "href": "/preview/contact-v1/" }
+  }
+}

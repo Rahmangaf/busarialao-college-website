@@ -646,6 +646,76 @@ const academicsV1 = entry('academics-v1', 'Academics', 'academics-v1', [
   ]),
 ]);
 
+const v1PhotoPick = (name, label) => obj(name, label, [v1Photo('photo', 'Photo'), focus('focus', 'Photo focus')]);
+const v1Stat = (name, label) => obj(name, label, [str('title', 'Title'), str('value', 'Number'), str('note', 'Note')]);
+
+const aboutV1 = entry('about-v1', 'About', 'about-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    obj('breadcrumb', 'Breadcrumb', [str('home', 'Home link text'), str('current', 'This page')]),
+    str('eyebrow', 'Small label'),
+    str('title', 'Title', { hint: 'Leave {yearsInWords} as it is; it is filled in from the founding year.' }),
+    txt('lead', 'Lead line'),
+    v1Photo('photo', 'Photo under the title'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones'),
+    str('alt', 'Photo description'),
+  ]),
+  obj('story', 'Our story', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    list('facts', 'Three facts', [str('value', 'Number or year'), str('label', 'Label')], { allow_add: false, summary: '{{fields.value}} {{fields.label}}' }),
+  ]),
+  obj('visionMission', 'Vision and mission', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'items',
+      'Vision and mission',
+      [
+        str('title', 'Title'),
+        txt('text', 'Text (leave empty until the school supplies it)', { required: false }),
+        str('placeholder', 'Words shown while the text is empty'),
+      ],
+      { allow_add: false, summary: '{{fields.title}}' },
+    ),
+  ]),
+  obj('values', 'Core values', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('text', 'Text'),
+    strList('items', 'Values (one per item, in order)', { field: { name: 'item', label: 'Value', widget: 'string' } }),
+  ]),
+  obj('principal', "Principal's welcome", [
+    str('portraitLabel', 'Portrait description for screen readers'),
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    strList('paragraphs', 'Paragraphs'),
+    str('signoff', 'Sign-off'),
+  ]),
+  obj('milestones', 'Milestones', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list('items', 'Milestones', [str('year', 'Year'), str('text', 'What happened')], { summary: '{{fields.year}} {{fields.text}}' }),
+    str('linkLabel', 'Link text'),
+    str('linkHref', 'Link address'),
+  ]),
+  obj('record', 'Our record (navy band)', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    v1PhotoPick('examPhoto', 'Photo, top left (shown in grey)'),
+    v1Stat('wassce', 'WASSCE tile'),
+    v1Stat('university', 'University tile'),
+    str('logoAlt', 'Logo description'),
+    v1PhotoPick('labPhoto', 'Photo, middle right'),
+    v1PhotoPick('walkingPhoto', 'Photo, bottom left'),
+    str('quote', 'Quote'),
+    v1Stat('years', 'Years tile'),
+  ]),
+  v1Visit,
+]);
+
 const news = entry('news', 'News', 'news', [
   list(
     'items',
@@ -682,7 +752,7 @@ initCMS({
       group('pages', 'Pages', TAGS, [home, twentyYears, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
       group('site', 'School and contact', TAGS, [school, contact, siteShell]),
-      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1]),
+      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1, aboutV1]),
       group('news', 'News', TAGS, [news]),
     ],
   },

@@ -1,0 +1,137 @@
+---
+// Design preview: About (the "2" frames). Built with the v1 shell and shared v1 components.
+// Not linked from the navigation; always noindex. The existing /about/ page is untouched.
+// Privacy: no names or faces. The principal's portrait is a silhouette until the school supplies a
+// photo with consent (open question).
+import SiteV1Layout from '../../layouts/SiteV1Layout.astro';
+import '../../styles/v1/page.css';
+import PageIntro from '../../components/v1/PageIntro.astro';
+import V1Photo from '../../components/v1/V1Photo.astro';
+import VisitBand from '../../components/v1/VisitBand.astro';
+import { aboutV1 as c } from '../../data/about-v1';
+import { site } from '../../data/site';
+
+const r = c.record;
+---
+
+<SiteV1Layout title={c.meta.title} description={c.meta.description}>
+  <div class="pg pg-h1-sm">
+    <PageIntro eyebrow={c.hero.eyebrow} title={c.hero.title} lead={c.hero.lead} titleMax="18ch" leadMax="60ch">
+      <nav slot="before" class="crumb" aria-label="Breadcrumb">
+        <a href={site.home.href}>{c.hero.breadcrumb.home}</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">{c.hero.breadcrumb.current}</span>
+      </nav>
+      <div class="ph wide-photo">
+        <V1Photo name={c.hero.photo} alt={c.hero.alt} focus={c.hero.focus} focusMobile={c.hero.focusMobile} sizes="(max-width: 1200px) 100vw, 1200px" widths={[640, 1000, 1400, 1800]} loading="eager" />
+      </div>
+    </PageIntro>
+
+    <section class="sec">
+      <div class="wrap split about-story">
+        <div>
+          <span class="eb">{c.story.eyebrow}</span>
+          <h2 class="h2" style="margin-top:10px">{c.story.heading}</h2>
+          <p class="muted" style="margin-top:18px;font-size:17px;line-height:1.65;max-width:52ch">{c.story.text}</p>
+        </div>
+        <div class="facts">
+          {c.story.facts.map((fact) => (
+            <div class="card fact">
+              <b>{fact.value}</b>
+              <span class="muted">{fact.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eb">{c.visionMission.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.visionMission.heading}</h2>
+        <div class="vm">
+          {c.visionMission.items.map((item) => (
+            <div class="card vm-card">
+              <h3>{item.title}</h3>
+              {item.text ? <p class="muted">{item.text}</p> : <div class="vm-empty muted">{item.placeholder}</div>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eb">{c.values.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.values.heading}</h2>
+        <p class="muted" style="margin-top:12px;font-size:17px">{c.values.text}</p>
+        <ol class="values">
+          {c.values.items.map((name, i) => (
+            <li class="card value">
+              <span>{String(i + 1).padStart(2, '0')}</span>
+              <b>{name}</b>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap split principal">
+        <div class="portrait" role="img" aria-label={c.principal.portraitLabel}>
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="44" r="22"></circle><path d="M18 112c0-24 19-42 42-42s42 18 42 42z"></path></svg>
+        </div>
+        <div>
+          <span class="eb">{c.principal.eyebrow}</span>
+          <h2 class="h2" style="margin-top:10px">{c.principal.heading}</h2>
+          <div class="welcome">
+            {c.principal.paragraphs.map((p) => <p class="muted">{p}</p>)}
+          </div>
+          <p class="signoff">{c.principal.signoff}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eb">{c.milestones.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.milestones.heading}</h2>
+        <ol class="miles">
+          {c.milestones.items.map((m) => (
+            <li><b>{m.year}</b><span>{m.text}</span></li>
+          ))}
+        </ol>
+        <a class="lnk" href={c.milestones.linkHref} style="margin-top:20px">{c.milestones.linkLabel}</a>
+      </div>
+    </section>
+
+    <section class="navy navy-plain">
+      <div class="wrap">
+        <div class="record-head">
+          <span class="eb">{r.eyebrow}</span>
+          <h2>{r.heading}</h2>
+        </div>
+        <div class="bento">
+          <div class="bt ph bt-exam bt-gray"><V1Photo name={r.examPhoto.photo} focus={r.examPhoto.focus} sizes="(max-width: 960px) 100vw, 420px" widths={[480, 800]} /></div>
+          <div class="bt bt-wassce"><h4>{r.wassce.title}</h4><span class="n">{r.wassce.value}</span><small>{r.wassce.note}</small></div>
+          <div class="bt half bt-uni"><h4>{r.university.title}</h4><span class="n">{r.university.value}</span><small>{r.university.note}</small></div>
+          <div class="bt half bt-logo"><img src="/logo/logo-white.svg" alt={r.logoAlt} width="130" height="68" /></div>
+          <div class="bt ph bt-lab hide-sm"><V1Photo name={r.labPhoto.photo} focus={r.labPhoto.focus} sizes="(max-width: 960px) 100vw, 640px" widths={[480, 800, 1200]} /></div>
+          <div class="bt ph bt-walk hide-sm"><V1Photo name={r.walkingPhoto.photo} focus={r.walkingPhoto.focus} sizes="420px" widths={[480, 800]} /></div>
+          <div class="bt bt-quote"><p>{r.quote}</p></div>
+          <div class="bt bt-years"><h4>{r.years.title}</h4><span class="n">{r.years.value}</span><small>{r.years.note}</small></div>
+        </div>
+      </div>
+    </section>
+
+    <VisitBand
+      heading={c.visit.heading}
+      text={c.visit.text}
+      photo={c.visit.photo}
+      photoFocus={c.visit.focus}
+      photoFocusMobile={c.visit.focusMobile}
+      form={c.visit.form}
+      alt={c.visit.whatsapp}
+    />
+    <div class="end-space"></div>
+  </div>
+</SiteV1Layout>
