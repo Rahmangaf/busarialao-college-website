@@ -1,0 +1,110 @@
+---
+// Design preview: Academics (the "2" frames). Built with the v1 shell and shared v1 components.
+// Not linked from the navigation; always noindex. The existing /academics/ page is untouched.
+import SiteV1Layout from '../../layouts/SiteV1Layout.astro';
+import '../../styles/v1/page.css';
+import NavyBand from '../../components/v1/NavyBand.astro';
+import PageIntro from '../../components/v1/PageIntro.astro';
+import V1Photo from '../../components/v1/V1Photo.astro';
+import { academicsV1 as c } from '../../data/academics-v1';
+import { site } from '../../data/site';
+
+const [junior, senior] = c.curriculum.stages;
+---
+
+<SiteV1Layout title={c.meta.title} description={c.meta.description}>
+  <div class="pg pg-h1-sm">
+    <PageIntro
+      eyebrow={c.hero.eyebrow}
+      title={c.hero.title}
+      lead={c.hero.lead}
+      titleMax="20ch"
+      leadMax="62ch"
+      actions={[
+        { label: c.hero.primary.label, href: c.hero.primary.href },
+        { label: c.hero.secondary.label, href: c.hero.secondary.href, kind: 'secondary' },
+      ]}
+    >
+      <nav slot="before" class="crumb" aria-label="Breadcrumb">
+        <a href={site.home.href}>{c.hero.breadcrumb.home}</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">{c.hero.breadcrumb.current}</span>
+      </nav>
+      <div class="ph wide-photo">
+        <V1Photo name={c.hero.photo} alt={c.hero.alt} focus={c.hero.focus} focusMobile={c.hero.focusMobile} sizes="(max-width: 1200px) 100vw, 1200px" widths={[640, 1000, 1400, 1800]} loading="eager" />
+      </div>
+    </PageIntro>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eb">{c.curriculum.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.curriculum.heading}</h2>
+        <p class="muted" style="margin-top:14px;font-size:17px;line-height:1.6;max-width:60ch">{c.curriculum.text}</p>
+        <div class="path">
+          <div class="card stage">
+            <span class="kicker">{junior.kicker}</span>
+            <b>{junior.title}</b>
+            <p class="muted">{junior.text}</p>
+            <span class="pill">{junior.pill}</span>
+          </div>
+          <div class="arrow arrow-right" aria-hidden="true">
+            <svg viewBox="0 0 48 16" width="48" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h42M36 2l8 6-8 6"></path></svg>
+          </div>
+          <div class="arrow arrow-down" aria-hidden="true">
+            <svg viewBox="0 0 16 40" width="16" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v34M2 28l6 8 6-8"></path></svg>
+          </div>
+          <div class="card stage">
+            <span class="kicker">{senior.kicker}</span>
+            <b>{senior.title}</b>
+            <p class="muted">{senior.text}</p>
+            <span class="pill">{senior.pill}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eb">{c.labs.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.labs.heading}</h2>
+        <div class="labs">
+          {c.labs.items.map((lab) => (
+            <article class="card lab">
+              {'photo' in lab && lab.photo ? (
+                <div class="ph"><V1Photo name={lab.photo} alt={'alt' in lab ? lab.alt : ''} focus={'focus' in lab ? lab.focus : undefined} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 300px" widths={[360, 600, 900]} /></div>
+              ) : (
+                <div class="tile" aria-hidden="true">{'tile' in lab ? lab.tile : lab.title}</div>
+              )}
+              <div class="body">
+                <h3>{lab.title}</h3>
+                <p class="muted">{lab.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <NavyBand eyebrow={c.beyond.eyebrow} heading={c.beyond.heading} linkLabel={c.beyond.linkLabel} linkHref={c.beyond.linkHref}>
+      <div class="glass-grid">
+        {c.beyond.items.map((item) => (
+          <div class="glass">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </NavyBand>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eb">{c.vocational.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.vocational.heading}</h2>
+        <p class="muted" style="margin-top:14px;font-size:17px">{c.vocational.text}</p>
+        <ul class="skills">
+          {c.vocational.items.map((name) => <li class="card skill">{name}</li>)}
+        </ul>
+      </div>
+    </section>
+    <div style="height:var(--sec)"></div>
+  </div>
+</SiteV1Layout>

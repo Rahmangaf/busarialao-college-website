@@ -37,11 +37,20 @@
 }
 /* Pages whose title is a notch smaller (Academics, About, Boarding, Contact, News) */
 .pg-h1-sm {
-  --h1: 36px;
+  --h1: 38px;
+  --navy-y: 56px;
 }
 @media (min-width: 700px) {
   .pg-h1-sm {
     --h1: clamp(44px, 4.45vw, 64px);
+    --intro: 64px;
+    --navy-y: 80px;
+  }
+}
+@media (min-width: 1100px) {
+  .pg-h1-sm {
+    --intro: 80px;
+    --navy-y: 96px;
   }
 }
 
@@ -185,6 +194,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--fpm, 50% 50%);
+}
+@media (min-width: 700px) {
+  .pg .ph > img {
+    object-position: var(--fp, 50% 50%);
+  }
 }
 
 /* Two columns that stack on small screens (copy | content) */
@@ -527,4 +542,220 @@
 }
 .pg .end-space {
   height: 24px;
+}
+
+/* ---- Breadcrumb and wide photo under a page intro ---- */
+.pg .crumb {
+  font: 500 14px Inter, 'Inter Variable', sans-serif;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.pg .crumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--action);
+}
+[data-theme='dark'] .pg .crumb a {
+  color: #a9c2ff;
+}
+.pg .crumb span[aria-hidden] {
+  margin: 0 6px;
+}
+.pg .wide-photo {
+  margin-top: 32px;
+  border-radius: 20px;
+  aspect-ratio: 4 / 3;
+}
+@media (min-width: 700px) {
+  .pg .wide-photo {
+    margin-top: 48px;
+    aspect-ratio: 21 / 9;
+  }
+}
+
+/* ---- Pathway: two stage cards joined by an arrow ---- */
+.pg .path {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 36px;
+}
+@media (min-width: 960px) {
+  .pg .path {
+    grid-template-columns: minmax(0, 1fr) 88px minmax(0, 1fr);
+    align-items: center;
+    margin-top: 40px;
+  }
+}
+.pg .stage {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pg .stage .kicker {
+  font: 600 13px Inter, 'Inter Variable', sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.pg .stage b {
+  font: 600 26px/1.15 Inter, 'Inter Variable', sans-serif;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+@media (min-width: 960px) {
+  .pg .stage b {
+    font-size: 30px;
+  }
+}
+.pg .stage p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.pg .stage .pill {
+  margin-top: 8px;
+  align-self: flex-start;
+  font: 600 13px Inter, 'Inter Variable', sans-serif;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--nav-pill);
+  border: 1px solid var(--nav-pill-border);
+  color: var(--text);
+}
+.pg .path .arrow {
+  color: var(--action);
+  place-items: center;
+}
+.pg .path .arrow-down {
+  padding: 8px 0 8px 32px;
+  display: block;
+}
+.pg .path .arrow-right {
+  display: none;
+}
+@media (min-width: 960px) {
+  .pg .path .arrow-down {
+    display: none;
+  }
+  .pg .path .arrow-right {
+    display: grid;
+  }
+}
+
+/* ---- Lab cards: photo (or a plain tile) over a title ---- */
+.pg .labs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 40px;
+}
+@media (min-width: 700px) {
+  .pg .labs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1100px) {
+  .pg .labs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.pg .lab {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.pg .lab .ph,
+.pg .lab .tile {
+  aspect-ratio: 16 / 10;
+}
+.pg .lab .tile {
+  display: grid;
+  place-items: center;
+  background: #e9e8f1;
+  color: #2a1f7a;
+  font: 600 24px/1 Inter, 'Inter Variable', sans-serif;
+  letter-spacing: -0.02em;
+}
+[data-theme='dark'] .pg .lab .tile {
+  background: #221d40;
+  color: #e3e1ef;
+}
+@media (min-width: 700px) {
+  .pg .lab .tile {
+    font-size: 28px;
+  }
+}
+.pg .lab .body {
+  padding: 20px 22px 24px;
+}
+.pg .lab h3 {
+  font: 600 20px/1.25 Inter, 'Inter Variable', sans-serif;
+  color: var(--text);
+}
+.pg .lab p {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ---- Glass cards on the navy band ---- */
+.pg .glass-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 40px;
+}
+@media (min-width: 960px) {
+  .pg .glass-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.pg .glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  padding: 28px;
+}
+.pg .glass h3 {
+  font: 600 20px/1.3 Inter, 'Inter Variable', sans-serif;
+  color: #fff;
+}
+.pg .glass p {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #d6dcf5;
+}
+
+/* ---- Plain list cards (vocational skills): not links ---- */
+.pg .skills {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 40px;
+}
+@media (min-width: 700px) {
+  .pg .skills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1100px) {
+  .pg .skills {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.pg .skill {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 0 24px;
+  border-radius: 18px;
+  font: 600 18px/1.3 Inter, 'Inter Variable', sans-serif;
+  color: var(--text);
+}
+@media (min-width: 960px) {
+  .pg .skill {
+    min-height: 96px;
+  }
 }

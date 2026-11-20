@@ -9,11 +9,13 @@ interface Props {
   alt?: string;
   /** Where to centre the crop, for example "50% 30%". */
   focus?: string;
+  /** Crop centre on phones (under 700px); falls back to focus. */
+  focusMobile?: string;
   sizes?: string;
   widths?: number[];
   loading?: 'eager' | 'lazy';
 }
-const { name, alt = '', focus, sizes = '(max-width: 700px) 100vw, 700px', widths = [480, 828, 1280], loading = 'lazy' } = Astro.props;
+const { name, alt = '', focus, focusMobile, sizes = '(max-width: 700px) 100vw, 700px', widths = [480, 828, 1280], loading = 'lazy' } = Astro.props;
 ---
 
-<Image src={photo(name)} alt={alt} widths={widths} sizes={sizes} loading={loading} style={focus ? `object-position:${focus}` : undefined} />
+<Image src={photo(name)} alt={alt} widths={widths} sizes={sizes} loading={loading} style={focus || focusMobile ? `--fp:${focus ?? '50% 50%'};--fpm:${focusMobile ?? focus ?? '50% 50%'}` : undefined} />

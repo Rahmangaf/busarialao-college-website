@@ -547,6 +547,7 @@ const v1Visit = obj('visit', 'Come and see us band', [
   txt('text', 'Text'),
   v1Photo('photo', 'Background photo'),
   focus('focus', 'Photo focus'),
+  focus('focusMobile', 'Photo focus on phones', 'Where to centre the crop on a phone, for example 62% 50%.'),
   obj('form', 'Phone field', [str('label', 'Field name for screen readers'), str('placeholder', 'Placeholder'), str('button', 'Button text')]),
   obj('whatsapp', 'WhatsApp link', linkFields),
 ]);
@@ -591,6 +592,60 @@ const admissionsV1 = entry('admissions-v1', 'Admissions', 'admissions-v1', [
   v1Visit,
 ]);
 
+const optionalV1Photo = { name: 'photo', label: 'Photo', widget: 'select', options: V1_PHOTOS, required: false };
+
+const academicsV1 = entry('academics-v1', 'Academics', 'academics-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    obj('breadcrumb', 'Breadcrumb', [str('home', 'Home link text'), str('current', 'This page')]),
+    str('eyebrow', 'Small label'),
+    str('title', 'Title'),
+    txt('lead', 'Lead line'),
+    v1Action('primary', 'Main button'),
+    v1Action('secondary', 'Second button'),
+    v1Photo('photo', 'Photo under the title'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones'),
+    str('alt', 'Photo description'),
+  ]),
+  obj('curriculum', 'Curriculum', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    list('stages', 'Two stages', [str('kicker', 'Years'), str('title', 'Title'), txt('text', 'Text'), str('pill', 'Exam label')], { allow_add: false, summary: '{{fields.title}}' }),
+  ]),
+  obj('labs', 'Laboratories', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'items',
+      'Labs',
+      [
+        str('title', 'Title'),
+        txt('text', 'Text'),
+        str('tile', 'Text in a plain tile (leave empty if there is a photo)', { required: false }),
+        optionalV1Photo,
+        { ...focus('focus', 'Photo focus'), required: false },
+        str('alt', 'Photo description', { required: false }),
+      ],
+      { summary: '{{fields.title}}' },
+    ),
+  ]),
+  obj('beyond', 'Beyond the classroom (navy band)', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list('items', 'Cards', [str('title', 'Title'), txt('text', 'Text')], { summary: '{{fields.title}}' }),
+    str('linkLabel', 'Link text'),
+    str('linkHref', 'Link address'),
+  ]),
+  obj('vocational', 'Vocational training', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('text', 'Text'),
+    strList('items', 'Skills (one per item)', { field: { name: 'item', label: 'Skill', widget: 'string' } }),
+  ]),
+]);
+
 const news = entry('news', 'News', 'news', [
   list(
     'items',
@@ -627,7 +682,7 @@ initCMS({
       group('pages', 'Pages', TAGS, [home, twentyYears, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
       group('site', 'School and contact', TAGS, [school, contact, siteShell]),
-      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1]),
+      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1]),
       group('news', 'News', TAGS, [news]),
     ],
   },

@@ -100,6 +100,7 @@
     "text": "Tours run Monday to Friday, 9am to 2pm. Leave your number and our admissions office will call to book a time.",
     "photo": "courtyard",
     "focus": "50% 55%",
+    "focusMobile": "62% 50%",
     "form": { "label": "Phone number", "placeholder": "Your phone number", "button": "Book a tour" },
     "whatsapp": { "label": "or ask on WhatsApp →", "href": "/preview/contact-v1/" }
   }

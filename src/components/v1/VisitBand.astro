@@ -11,14 +11,15 @@ interface Props {
   text: string;
   photo: string;
   photoFocus?: string;
+  photoFocusMobile?: string;
   form: { label: string; placeholder: string; button: string };
   alt: { label: string; href: string };
 }
-const { id = 'visit', heading, text, photo, photoFocus, form, alt } = Astro.props;
+const { id = 'visit', heading, text, photo, photoFocus, photoFocusMobile, form, alt } = Astro.props;
 ---
 
 <section class="visit" id={id}>
-  <div class="ph"><V1Photo name={photo} focus={photoFocus} sizes="100vw" widths={[828, 1280, 1672]} /></div>
+  <div class="ph"><V1Photo name={photo} focus={photoFocus} focusMobile={photoFocusMobile} sizes="100vw" widths={[828, 1280, 1672]} /></div>
   <div class="shade"></div>
   <div class="in">
     <h2>{heading}</h2>
