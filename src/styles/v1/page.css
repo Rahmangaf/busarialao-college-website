@@ -468,26 +468,29 @@
   margin: 0 auto;
 }
 .pg .visit h2 {
-  font: 600 34px/1.05 Inter, 'Inter Variable', sans-serif;
+  font: 600 34px/1.1 Inter, 'Inter Variable', sans-serif;
   letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 @media (min-width: 700px) {
   .pg .visit h2 {
     font-size: clamp(40px, 3.9vw, 56px);
   }
 }
-.pg .visit p {
-  margin: 18px auto 28px;
+.pg .visit .in > p:not(.vmsg) {
+  margin: 24px auto 32px;
   font-size: 16px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
   max-width: 46ch;
 }
+/* The field is white and the button solid blue in both themes (the page theme never changes them). */
 .pg .visit form {
   display: flex;
   flex-direction: column;
   gap: 6px;
   background: #fff;
+  color-scheme: light;
   border-radius: 12px;
   padding: 6px;
   max-width: 440px;
@@ -506,12 +509,26 @@
 .pg .visit input {
   flex: 1;
   border: 0;
-  font: 15px Inter, 'Inter Variable', sans-serif;
+  border-radius: 8px;
+  font: 16px Inter, 'Inter Variable', sans-serif;
   padding: 0 12px;
   color: #0d0a26;
+  -webkit-text-fill-color: #0d0a26;
   min-width: 0;
   height: 44px;
-  background: transparent;
+  background: #fff;
+}
+.pg .visit input::placeholder {
+  color: #5a5f73;
+  -webkit-text-fill-color: #5a5f73;
+  opacity: 1;
+}
+.pg .visit input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 40px #fff inset;
+  -webkit-text-fill-color: #0d0a26;
+}
+.pg .visit input[aria-invalid='true'] {
+  box-shadow: inset 0 0 0 2px #b3202a;
 }
 .pg .visit input:focus-visible,
 .pg .visit .btn:focus-visible {
@@ -520,6 +537,24 @@
 }
 .pg .visit .btn {
   height: 44px;
+  background: #1f63e0;
+  color: #fff;
+}
+.pg .visit .btn:hover {
+  background: #3a78ea;
+}
+.pg .visit .vmsg {
+  min-height: 0;
+  margin: 12px auto 0;
+  max-width: 440px;
+  font: 500 14px/1.5 Inter, 'Inter Variable', sans-serif;
+  color: rgba(255, 255, 255, 0.92);
+}
+.pg .visit .vmsg:empty {
+  display: none;
+}
+.pg .visit .vmsg.is-error {
+  color: #ffd0d3;
 }
 .pg .visit .alt {
   display: inline-flex;

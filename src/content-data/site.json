@@ -9,6 +9,10 @@
     { "label": "Contact", "href": "/preview/contact-v1/" }
   ],
   "apply": { "label": "Apply Now", "href": "/preview/admissions-v1/#apply" },
+  "forms": {
+    "phoneError": "Enter a phone number so we can call you back.",
+    "previewNotice": "This form is a preview. Nothing has been sent."
+  },
   "menu": { "open": "Open menu", "close": "Close menu", "title": "Menu" },
   "footer": {
     "blurb": "A science-focused day and boarding school in Ilorin, nurturing scientific minds since {foundedYear}.",

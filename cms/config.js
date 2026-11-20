@@ -479,6 +479,7 @@ const siteShell = entry('site', 'Site header and footer (v1 pages)', 'site', [
   obj('home', 'Logo link', [str('href', 'Address'), str('label', 'Name for screen readers')]),
   linkList('nav', 'Navigation links'),
   obj('apply', 'Apply button', linkFields),
+  obj('forms', 'Short forms (the Book a tour phone field)', [str('phoneError', 'Error when no phone number is entered'), str('previewNotice', 'Words shown when a number is entered (the form does not send yet)')]),
   obj('menu', 'Mobile menu', [str('open', 'Open button label'), str('close', 'Close button label'), str('title', 'Panel name')]),
   obj('footer', 'Footer', [
     txt('blurb', 'Short description', { hint: 'Leave {foundedYear} as it is; it is filled in from the founding year.' }),
