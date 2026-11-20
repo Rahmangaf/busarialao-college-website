@@ -1,0 +1,69 @@
+{
+  "home": { "href": "/preview/home-v3/", "label": "Busarialao College home" },
+  "nav": [
+    { "label": "About", "href": "/preview/about-v1/" },
+    { "label": "Academics", "href": "/preview/academics-v1/" },
+    { "label": "Admissions", "href": "/preview/admissions-v1/" },
+    { "label": "Boarding & Life", "href": "/preview/boarding-v1/" },
+    { "label": "News & Calendar", "href": "/preview/news-v1/" },
+    { "label": "Contact", "href": "/preview/contact-v1/" }
+  ],
+  "apply": { "label": "Apply Now", "href": "/preview/admissions-v1/#apply" },
+  "menu": { "open": "Open menu", "close": "Close menu", "title": "Menu" },
+  "footer": {
+    "blurb": "A science-focused day and boarding school in Ilorin, nurturing scientific minds since {foundedYear}.",
+    "logoAlt": "Busarialao College — educating to inspire",
+    "school": {
+      "heading": "School",
+      "links": [
+        { "label": "About us", "href": "/preview/about-v1/" },
+        { "label": "Academics", "href": "/preview/academics-v1/" },
+        { "label": "Boarding & Student Life", "href": "/preview/boarding-v1/" },
+        { "label": "Results", "href": "/results/" },
+        { "label": "Celebrating 20 Years", "href": "/20-years/" }
+      ]
+    },
+    "admissions": {
+      "heading": "Admissions",
+      "links": [
+        { "label": "How to apply", "href": "/preview/admissions-v1/#apply" },
+        { "label": "Fees & Payment", "href": "/fees/" },
+        { "label": "Scholarships", "href": "/preview/admissions-v1/#scholarships" },
+        { "label": "Term dates", "href": "/preview/news-v1/#term-dates" },
+        { "label": "Book a tour", "href": "/preview/admissions-v1/#visit" }
+      ]
+    },
+    "findUs": {
+      "heading": "Find us",
+      "address": ["13, Prince Oyedeji Crescent,", "New Yidi Road, Oko Erin,", "Ilorin, Kwara State"],
+      "directionsLabel": "Get directions ↗",
+      "directionsHref": "https://www.google.com/maps/search/?api=1&query=13+Prince+Oyedeji+Crescent+New+Yidi+Road+Oko+Erin+Ilorin"
+    },
+    "hours": "Open Mon–Sat",
+    "contact": {
+      "heading": "Contact",
+      "phone": "+234 706 928 5276",
+      "phoneHref": "tel:+2347069285276",
+      "email": "busarialaocollege2006@gmail.com",
+      "emailHref": "mailto:busarialaocollege2006@gmail.com",
+      "whatsappLabel": "WhatsApp us",
+      "whatsappHref": "#",
+      "portalLabel": "Student portal · Results & fees",
+      "portalHref": "#"
+    },
+    "socials": [
+      { "key": "facebook", "label": "Facebook", "href": "https://www.facebook.com/busarialaocollegeilorin/" },
+      { "key": "instagram", "label": "Instagram", "href": "#" },
+      { "key": "whatsapp", "label": "WhatsApp", "href": "#" }
+    ],
+    "legal": {
+      "copyright": "© {year} Busarialao College",
+      "privacyLabel": "Privacy",
+      "privacyHref": "/privacy/",
+      "creditPrefix": "Illustrations by",
+      "creditLabel": "Storyset",
+      "creditHref": "https://storyset.com",
+      "toTopLabel": "Back to top ↑"
+    }
+  }
+}

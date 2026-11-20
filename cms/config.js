@@ -469,6 +469,53 @@ const contact = entry('contact', 'Contact details', 'contact', [
   }),
 ]);
 
+// ---------------------------------------------------------------------------------------------
+// v1 site shell (header, mobile menu, footer): used by the /preview/*-v1/ pages
+// ---------------------------------------------------------------------------------------------
+
+const linkFields = [str('label', 'Link text'), str('href', 'Link address')];
+const linkList = (name, label) => list(name, label, linkFields, { summary: '{{fields.label}}' });
+const siteShell = entry('site', 'Site header and footer (v1 pages)', 'site', [
+  obj('home', 'Logo link', [str('href', 'Address'), str('label', 'Name for screen readers')]),
+  linkList('nav', 'Navigation links'),
+  obj('apply', 'Apply button', linkFields),
+  obj('menu', 'Mobile menu', [str('open', 'Open button label'), str('close', 'Close button label'), str('title', 'Panel name')]),
+  obj('footer', 'Footer', [
+    txt('blurb', 'Short description', { hint: 'Leave {foundedYear} as it is; it is filled in from the founding year.' }),
+    str('logoAlt', 'Logo description'),
+    obj('school', 'School column', [str('heading', 'Heading'), linkList('links', 'Links')]),
+    obj('admissions', 'Admissions column', [str('heading', 'Heading'), linkList('links', 'Links')]),
+    obj('findUs', 'Find us column', [
+      str('heading', 'Heading'),
+      strList('address', 'Address (one line per item)', { field: { name: 'item', label: 'Line', widget: 'string' } }),
+      str('directionsLabel', 'Directions link text'),
+      str('directionsHref', 'Directions link address'),
+    ]),
+    str('hours', 'Opening badge'),
+    obj('contact', 'Contact column', [
+      str('heading', 'Heading'),
+      str('phone', 'Phone'),
+      str('phoneHref', 'Phone link'),
+      str('email', 'Email'),
+      str('emailHref', 'Email link'),
+      str('whatsappLabel', 'WhatsApp link text'),
+      str('whatsappHref', 'WhatsApp link address'),
+      str('portalLabel', 'Student portal link text'),
+      str('portalHref', 'Student portal link address'),
+    ]),
+    list('socials', 'Social links', [hidden('key'), str('label', 'Name'), str('href', 'Link address')], { allow_add: false, summary: '{{fields.label}}' }),
+    obj('legal', 'Bottom row', [
+      str('copyright', 'Copyright', { hint: 'Leave {year} as it is; it is filled in automatically.' }),
+      str('privacyLabel', 'Privacy link text'),
+      str('privacyHref', 'Privacy link address'),
+      str('creditPrefix', 'Credit text'),
+      str('creditLabel', 'Credit link text'),
+      str('creditHref', 'Credit link address'),
+      str('toTopLabel', 'Back to top text'),
+    ]),
+  ]),
+]);
+
 const news = entry('news', 'News', 'news', [
   list(
     'items',
@@ -504,7 +551,7 @@ initCMS({
     collections: [
       group('pages', 'Pages', TAGS, [home, twentyYears, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
-      group('site', 'School and contact', TAGS, [school, contact]),
+      group('site', 'School and contact', TAGS, [school, contact, siteShell]),
       group('news', 'News', TAGS, [news]),
     ],
   },
