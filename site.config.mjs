@@ -12,4 +12,11 @@ export const siteConfig = {
    *     never be made indexable by a build that skipped the launch checks.
    */
   developmentNoindex: true,
+
+  /**
+   * Colour theme for the v1 pages ("dark" or "light"). It is the one place the theme is read from:
+   * SiteV1Layout puts it on <html data-theme="...">, and the tokens switch with it. There is no
+   * visitor toggle yet.
+   */
+  defaultTheme: 'dark',
 };
