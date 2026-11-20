@@ -809,6 +809,62 @@ const boardingV1 = entry('boarding-v1', 'Boarding & Life', 'boarding-v1', [
   v1Visit,
 ]);
 
+// The Contact page takes its phone, email, address, hours, directions and social links from the
+// "Site header and footer" entry, so they are edited once. Its WhatsApp link comes from there too.
+const contactV1 = entry('contact-v1', 'Contact', 'contact-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    v1Crumb,
+    str('eyebrow', 'Small label'),
+    str('title', 'Title'),
+    txt('lead', 'Lead line'),
+    v1Action('primary', 'Main button'),
+    str('secondaryLabel', 'Second button text (links to WhatsApp)'),
+  ]),
+  obj('ways', 'Ways to reach us', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('callTitle', 'Call card title'),
+    str('emailTitle', 'Email card title'),
+    str('whatsappTitle', 'WhatsApp card title'),
+    str('whatsappText', 'WhatsApp card text'),
+    str('visitTitle', 'Visit card title'),
+  ]),
+  obj('find', 'Find us', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('name', 'Name above the address'),
+    str('mapLabel', 'Map panel title'),
+    str('mapNote', 'Map panel note'),
+    str('directionsLabel', 'Directions button text'),
+  ]),
+  obj('form', 'Message form (a preview: it does not send anything yet)', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    obj('name', 'Name field', [str('label', 'Label'), str('placeholder', 'Placeholder')]),
+    obj('phone', 'Phone field', [str('label', 'Label'), str('placeholder', 'Placeholder'), str('error', 'Error message')]),
+    obj('email', 'Email field', [str('label', 'Label'), str('optional', 'Word shown next to the label'), str('placeholder', 'Placeholder'), str('error', 'Error message')]),
+    obj('interest', 'Topic list', [
+      str('label', 'Label'),
+      strList('options', 'Options', { field: { name: 'item', label: 'Option', widget: 'string' } }),
+    ]),
+    obj('message', 'Message field', [str('label', 'Label'), str('placeholder', 'Placeholder')]),
+    str('button', 'Button text'),
+    str('previewNotice', 'Words shown when the form is filled in correctly'),
+  ]),
+  obj('follow', 'Follow us (navy band)', [str('eyebrow', 'Small label'), str('heading', 'Heading')]),
+  obj('visit', 'Come and see us band', [
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    v1Photo('photo', 'Background photo'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones', 'Where to centre the crop on a phone, for example 62% 50%.'),
+    obj('form', 'Phone field', [str('label', 'Field name for screen readers'), str('placeholder', 'Placeholder'), str('button', 'Button text')]),
+    obj('whatsapp', 'WhatsApp link', [str('label', 'Link text')]),
+  ]),
+]);
+
 const news = entry('news', 'News', 'news', [
   list(
     'items',
@@ -845,7 +901,7 @@ initCMS({
       group('pages', 'Pages', TAGS, [home, twentyYears, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
       group('site', 'School and contact', TAGS, [school, contact, siteShell]),
-      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1, aboutV1, boardingV1]),
+      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1, aboutV1, boardingV1, contactV1]),
       group('news', 'News', TAGS, [news]),
     ],
   },

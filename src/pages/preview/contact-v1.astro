@@ -1,0 +1,200 @@
+---
+// Design preview: Contact (the "2" frames). Built with the v1 shell and shared v1 components.
+// Not linked from the navigation; always noindex. The existing /contact/ page is untouched.
+//
+// The message form has no destination yet, so it is a preview: it validates and shows the error
+// state, but never sends or stores anything, and says so when it is filled in correctly. There is
+// no endpoint. The map is a plain panel that links to Google Maps (no embed).
+// Phone, email, address, hours, directions and social links come from site.json (one place).
+import SiteV1Layout from '../../layouts/SiteV1Layout.astro';
+import '../../styles/v1/page.css';
+import PageIntro from '../../components/v1/PageIntro.astro';
+import SocialIcon from '../../components/v1/SocialIcon.astro';
+import VisitBand from '../../components/v1/VisitBand.astro';
+import { contactV1 as c } from '../../data/contact-v1';
+import { site } from '../../data/site';
+
+const d = c.details;
+const f = c.form;
+const external = (href: string) => (href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {});
+---
+
+<SiteV1Layout title={c.meta.title} description={c.meta.description}>
+  <div class="pg pg-h1-sm">
+    <PageIntro
+      eyebrow={c.hero.eyebrow}
+      title={c.hero.title}
+      lead={c.hero.lead}
+      titleMax="20ch"
+      leadMax="60ch"
+      actions={[
+        { label: c.hero.primary.label, href: c.hero.primary.href },
+        { label: c.hero.secondaryLabel, href: d.whatsappHref, kind: 'secondary' },
+      ]}
+    >
+      <nav slot="before" class="crumb" aria-label="Breadcrumb">
+        <a href={site.home.href}>{c.hero.breadcrumb.home}</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">{c.hero.breadcrumb.current}</span>
+      </nav>
+    </PageIntro>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eb">{c.ways.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.ways.heading}</h2>
+        <div class="reach">
+          <a href={d.phoneHref} class="card reach-card">
+            <span class="reach-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></span>
+            <b>{c.ways.callTitle}</b>
+            <span class="val">{d.phone}</span>
+          </a>
+          <a href={d.emailHref} class="card reach-card">
+            <span class="reach-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span>
+            <b>{c.ways.emailTitle}</b>
+            <span class="val">{d.email.split('@')[0]}@<wbr />{d.email.split('@')[1]}</span>
+          </a>
+          <a href={d.whatsappHref} class="card reach-card" {...external(d.whatsappHref)}>
+            <span class="reach-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1112 20a8 8 0 01-4-1z"></path></svg></span>
+            <b>{c.ways.whatsappTitle}</b>
+            <span class="val">{c.ways.whatsappText}</span>
+          </a>
+          <div class="card reach-card">
+            <span class="reach-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span>
+            <b>{c.ways.visitTitle}</b>
+            <span class="val plain">{d.address.join(' ')}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <span class="eb">{c.find.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.find.heading}</h2>
+        <div class="find">
+          <div class="card addr">
+            <h3>{c.find.name}</h3>
+            <address>{d.address.map((line, i) => (<>{i > 0 && <br />}{line}</>))}</address>
+            <span class="open-pill"><i></i>{d.hours}</span>
+            <a class="btn" href={d.directionsHref} {...external(d.directionsHref)}>{c.find.directionsLabel} <i aria-hidden="true">↗</i></a>
+          </div>
+          <a class="map-tile" href={d.directionsHref} {...external(d.directionsHref)} aria-label={`${c.find.directionsLabel}: ${c.find.name}`}>
+            <span>
+              <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+              <span class="map-label">{c.find.mapLabel}</span>
+              <span class="map-note">{c.find.mapNote}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap split split-faq" style="--a:4fr;--b:8fr">
+        <div>
+          <span class="eb">{f.eyebrow}</span>
+          <h2 class="h2" style="margin-top:10px">{f.heading}</h2>
+          <p class="muted" style="margin-top:14px;font-size:17px;line-height:1.6">{f.text}</p>
+        </div>
+        <form class="card contact-form" data-contact-form novalidate>
+          <label class="f">
+            <span>{f.name.label}</span>
+            <input class="fin" type="text" name="name" autocomplete="name" placeholder={f.name.placeholder} />
+          </label>
+          <label class="f">
+            <span>{f.phone.label}</span>
+            <input class="fin" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder={f.phone.placeholder} aria-describedby="err-phone" data-field="phone" />
+            <span class="ferr" id="err-phone" hidden><span aria-hidden="true">!</span>{f.phone.error}</span>
+          </label>
+          <label class="f">
+            <span>{f.email.label} <span class="muted opt">{f.email.optional}</span></span>
+            <input class="fin" type="email" name="email" autocomplete="email" placeholder={f.email.placeholder} aria-describedby="err-email" data-field="email" />
+            <span class="ferr" id="err-email" hidden><span aria-hidden="true">!</span>{f.email.error}</span>
+          </label>
+          <label class="f">
+            <span>{f.interest.label}</span>
+            <select class="fin" name="interest">
+              {f.interest.options.map((option) => <option>{option}</option>)}
+            </select>
+          </label>
+          <label class="f full">
+            <span>{f.message.label}</span>
+            <textarea class="fin" name="message" rows="5" placeholder={f.message.placeholder}></textarea>
+          </label>
+          <div class="full">
+            <button class="btn" type="submit">{f.button} <i aria-hidden="true">↗</i></button>
+            <p class="notice" role="status" data-notice data-text={f.previewNotice}></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="navy">
+      <span class="circle" aria-hidden="true"></span>
+      <div class="wrap">
+        <div class="follow">
+          <div>
+            <span class="eb">{c.follow.eyebrow}</span>
+            <h2>{c.follow.heading}</h2>
+          </div>
+          <div class="socials">
+            {c.socials.map((s) => (
+              <a class:list={['social', s.key]} href={s.href} {...external(s.href)}>
+                <span class="chip"><SocialIcon name={s.key} /></span>{s.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <VisitBand
+      heading={c.visit.heading}
+      text={c.visit.text}
+      photo={c.visit.photo}
+      photoFocus={c.visit.focus}
+      photoFocusMobile={c.visit.focusMobile}
+      form={c.visit.form}
+      alt={c.visit.whatsapp}
+    />
+    <div class="end-space"></div>
+  </div>
+</SiteV1Layout>
+
+<script>
+  // Preview form: validates, shows the error state, and never sends anything.
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  if (form) {
+    const notice = form.querySelector<HTMLElement>('[data-notice]');
+    const phone = form.querySelector<HTMLInputElement>('[data-field="phone"]');
+    const email = form.querySelector<HTMLInputElement>('[data-field="email"]');
+
+    const setError = (input: HTMLInputElement, bad: boolean) => {
+      const message = document.getElementById(input.getAttribute('aria-describedby') || '');
+      if (bad) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+      if (message) message.hidden = !bad;
+    };
+    const phoneOk = (value: string) => /^\+?\d{7,15}$/.test(value.replace(/[\s\-().]/g, ''));
+    const emailOk = (value: string) => value === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+    phone?.addEventListener('input', () => {
+      if (phone.getAttribute('aria-invalid') && phoneOk(phone.value)) setError(phone, false);
+    });
+    email?.addEventListener('input', () => {
+      if (email.getAttribute('aria-invalid') && emailOk(email.value.trim())) setError(email, false);
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); // nothing is ever sent from this preview
+      if (notice) notice.textContent = '';
+      const badPhone = !phone || !phoneOk(phone.value);
+      const badEmail = !!email && !emailOk(email.value.trim());
+      if (phone) setError(phone, badPhone);
+      if (email) setError(email, badEmail);
+      if (badPhone) phone?.focus();
+      else if (badEmail) email?.focus();
+      else if (notice) notice.textContent = notice.dataset.text || '';
+    });
+  }
+</script>

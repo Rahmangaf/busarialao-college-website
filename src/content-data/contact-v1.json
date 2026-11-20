@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "title": "Contact — Busarialao College",
+    "description": "Call, message us on WhatsApp, or come and see the school."
+  },
+  "hero": {
+    "breadcrumb": { "home": "Home", "current": "Contact" },
+    "eyebrow": "Contact",
+    "title": "We'd love to hear from you",
+    "lead": "Call, message us on WhatsApp, or come and see the school.",
+    "primary": { "label": "Book a campus tour", "href": "#visit" },
+    "secondaryLabel": "WhatsApp"
+  },
+  "ways": {
+    "eyebrow": "Ways to reach us",
+    "heading": "Pick what suits you",
+    "callTitle": "Call",
+    "emailTitle": "Email",
+    "whatsappTitle": "WhatsApp",
+    "whatsappText": "Message the admissions office",
+    "visitTitle": "Visit"
+  },
+  "find": {
+    "eyebrow": "Find us",
+    "heading": "Visit the school",
+    "name": "Busarialao College",
+    "mapLabel": "Map",
+    "mapNote": "Opens Google Maps",
+    "directionsLabel": "Get directions"
+  },
+  "form": {
+    "eyebrow": "Send a message",
+    "heading": "Ask us anything",
+    "text": "The admissions office will call you back.",
+    "name": { "label": "Name", "placeholder": "Your name" },
+    "phone": { "label": "Phone number", "placeholder": "e.g. 0803 …", "error": "Enter a phone number so we can call you back." },
+    "email": { "label": "Email", "optional": "(optional)", "placeholder": "you@example.com", "error": "Enter an email address like you@example.com, or leave it empty." },
+    "interest": { "label": "I'm enquiring about", "options": ["Admissions", "Boarding", "Fees", "Something else"] },
+    "message": { "label": "Message", "placeholder": "How can we help?" },
+    "button": "Send message",
+    "previewNotice": "This form is a preview. Nothing has been sent."
+  },
+  "follow": {
+    "eyebrow": "Follow us",
+    "heading": "News and moments from school"
+  },
+  "visit": {
+    "heading": "Come and see Busarialao for yourself",
+    "text": "Tours run Monday to Friday, 9am to 2pm. Leave your number and our admissions office will call to book a time.",
+    "photo": "courtyard",
+    "focus": "50% 55%",
+    "focusMobile": "62% 50%",
+    "form": { "label": "Phone number", "placeholder": "Your phone number", "button": "Book a tour" },
+    "whatsapp": { "label": "or ask on WhatsApp →" }
+  }
+}
