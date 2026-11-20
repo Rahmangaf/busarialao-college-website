@@ -7,11 +7,12 @@ interface Props {
   linkHref?: string;
   /** Narrow, left-aligned copy (Admissions) instead of the full container (Academics). */
   narrow?: boolean;
+  id?: string;
 }
-const { eyebrow, heading, linkLabel, linkHref, narrow = false } = Astro.props;
+const { eyebrow, heading, linkLabel, linkHref, narrow = false, id } = Astro.props;
 ---
 
-<section class="navy">
+<section class="navy" id={id}>
   <span class="circle" aria-hidden="true"></span>
   <div class:list={['wrap', narrow && 'navy-narrow']}>
     <span class="eb">{eyebrow}</span>
