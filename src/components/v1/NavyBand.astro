@@ -1,0 +1,22 @@
+---
+// The one navy section a page is allowed. Heading plus an optional link; extra content goes in the slot.
+interface Props {
+  eyebrow: string;
+  heading: string;
+  linkLabel?: string;
+  linkHref?: string;
+  /** Narrow, left-aligned copy (Admissions) instead of the full container (Academics). */
+  narrow?: boolean;
+}
+const { eyebrow, heading, linkLabel, linkHref, narrow = false } = Astro.props;
+---
+
+<section class="navy">
+  <span class="circle" aria-hidden="true"></span>
+  <div class:list={['wrap', narrow && 'navy-narrow']}>
+    <span class="eb">{eyebrow}</span>
+    <h2>{heading}</h2>
+    <slot />
+    {linkLabel && linkHref && <a class="nlink" href={linkHref}>{linkLabel}</a>}
+  </div>
+</section>

@@ -55,3 +55,15 @@ body.v1 {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Zero-specificity reset (the same one the prototype pages used), so every v1 component starts equal. */
+:where(.v1 *) {
+  margin: 0;
+  padding: 0;
+}
+:where(.v1 ul, .v1 ol) {
+  list-style: none;
+}
+:where(.v1 button, .v1 input, .v1 select, .v1 textarea) {
+  font: inherit;
+}

@@ -1,0 +1,11 @@
+---
+// Primary (action colour) or secondary (pill) button with the small arrow box.
+interface Props {
+  label: string;
+  href: string;
+  kind?: 'primary' | 'secondary';
+}
+const { label, href, kind = 'primary' } = Astro.props;
+---
+
+<a class={kind === 'secondary' ? 'btn2' : 'btn'} href={href}>{label} <i aria-hidden="true">↗</i></a>

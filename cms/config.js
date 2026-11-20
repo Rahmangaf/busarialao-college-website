@@ -516,6 +516,81 @@ const siteShell = entry('site', 'Site header and footer (v1 pages)', 'site', [
   ]),
 ]);
 
+// ---------------------------------------------------------------------------------------------
+// v1 preview pages (/preview/*-v1/). These pages carry no tags. Words in curly brackets, such as
+// {examDate}, are filled in automatically: leave them exactly as they are.
+// ---------------------------------------------------------------------------------------------
+
+const V1_PHOTOS = [
+  'awards-ceremony',
+  'biology-lab',
+  'biology-lab-microscopy',
+  'borehole',
+  'ceremony-hall',
+  'chemistry-lab',
+  'computer-lab',
+  'courtyard',
+  'dormitory',
+  'dormitory-study',
+  'exam-session',
+  'football',
+  'graduating-class',
+  'graduation-group',
+  'hero-chemistry-experiment',
+  'students-walking',
+];
+const v1Photo = (name = 'photo', label = 'Photo') => ({ name, label, widget: 'select', options: V1_PHOTOS });
+const v1Meta = obj('meta', 'Browser tab and search text', [str('title', 'Page title'), txt('description', 'Short description')]);
+const v1Action = (name, label) => obj(name, label, linkFields);
+const v1Visit = obj('visit', 'Come and see us band', [
+  str('heading', 'Heading'),
+  txt('text', 'Text'),
+  v1Photo('photo', 'Background photo'),
+  focus('focus', 'Photo focus'),
+  obj('form', 'Phone field', [str('label', 'Field name for screen readers'), str('placeholder', 'Placeholder'), str('button', 'Button text')]),
+  obj('whatsapp', 'WhatsApp link', linkFields),
+]);
+
+const admissionsV1 = entry('admissions-v1', 'Admissions', 'admissions-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    str('eyebrow', 'Small label'),
+    txt('title', 'Title', { hint: 'A new line here is a line break on wide screens only.' }),
+    txt('lead', 'Lead line'),
+    v1Action('primary', 'Main button'),
+    v1Action('secondary', 'Second button'),
+  ]),
+  obj('steps', 'Three steps', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'items',
+      'Steps',
+      [
+        str('tag', 'Step label'),
+        str('title', 'Title'),
+        txt('text', 'Text'),
+        { name: 'illustration', label: 'Illustration', widget: 'select', options: ['step-apply', 'step-exam', 'step-offer'] },
+        str('alt', 'Illustration description'),
+      ],
+      { summary: '{{fields.title}}', allow_add: false },
+    ),
+  ]),
+  obj('whoCanApply', 'Who can apply', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    list('cards', 'Cards', [str('title', 'Title'), txt('text', 'Text'), v1Photo(), focus('focus', 'Photo focus'), str('alt', 'Photo description')], { summary: '{{fields.title}}' }),
+  ]),
+  obj('scholarships', 'Scholarships band', [str('eyebrow', 'Small label'), txt('heading', 'Heading'), str('linkLabel', 'Link text'), str('linkHref', 'Link address')]),
+  obj('faq', 'Questions', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list('items', 'Questions', [str('q', 'Question'), txt('a', 'Answer'), { name: 'open', label: 'Open when the page loads', widget: 'boolean', default: false, required: false }], { summary: '{{fields.q}}' }),
+  ]),
+  v1Visit,
+]);
+
 const news = entry('news', 'News', 'news', [
   list(
     'items',
@@ -552,6 +627,7 @@ initCMS({
       group('pages', 'Pages', TAGS, [home, twentyYears, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
       group('site', 'School and contact', TAGS, [school, contact, siteShell]),
+      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1]),
       group('news', 'News', TAGS, [news]),
     ],
   },

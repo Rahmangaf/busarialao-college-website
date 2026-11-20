@@ -1,0 +1,35 @@
+---
+// "Come and see us" band: a photo under a dark overlay with a phone number field.
+// The form has no destination yet (nothing is stored or sent), so it is a preview: the button is
+// disabled and submitting does nothing. A real hand-off is added when the school decides where
+// enquiries go (open question on the contact form).
+import V1Photo from './V1Photo.astro';
+
+interface Props {
+  id?: string;
+  heading: string;
+  text: string;
+  photo: string;
+  photoFocus?: string;
+  form: { label: string; placeholder: string; button: string };
+  alt: { label: string; href: string };
+}
+const { id = 'visit', heading, text, photo, photoFocus, form, alt } = Astro.props;
+---
+
+<section class="visit" id={id}>
+  <div class="ph"><V1Photo name={photo} focus={photoFocus} sizes="100vw" widths={[828, 1280, 1672]} /></div>
+  <div class="shade"></div>
+  <div class="in">
+    <h2>{heading}</h2>
+    <p>{text}</p>
+    <form onsubmit="return false" novalidate>
+      <label>
+        <span class="sr">{form.label}</span>
+        <input type="tel" name="phone" placeholder={form.placeholder} autocomplete="tel" />
+      </label>
+      <button class="btn" type="submit" disabled>{form.button} <i aria-hidden="true">↗</i></button>
+    </form>
+    <a class="alt" href={alt.href}>{alt.label}</a>
+  </div>
+</section>
