@@ -21,11 +21,26 @@ Resolve these before launch content is final. Until then keep the tags in place.
 7. **Pioneers.** Nine learners and nine staff (p.21). Confirm no other source says twelve.
 8. **Results definition.** What do "general percentage passed (WASSCE/NECO)" measure? Which figures should the Home page feature given the 2026 WASSCE result (74.49%) and the pending NECO and admission figures?
 9. **Claims to substantiate.** "First dedicated science college in Ilorin", "pure science school", "zero tolerance for examination malpractice", "top-performing private schools in the State's assessments".
-10. **Registration.** Exact CAC and Ministry wording and registration numbers.
+10. **Registration.** Exact CAC and Ministry wording and registration numbers. The "CAC registered · Approved by the State Ministry of Education" line was removed from the Home v3 preview footer until the school confirms the wording and numbers.
 11. **Laboratories.** Show four, five, or include the Agric lab and CBT hall?
 12. **Graduation.** The banner ties the 20th anniversary to a graduation on 26 September 2026. What was the graduation, and was it the same event as the anniversary?
 13. **Scholarship origin.** The scheme began in 2008/2009 and was formally extended in 2018. Confirm how to describe it, and how it relates to the Yunus Ajibola Gafar Foundation (still registering).
 14. **Core value 6:** the printed list skips it (1 to 5, 7, 8). Resolved: show seven values.
+15. **Footer hours.** What are the Mon–Sat opening hours behind the "Open Mon–Sat" badge (office, gate, or school day)?
+16. **Tour days.** Are campus tours Monday to Friday, 9am to 2pm, as the Visit band says?
+17. **"Classes run Monday to Friday."** Confirm this wording for the Day school cards on Admissions and Boarding & Life.
+18. **Contact form destination.** Where do the Contact message form and the "Book a tour" phone form send enquiries (email, WhatsApp, a database)? Until then both are previews and send nothing.
+19. **Vision and mission.** Supply the vision and mission text; About shows a "Text to be supplied by the school" panel until then.
+20. **Principal's welcome.** Confirm the principal's name and title (see 5) and supply a consented photo; About shows a silhouette and "The Principal" until then.
+21. **Core values.** Confirm the seven values and their wording on About (see 14).
+22. **BECE and NECO wording.** Confirm "Students sit BECE at the end of JSS3, and WASSCE and NECO at the end of SS3" on Academics.
+23. **Beyond the classroom.** Supply details for the science fair, the mathematics olympiads (state and national level) and the workbook project, and confirm vocational training has run "since 2014".
+24. **Admissions placeholders.** Confirm the forms-close date, the acceptance fee, the age rule and the admission list date, and what applicants should bring.
+25. **Day school and Boarding card wording.** Confirm the hours, what to bring and fees rows, and the "Students can board on campus" wording on Admissions and Boarding & Life.
+26. **Real photos.** Replace every generated photo, including the Physics lab (no photo yet) and the Boarding gallery (hidden until real photos exist).
+27. **Term dates.** Supply the start and end dates for each term and the admission list date for the Key dates table on News & Calendar.
+28. **Fees.** Supply day and boarding fees for the "Boarding fees" link and the fee rows on Boarding & Life.
+29. **Student portal and social links.** Supply the student portal link, the school's WhatsApp number and its Instagram address; they are placeholders in the footer, Contact and News until then.
 
 ## Content the school must supply
 

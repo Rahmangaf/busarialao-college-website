@@ -1,0 +1,41 @@
+---
+// Three step cards with a Storyset illustration on a light panel. Used on Admissions (and Home).
+import { Image } from 'astro:assets';
+import { illustration } from '../../data/v1-photos';
+
+interface Step {
+  tag: string;
+  title: string;
+  text: string;
+  illustration: string;
+  alt: string;
+}
+interface Props {
+  eyebrow: string;
+  heading: string;
+  items: Step[];
+  id?: string;
+}
+const { eyebrow, heading, items, id } = Astro.props;
+---
+
+<section class="sec" id={id}>
+  <div class="wrap">
+    <div style="margin-bottom:40px">
+      <span class="eb">{eyebrow}</span>
+      <h2 class="h2" style="margin-top:10px">{heading}</h2>
+    </div>
+    <ol class="steps">
+      {items.map((s) => (
+        <li class="card step">
+          <span class="tag">{s.tag}</span>
+          <div class="ipanel"><Image src={illustration(s.illustration)} alt={s.alt} loading="lazy" /></div>
+          <div>
+            <h3>{s.title}</h3>
+            <p class="muted">{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

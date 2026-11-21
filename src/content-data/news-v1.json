@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "News & Calendar — Busarialao College",
+    "description": "School news, results and key dates in one place."
+  },
+  "hero": {
+    "breadcrumb": { "home": "Home", "current": "News & Calendar" },
+    "eyebrow": "News & Calendar",
+    "title": "What's happening at Busarialao",
+    "lead": "School news, results and key dates in one place."
+  },
+  "feature": {
+    "href": "/20-years/",
+    "eyebrow": "{years} years",
+    "heading": "Celebrating 20 Years",
+    "text": "{yearsInWords} years of teaching science in Ilorin.",
+    "linkLabel": "Read more →",
+    "photo": "courtyard",
+    "focus": "50% 55%",
+    "alt": "The school courtyard"
+  },
+  "latest": {
+    "eyebrow": "Latest news",
+    "heading": "From around the school",
+    "filterLabel": "Filter news",
+    "allLabel": "All",
+    "categories": ["News", "Results", "Events"],
+    "emptyCard": "More news coming soon."
+  },
+  "calendar": {
+    "eyebrow": "Calendar",
+    "heading": "Key dates",
+    "caption": "Key dates",
+    "rows": [
+      { "label": "Admissions 2027/28", "value": "Open", "confirmed": true },
+      { "label": "Entrance exam", "value": "{examDate}", "confirmed": true },
+      { "label": "Admission list", "value": "Date to be announced", "confirmed": false },
+      { "label": "First term (start and end)", "value": "Date to be announced", "confirmed": false },
+      { "label": "Second term (start and end)", "value": "Date to be announced", "confirmed": false },
+      { "label": "Third term (start and end)", "value": "Date to be announced", "confirmed": false }
+    ],
+    "note": "Term dates are confirmed by the school each session."
+  },
+  "follow": {
+    "eyebrow": "Stay in touch",
+    "heading": "Never miss an update"
+  },
+  "visit": {
+    "heading": "Come and see Busarialao for yourself",
+    "text": "Tours run Monday to Friday, 9am to 2pm. Leave your number and our admissions office will call to book a time.",
+    "photo": "courtyard",
+    "focus": "50% 55%",
+    "focusMobile": "62% 50%",
+    "form": { "label": "Phone number", "placeholder": "Your phone number", "button": "Book a tour" },
+    "whatsapp": { "label": "or ask on WhatsApp →" }
+  }
+}

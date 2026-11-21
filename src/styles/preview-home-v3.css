@@ -1,0 +1,192 @@
+/*
+ * Styles for the /preview/home-v3/ design preview, from the prototype file (round 2 changes are in
+ * the "round 2 additions" block: logo, steps, visit band, footer, hero crop on phones).
+ * This file is imported by that one page only. The page does not use BaseLayout, so none of it
+ * (including the global-looking rules) reaches any other page, and no global token is touched.
+ * The three fonts are self-hosted in preview-home-v3-fonts.css under the same family names.
+ */
+:root{
+  --ink:#0d0a26;        /* canvas: Busarialao navy pushed to near-black (FH uses #0a0a0a) */
+  --ink-2:#17123d;
+  --navy:#2a1f7a; --navy-2:#463c93;
+  --blue:#1f63e0;       /* FH #1E5FD6 ≈ Busarialao Apply blue */
+  --paper:#f4f3f9;
+  --mute:rgba(13,10,38,.5);
+  --img:https://busarialao-college-website.vercel.app/_astro/;
+  --gutter:clamp(16px,8vw,120px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:#fff;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.disp{font-family:"Inter Tight",Inter,sans-serif}
+
+/* ---------- shared atoms (measured from FH) ---------- */
+.wrap{width:min(1200px,100% - 2*var(--gutter) + 0px);margin-inline:auto}
+@media(max-width:700px){.wrap{width:calc(100% - 32px)}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:500 13px/20px Inter;letter-spacing:.08em;text-transform:uppercase;color:#6f9bff}
+.eyebrow svg{width:16px;height:16px}
+.on-light .eyebrow{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 10px 0 18px;border-radius:10px;font:600 15px Inter;transition:transform .25s,background .25s;white-space:nowrap}
+.btn i{display:grid;place-items:center;width:22px;height:22px;border-radius:5px;font-style:normal;font-size:12px}
+.btn:hover{transform:translateY(-2px)}
+.b-blue{background:var(--blue);color:#fff}.b-blue i{background:rgba(255,255,255,.22)}
+.b-white{background:#fff;color:var(--navy)}.b-white i{background:var(--blue);color:#fff}
+.b-ghost{background:rgba(255,255,255,.9);color:var(--navy)}.b-ghost i{background:var(--navy);color:#fff}
+.tag{display:inline-block;font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:6px;background:rgba(20,20,30,.72);color:#fff}
+.h2{font:600 clamp(30px,3.6vw,44px)/1.08 "Inter Tight";letter-spacing:-.025em}
+.two-tone .dim{color:rgba(255,255,255,.42)}
+.on-light .two-tone .dim{color:var(--mute)}
+
+/* ---------- HERO: full-bleed photo, content inset 120px ---------- */
+.hero{position:relative;height:100svh;min-height:680px;overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:20% 0%;image-rendering:auto;animation:fadein 1.2s ease both}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes settle{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,38,.45) 0%,rgba(13,10,38,0) 22%),linear-gradient(90deg,rgba(13,10,38,.78) 0%,rgba(13,10,38,.35) 42%,rgba(13,10,38,0) 65%),linear-gradient(0deg,rgba(13,10,38,.7) 0%,rgba(13,10,38,0) 40%)}
+.hero-in{position:relative;z-index:2;height:100%;padding:20px var(--gutter) 64px;display:flex;flex-direction:column}
+.hero-copy{margin-top:auto}
+.chip{display:inline-block;font:500 14px Inter;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(10px);margin-bottom:18px}
+.hero h1{font:600 clamp(46px,6.2vw,80px)/1.03 "Inter Tight";letter-spacing:-.02em;max-width:14ch}
+.hero .ctas{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+
+/* ---------- WHO WE ARE: split card + photo, scroll text reveal ---------- */
+.sec{padding:120px 0 0}
+.who{display:grid;grid-template-columns:5fr 7fr;gap:16px;min-height:540px}
+.who .card{background:var(--paper);color:var(--ink);border-radius:14px;padding:32px;display:flex;flex-direction:column}
+.reveal-text{font:600 clamp(28px,2.8vw,36px)/1.12 "Inter Tight";letter-spacing:-.02em;margin:18px 0 22px}
+.reveal-text span{color:rgba(13,10,38,.12);transition:color .35s}
+.reveal-text span.lit{color:var(--ink)}
+.who .card p{font-size:15px;line-height:1.75;color:rgba(13,10,38,.68)}
+.who .card .btn{margin-top:auto;align-self:flex-start}
+.who .pic{border-radius:14px;overflow:hidden;position:relative}
+.who .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.who .pic .cap{position:absolute;left:16px;bottom:16px;z-index:2;font:500 14px Inter;padding:8px 12px;border-radius:10px;background:rgba(13,10,38,.55);backdrop-filter:blur(10px)}
+
+/* ---------- IMPACT: contained 24px panel, centred head, bento ---------- */
+.impact{background:#16122e;border-radius:24px;padding:56px 72px 72px}
+.center{text-align:center;max-width:740px;margin:0 auto 40px}
+.center .h2{margin-top:10px}
+.bento{display:grid;grid-template-columns:1.25fr .75fr .5fr 1.05fr;grid-template-rows:280px 300px 280px;gap:12px}
+.bt{border-radius:20px;overflow:hidden;position:relative;padding:22px;display:flex;flex-direction:column}
+.bt>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bt h4{font:600 21px/1.15 "Inter Tight";position:relative;max-width:16ch}
+.bt .n{font:600 clamp(64px,7vw,104px)/.9 "Inter Tight";letter-spacing:-.04em;margin-top:auto;position:relative}
+.bt small{font-size:14px;opacity:.8;margin-top:12px;position:relative;line-height:1.4}
+.g1{grid-column:1/2;grid-row:1} .g1 img{filter:grayscale(1)}
+.g2{grid-column:2/5;grid-row:1;background:#221d40}
+.g3{grid-column:1/2;grid-row:2;background:var(--blue)}
+.g4{grid-column:2/3;grid-row:2;background:radial-gradient(circle at 50% 40%,#2a8fe0,#1a5fb5 70%);align-items:center;justify-content:center}
+.g5{grid-column:3/5;grid-row:2}
+.g6{grid-column:1/2;grid-row:3}
+.g7{grid-column:2/3;grid-row:3;justify-content:center}
+.g7 p{font:400 italic clamp(30px,3vw,40px)/1 "Instrument Serif";}
+.g8{grid-column:3/5;grid-row:3;background:#fff;color:var(--ink)}
+
+/* ---------- ACADEMICS: pinned horizontal scroll (FH programmes) ---------- */
+.pin{height:var(--pin-h,400vh);position:relative;margin-top:120px}
+.pin-stick{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.pin-head{padding:0 var(--gutter);margin-bottom:32px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.pin-head p{font:500 16px/1.5 Inter;color:rgba(255,255,255,.9);margin-top:10px;max-width:60ch}
+.pin-head p .dim{color:rgba(255,255,255,.45)}
+.track{display:flex;gap:16px;padding:0 var(--gutter);will-change:transform}
+.pc{flex:0 0 min(780px,86vw);height:min(640px,66svh);border-radius:10px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:26px}
+.pc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pc::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.1) 50%,transparent 70%);z-index:1}
+.pc>*:not(img){position:relative;z-index:2}
+.pc h3{font:600 26px/1.15 "Inter Tight";margin:14px 0 8px;letter-spacing:-.01em}
+.pc .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.pc p{font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.8);max-width:46ch}
+.tabs{display:flex;gap:8px;padding:28px var(--gutter) 0;flex-wrap:wrap}
+.tabs button{height:44px;padding:0 16px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:transparent;color:rgba(255,255,255,.6);font:500 14px Inter;cursor:pointer;transition:.25s}
+.tabs button.on{background:#fff;color:var(--ink);border-color:#fff}
+
+/* ---------- AUDIENCES: asymmetric-radius cards (FH "who we work with") ---------- */
+.aud{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ac{background:#e9e8f1;color:var(--ink);border-radius:24px;min-height:380px;padding:28px;display:flex;flex-direction:column;text-align:center;overflow:hidden;position:relative}
+.ac:nth-child(1){border-radius:64px 24px 24px 24px}
+.ac:nth-child(3){border-radius:24px 64px 24px 24px}
+.ac .art{flex:1;display:grid;place-items:center}
+.ac svg{width:120px;height:120px}
+.ac h3{font:600 20px "Inter Tight";margin-bottom:8px}
+.ac p{font-size:14px;line-height:1.55;color:rgba(13,10,38,.65);max-width:32ch;margin:0 auto 14px}
+.ac a{display:inline-flex;align-items:center;min-height:44px;font:600 14px Inter;color:var(--blue)}
+
+/* ---------- VOICES: portrait cards w/ radial sheen ---------- */
+.voices{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.vc{height:440px;border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
+.vc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vc::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.18),transparent 55%),linear-gradient(rgba(0,0,0,.01) 35%,#000 100%)}
+.vc>*:not(img){position:relative;z-index:2}
+.vc small{font:500 13px Inter;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+.vc p{font:600 15px/1.4 "Inter Tight";margin-top:8px}
+
+/* ---------- CLOSING: 1136 photo panel w/ nested white footer card ---------- */
+
+/* ---------- round 2 additions ---------- */
+/* Who we are: balanced line breaks in the headline */
+.reveal-text{text-wrap:balance}
+/* Our record: the school logo in the blue tile */
+.bt>img.tile-logo{position:static;inset:auto;width:min(150px,80%);height:auto;object-fit:contain}
+/* Proof cards: one equal height */
+.voices{align-items:stretch;grid-auto-rows:1fr}
+/* Admission steps: illustration on a light panel, fixed height so the three cards match */
+.step{background:#16122e;color:#fff;border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:16px;text-align:left}
+.step:nth-child(1){border-radius:64px 24px 24px 24px}
+.step:nth-child(3){border-radius:24px 64px 24px 24px}
+.step .tag{align-self:flex-start;background:var(--blue)}
+.step-art{height:208px;border-radius:16px;background:var(--paper);position:relative;overflow:hidden}
+.step-art img{position:absolute;inset:16px;width:calc(100% - 32px);height:calc(100% - 32px);max-width:none;object-fit:contain}
+.step h3{font:600 20px "Inter Tight";margin-bottom:8px}
+.step p{font-size:14px;line-height:1.55;color:rgba(255,255,255,.72)}
+/* Visit band: its own panel above the footer, with a strong overlay for contrast */
+.visit{margin:120px auto 16px;width:min(1240px,100% - 32px);border-radius:16px;overflow:hidden;position:relative;padding:96px 36px}
+.visit>img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.visit::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(rgba(13,10,38,.7),rgba(13,10,38,.8))}
+.visit>*:not(img){position:relative;z-index:2}
+.cta{text-align:center;max-width:640px;margin:0 auto}
+.cta h2{font:600 clamp(36px,4.4vw,56px)/1.1 "Inter Tight";letter-spacing:-.025em}
+.cta p{color:rgba(255,255,255,.92);margin:24px auto 32px;font-size:16px;line-height:1.6;max-width:50ch}
+.form{color-scheme:light;display:flex;gap:6px;background:#fff;border-radius:12px;padding:6px;max-width:440px;margin:0 auto}
+.form input{flex:1;border:0;border-radius:8px;font:16px Inter;padding:0 12px;color:var(--ink);min-width:0;background:#fff}.form input::placeholder{color:#5a5f73;opacity:1}
+.form .btn{height:44px}
+.alt{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;font-size:14px;color:#fff}
+/* Footer: logo and socials, four columns, hairline, copyright row */
+/* Hero crop. On phones and tablets the photo sits in the top part of the hero, so every face stays clear of the headline. */
+@media(max-width:1020px){
+  .hero>img{height:56%;bottom:auto;object-position:69% 0%;-webkit-mask-image:linear-gradient(#000 74%,transparent);mask-image:linear-gradient(#000 74%,transparent)}
+}
+@media(max-width:640px){
+  .hero>img{object-position:57% 0%}
+  .step-art{height:176px}
+}
+/* Short laptop screens: the headline would climb over the faces, so it runs on two lines at a size that follows the height. */
+@media(min-width:1021px) and (max-height:820px){
+  .hero h1{max-width:none;font-size:clamp(40px,min(5.4vw,8.4svh),64px)}
+}
+
+/* ---------- motion ---------- */
+.up{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.up.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.up{opacity:1;transform:none}.hero>img{animation:none;transform:none}.reveal-text span{color:var(--ink)}}
+
+/* ---------- responsive ---------- */
+@media(max-width:1020px){
+  .who{grid-template-columns:1fr}.who .pic{min-height:380px}
+  .impact{padding:40px 20px}
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:220px}
+  .bento>*{grid-column:auto!important;grid-row:auto!important}
+  .g2,.g8{grid-column:1/-1!important}
+  .aud{grid-template-columns:1fr 1fr}.aud>:last-child:nth-child(odd){grid-column:1/-1}.voices{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .hero-in{padding-bottom:48px}
+  .sec{padding-top:80px}
+  .bento{grid-auto-rows:190px}.bt .n{font-size:58px}
+  .aud,.voices{grid-template-columns:1fr}
+  .vc{height:380px}
+  .pc{height:62svh}.pc .row{flex-direction:column;align-items:flex-start}
+  .pin-head{flex-direction:column;align-items:flex-start}
+  .tabs{display:none}
+  .visit{padding:64px 16px}
+}

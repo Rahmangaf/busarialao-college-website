@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "title": "Admissions — Busarialao College",
+    "description": "Three steps to your offer: form, exam, interview. Admissions open for 2027/28."
+  },
+  "hero": {
+    "eyebrow": "Admissions",
+    "title": "Three steps to\nyour offer.",
+    "lead": "Admissions open for 2027/28. Entrance exam {examDate}.",
+    "primary": { "label": "Apply for 2027/28", "href": "#apply" },
+    "secondary": { "label": "Book a campus tour", "href": "#visit" }
+  },
+  "steps": {
+    "eyebrow": "How it works",
+    "heading": "Form, exam, interview.",
+    "items": [
+      {
+        "tag": "Step 01",
+        "title": "Apply",
+        "text": "Buy the form online or at the school and pay the {applicationFee} fee.",
+        "illustration": "step-apply",
+        "alt": "Illustration: filling in the application form"
+      },
+      {
+        "tag": "Step 02",
+        "title": "Sit the entrance exam",
+        "text": "On campus, {examDate}. Maths, English, Basic Science, Social Studies.",
+        "illustration": "step-exam",
+        "alt": "Illustration: a student sitting an exam"
+      },
+      {
+        "tag": "Step 03",
+        "title": "Receive your offer",
+        "text": "After a short interview, the admission list is published.",
+        "illustration": "step-offer",
+        "alt": "Illustration: an admission letter marked admitted"
+      }
+    ]
+  },
+  "whoCanApply": {
+    "eyebrow": "Who can apply",
+    "heading": "Entry at JSS1.",
+    "text": "Pupils join at JSS1 and follow one pure-science pathway through to SS3. Choose day school or boarding.",
+    "cards": [
+      {
+        "title": "Day school",
+        "text": "Classes run Monday to Friday.",
+        "photo": "students-walking",
+        "focus": "50% 30%",
+        "alt": "Day students in uniform walking across campus"
+      },
+      {
+        "title": "Boarding",
+        "text": "Students can board on campus.",
+        "photo": "dormitory-study",
+        "focus": "35% 45%",
+        "alt": "Two boarders reading together in a dormitory"
+      }
+    ]
+  },
+  "scholarships": {
+    "eyebrow": "Scholarships",
+    "heading": "Four full scholarships every year for able students from partner public schools.",
+    "linkLabel": "Scholarship details →",
+    "linkHref": "/admissions/#scholarships"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "heading": "Questions parents ask.",
+    "items": [
+      {
+        "q": "When is the entrance exam?",
+        "a": "On campus, {examDate}. The papers are Maths, English, Basic Science and Social Studies.",
+        "open": true
+      },
+      {
+        "q": "What do I need to bring?",
+        "a": "Details to be announced by the admissions office.",
+        "open": false
+      },
+      {
+        "q": "Is boarding available?",
+        "a": "Yes. Students can join as boarders or as day students.",
+        "open": true
+      },
+      {
+        "q": "How do I pay the form fee?",
+        "a": "The form fee is {applicationFee}, paid when you buy the form online or at the school. Other payment details to be announced by the admissions office.",
+        "open": false
+      },
+      {
+        "q": "Can I visit first?",
+        "a": "Yes. Campus tours run Monday to Friday, 9am to 2pm.",
+        "open": false
+      }
+    ]
+  },
+  "visit": {
+    "heading": "Come and see Busarialao for yourself",
+    "text": "Tours run Monday to Friday, 9am to 2pm. Leave your number and our admissions office will call to book a time.",
+    "photo": "courtyard",
+    "focus": "50% 55%",
+    "focusMobile": "62% 50%",
+    "form": { "label": "Phone number", "placeholder": "Your phone number", "button": "Book a tour" },
+    "whatsapp": { "label": "or ask on WhatsApp →", "href": "/preview/contact-v1/" }
+  }
+}

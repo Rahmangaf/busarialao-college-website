@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Academics — Busarialao College",
+    "description": "A full secondary curriculum from JSS1 to SS3, with laboratory work, competitions and practical skills built in."
+  },
+  "hero": {
+    "breadcrumb": { "home": "Home", "current": "Academics" },
+    "eyebrow": "Academics",
+    "title": "Learning by doing, with science at the centre",
+    "lead": "A full secondary curriculum from JSS1 to SS3, with laboratory work, competitions and practical skills built in.",
+    "primary": { "label": "Book a campus tour", "href": "/preview/admissions-v1/#visit" },
+    "secondary": { "label": "See our results", "href": "/results/" },
+    "photo": "biology-lab",
+    "focus": "50% 32%",
+    "focusMobile": "42% 30%",
+    "alt": "A biology teacher guiding students at a microscope"
+  },
+  "curriculum": {
+    "eyebrow": "Curriculum",
+    "heading": "Six years, three national exams",
+    "text": "Students sit BECE at the end of JSS3, and WASSCE and NECO at the end of SS3.",
+    "stages": [
+      {
+        "kicker": "JSS1 to JSS3",
+        "title": "Junior Secondary",
+        "text": "Broad foundation in sciences, mathematics, languages and vocational skills.",
+        "pill": "Ends with BECE"
+      },
+      {
+        "kicker": "SS1 to SS3",
+        "title": "Senior Secondary",
+        "text": "Science focus: Physics, Chemistry, Biology, Further Maths and ICT.",
+        "pill": "Ends with WASSCE and NECO"
+      }
+    ]
+  },
+  "labs": {
+    "eyebrow": "Laboratories",
+    "heading": "Four labs for hands-on science",
+    "items": [
+      { "title": "Physics", "text": "Mechanics, electricity and optics practicals.", "tile": "Physics" },
+      {
+        "title": "Chemistry",
+        "text": "Titrations, salts analysis and safe lab practice.",
+        "photo": "chemistry-lab",
+        "focus": "50% 40%",
+        "alt": "Students conducting a chemistry experiment"
+      },
+      {
+        "title": "Biology",
+        "text": "Microscopy, dissection and field studies.",
+        "photo": "biology-lab-microscopy",
+        "focus": "42% 40%",
+        "alt": "Students working at a microscope in the biology lab"
+      },
+      {
+        "title": "ICT",
+        "text": "Computing, coding and web design.",
+        "photo": "computer-lab",
+        "focus": "40% 45%",
+        "alt": "Students working together in the computer lab"
+      }
+    ]
+  },
+  "beyond": {
+    "eyebrow": "Beyond the classroom",
+    "heading": "Science fair and competitions",
+    "items": [
+      { "title": "Science fair", "text": "An annual fair where students present projects from the labs." },
+      { "title": "Mathematics olympiads", "text": "Students compete at state and national level." },
+      { "title": "Workbook project", "text": "Details to be announced." }
+    ],
+    "linkLabel": "See results and awards →",
+    "linkHref": "/results/"
+  },
+  "vocational": {
+    "eyebrow": "Vocational training",
+    "heading": "Practical skills for life",
+    "text": "Running since 2014.",
+    "items": ["African cuisine", "Pastries", "Photography", "ICT and web design"]
+  }
+}

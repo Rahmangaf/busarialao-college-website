@@ -1,0 +1,31 @@
+---
+// Questions and answers as native <details> (no script). "open" items start expanded.
+interface Item {
+  q: string;
+  a: string;
+  open?: boolean;
+}
+interface Props {
+  eyebrow: string;
+  heading: string;
+  items: Item[];
+}
+const { eyebrow, heading, items } = Astro.props;
+---
+
+<section class="sec">
+  <div class="wrap split split-faq" style="--a:4fr;--b:8fr">
+    <div>
+      <span class="eb">{eyebrow}</span>
+      <h2 class="h2" style="margin-top:10px">{heading}</h2>
+    </div>
+    <div class="faq">
+      {items.map((item) => (
+        <details open={item.open}>
+          <summary>{item.q}<span class="pm" aria-hidden="true"></span></summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

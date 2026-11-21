@@ -469,6 +469,481 @@ const contact = entry('contact', 'Contact details', 'contact', [
   }),
 ]);
 
+// ---------------------------------------------------------------------------------------------
+// v1 site shell (header, mobile menu, footer): used by the /preview/*-v1/ pages
+// ---------------------------------------------------------------------------------------------
+
+const linkFields = [str('label', 'Link text'), str('href', 'Link address')];
+const linkList = (name, label) => list(name, label, linkFields, { summary: '{{fields.label}}' });
+const siteShell = entry('site', 'Site header and footer (v1 pages)', 'site', [
+  obj('home', 'Logo link', [str('href', 'Address'), str('label', 'Name for screen readers')]),
+  linkList('nav', 'Navigation links'),
+  obj('apply', 'Apply button', linkFields),
+  obj('forms', 'Short forms (the Book a tour phone field)', [str('phoneError', 'Error when no phone number is entered'), str('previewNotice', 'Words shown when a number is entered (the form does not send yet)')]),
+  obj('menu', 'Mobile menu', [str('open', 'Open button label'), str('close', 'Close button label'), str('title', 'Panel name')]),
+  obj('footer', 'Footer', [
+    txt('blurb', 'Short description', { hint: 'Leave {foundedYear} as it is; it is filled in from the founding year.' }),
+    str('logoAlt', 'Logo description'),
+    obj('school', 'School column', [str('heading', 'Heading'), linkList('links', 'Links')]),
+    obj('admissions', 'Admissions column', [str('heading', 'Heading'), linkList('links', 'Links')]),
+    obj('findUs', 'Find us column', [
+      str('heading', 'Heading'),
+      strList('address', 'Address (one line per item)', { field: { name: 'item', label: 'Line', widget: 'string' } }),
+      str('directionsLabel', 'Directions link text'),
+      str('directionsHref', 'Directions link address'),
+    ]),
+    str('hours', 'Opening badge'),
+    obj('contact', 'Contact column', [
+      str('heading', 'Heading'),
+      str('phone', 'Phone'),
+      str('phoneHref', 'Phone link'),
+      str('email', 'Email'),
+      str('emailHref', 'Email link'),
+      str('whatsappLabel', 'WhatsApp link text'),
+      str('whatsappHref', 'WhatsApp link address'),
+      str('portalLabel', 'Student portal link text'),
+      str('portalHref', 'Student portal link address'),
+    ]),
+    list('socials', 'Social links', [hidden('key'), str('label', 'Name'), str('href', 'Link address')], { allow_add: false, summary: '{{fields.label}}' }),
+    obj('legal', 'Bottom row', [
+      str('copyright', 'Copyright', { hint: 'Leave {year} as it is; it is filled in automatically.' }),
+      str('privacyLabel', 'Privacy link text'),
+      str('privacyHref', 'Privacy link address'),
+      str('creditPrefix', 'Credit text'),
+      str('creditLabel', 'Credit link text'),
+      str('creditHref', 'Credit link address'),
+      str('toTopLabel', 'Back to top text'),
+    ]),
+  ]),
+]);
+
+// ---------------------------------------------------------------------------------------------
+// v1 preview pages (/preview/*-v1/). These pages carry no tags. Words in curly brackets, such as
+// {examDate}, are filled in automatically: leave them exactly as they are.
+// ---------------------------------------------------------------------------------------------
+
+const V1_PHOTOS = [
+  'awards-ceremony',
+  'biology-lab',
+  'biology-lab-microscopy',
+  'borehole',
+  'ceremony-hall',
+  'chemistry-lab',
+  'computer-lab',
+  'courtyard',
+  'dormitory',
+  'dormitory-study',
+  'exam-session',
+  'football',
+  'graduating-class',
+  'graduation-group',
+  'hero-chemistry-experiment',
+  'students-walking',
+];
+const v1Photo = (name = 'photo', label = 'Photo') => ({ name, label, widget: 'select', options: V1_PHOTOS });
+const v1Meta = obj('meta', 'Browser tab and search text', [str('title', 'Page title'), txt('description', 'Short description')]);
+const v1Action = (name, label) => obj(name, label, linkFields);
+const v1Visit = obj('visit', 'Come and see us band', [
+  str('heading', 'Heading'),
+  txt('text', 'Text'),
+  v1Photo('photo', 'Background photo'),
+  focus('focus', 'Photo focus'),
+  focus('focusMobile', 'Photo focus on phones', 'Where to centre the crop on a phone, for example 62% 50%.'),
+  obj('form', 'Phone field', [str('label', 'Field name for screen readers'), str('placeholder', 'Placeholder'), str('button', 'Button text')]),
+  obj('whatsapp', 'WhatsApp link', linkFields),
+]);
+
+const admissionsV1 = entry('admissions-v1', 'Admissions', 'admissions-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    str('eyebrow', 'Small label'),
+    txt('title', 'Title', { hint: 'A new line here is a line break on wide screens only.' }),
+    txt('lead', 'Lead line'),
+    v1Action('primary', 'Main button'),
+    v1Action('secondary', 'Second button'),
+  ]),
+  obj('steps', 'Three steps', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'items',
+      'Steps',
+      [
+        str('tag', 'Step label'),
+        str('title', 'Title'),
+        txt('text', 'Text'),
+        { name: 'illustration', label: 'Illustration', widget: 'select', options: ['step-apply', 'step-exam', 'step-offer'] },
+        str('alt', 'Illustration description'),
+      ],
+      { summary: '{{fields.title}}', allow_add: false },
+    ),
+  ]),
+  obj('whoCanApply', 'Who can apply', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    list('cards', 'Cards', [str('title', 'Title'), txt('text', 'Text'), v1Photo(), focus('focus', 'Photo focus'), str('alt', 'Photo description')], { summary: '{{fields.title}}' }),
+  ]),
+  obj('scholarships', 'Scholarships band', [str('eyebrow', 'Small label'), txt('heading', 'Heading'), str('linkLabel', 'Link text'), str('linkHref', 'Link address')]),
+  obj('faq', 'Questions', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list('items', 'Questions', [str('q', 'Question'), txt('a', 'Answer'), { name: 'open', label: 'Open when the page loads', widget: 'boolean', default: false, required: false }], { summary: '{{fields.q}}' }),
+  ]),
+  v1Visit,
+]);
+
+const optionalV1Photo = { name: 'photo', label: 'Photo', widget: 'select', options: V1_PHOTOS, required: false };
+
+const academicsV1 = entry('academics-v1', 'Academics', 'academics-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    obj('breadcrumb', 'Breadcrumb', [str('home', 'Home link text'), str('current', 'This page')]),
+    str('eyebrow', 'Small label'),
+    str('title', 'Title'),
+    txt('lead', 'Lead line'),
+    v1Action('primary', 'Main button'),
+    v1Action('secondary', 'Second button'),
+    v1Photo('photo', 'Photo under the title'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones'),
+    str('alt', 'Photo description'),
+  ]),
+  obj('curriculum', 'Curriculum', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    list('stages', 'Two stages', [str('kicker', 'Years'), str('title', 'Title'), txt('text', 'Text'), str('pill', 'Exam label')], { allow_add: false, summary: '{{fields.title}}' }),
+  ]),
+  obj('labs', 'Laboratories', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'items',
+      'Labs',
+      [
+        str('title', 'Title'),
+        txt('text', 'Text'),
+        str('tile', 'Text in a plain tile (leave empty if there is a photo)', { required: false }),
+        optionalV1Photo,
+        { ...focus('focus', 'Photo focus'), required: false },
+        str('alt', 'Photo description', { required: false }),
+      ],
+      { summary: '{{fields.title}}' },
+    ),
+  ]),
+  obj('beyond', 'Beyond the classroom (navy band)', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list('items', 'Cards', [str('title', 'Title'), txt('text', 'Text')], { summary: '{{fields.title}}' }),
+    str('linkLabel', 'Link text'),
+    str('linkHref', 'Link address'),
+  ]),
+  obj('vocational', 'Vocational training', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('text', 'Text'),
+    strList('items', 'Skills (one per item)', { field: { name: 'item', label: 'Skill', widget: 'string' } }),
+  ]),
+]);
+
+const v1PhotoPick = (name, label) => obj(name, label, [v1Photo('photo', 'Photo'), focus('focus', 'Photo focus')]);
+const v1Stat = (name, label) => obj(name, label, [str('title', 'Title'), str('value', 'Number'), str('note', 'Note')]);
+
+const aboutV1 = entry('about-v1', 'About', 'about-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    obj('breadcrumb', 'Breadcrumb', [str('home', 'Home link text'), str('current', 'This page')]),
+    str('eyebrow', 'Small label'),
+    str('title', 'Title', { hint: 'Leave {yearsInWords} as it is; it is filled in from the founding year.' }),
+    txt('lead', 'Lead line'),
+    v1Photo('photo', 'Photo under the title'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones'),
+    str('alt', 'Photo description'),
+  ]),
+  obj('story', 'Our story', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    list('facts', 'Three facts', [str('value', 'Number or year'), str('label', 'Label')], { allow_add: false, summary: '{{fields.value}} {{fields.label}}' }),
+  ]),
+  obj('visionMission', 'Vision and mission', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'items',
+      'Vision and mission',
+      [
+        str('title', 'Title'),
+        txt('text', 'Text (leave empty until the school supplies it)', { required: false }),
+        str('placeholder', 'Words shown while the text is empty'),
+      ],
+      { allow_add: false, summary: '{{fields.title}}' },
+    ),
+  ]),
+  obj('values', 'Core values', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('text', 'Text'),
+    strList('items', 'Values (one per item, in order)', { field: { name: 'item', label: 'Value', widget: 'string' } }),
+  ]),
+  obj('principal', "Principal's welcome", [
+    str('portraitLabel', 'Portrait description for screen readers'),
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    strList('paragraphs', 'Paragraphs'),
+    str('signoff', 'Sign-off'),
+  ]),
+  obj('milestones', 'Milestones', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list('items', 'Milestones', [str('year', 'Year'), str('text', 'What happened')], { summary: '{{fields.year}} {{fields.text}}' }),
+    str('linkLabel', 'Link text'),
+    str('linkHref', 'Link address'),
+  ]),
+  obj('record', 'Our record (navy band)', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    v1PhotoPick('examPhoto', 'Photo, top left (shown in grey)'),
+    v1Stat('wassce', 'WASSCE tile'),
+    v1Stat('university', 'University tile'),
+    str('logoAlt', 'Logo description'),
+    v1PhotoPick('labPhoto', 'Photo, middle right'),
+    v1PhotoPick('walkingPhoto', 'Photo, bottom left'),
+    str('quote', 'Quote'),
+    v1Stat('years', 'Years tile'),
+  ]),
+  v1Visit,
+]);
+
+const v1Faq = obj('faq', 'Questions', [
+  str('eyebrow', 'Small label'),
+  str('heading', 'Heading'),
+  list('items', 'Questions', [str('q', 'Question'), txt('a', 'Answer'), { name: 'open', label: 'Open when the page loads', widget: 'boolean', default: false, required: false }], { summary: '{{fields.q}}' }),
+]);
+const v1Crumb = obj('breadcrumb', 'Breadcrumb', [str('home', 'Home link text'), str('current', 'This page')]);
+
+const boardingV1 = entry('boarding-v1', 'Boarding & Life', 'boarding-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    v1Crumb,
+    str('eyebrow', 'Small label'),
+    str('title', 'Title'),
+    txt('lead', 'Lead line'),
+    v1Action('primary', 'Main button'),
+    v1Action('secondary', 'Second button'),
+    v1Photo('photo', 'Photo under the title'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones'),
+    str('alt', 'Photo description'),
+  ]),
+  obj('ways', 'Day school or boarding', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'cards',
+      'Cards',
+      [
+        str('title', 'Title'),
+        txt('text', 'Text'),
+        v1Photo(),
+        focus('focus', 'Photo focus'),
+        str('alt', 'Photo description'),
+        list('rows', 'Rows', [str('label', 'Label'), str('value', 'Value')], { summary: '{{fields.label}}' }),
+      ],
+      { allow_add: false, summary: '{{fields.title}}' },
+    ),
+  ]),
+  obj('hostel', 'The hostel', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'One short line'),
+  ]),
+  obj('routine', 'Daily routine', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    strList('steps', 'Steps of the day (in order)', { field: { name: 'item', label: 'Step', widget: 'string' } }),
+    str('note', 'Note under the timeline'),
+    obj('bring', 'What to bring', [
+      str('title', 'Title'),
+      strList('items', 'Items', { field: { name: 'item', label: 'Item', widget: 'string' } }),
+      str('note', 'Note'),
+    ]),
+    obj('care', 'Visiting and care', [str('title', 'Title'), txt('text', 'Text')]),
+  ]),
+  obj('life', 'Student life (navy band)', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    v1Photo('photo', 'Photo'),
+    focus('focus', 'Photo focus'),
+    str('alt', 'Photo description'),
+    list(
+      'cards',
+      'Cards',
+      [
+        str('title', 'Title'),
+        strList('items', 'List (leave empty to show the text instead)', { field: { name: 'item', label: 'Item', widget: 'string' }, required: false }),
+        txt('text', 'Text (used when the list is empty)', { required: false }),
+      ],
+      { summary: '{{fields.title}}' },
+    ),
+  ]),
+  obj('gallery', 'Gallery', [
+    { name: 'enabled', label: 'Show the gallery on the page', widget: 'boolean', default: false, hint: 'Keep this off until real photos exist.' },
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    list(
+      'items',
+      'Gallery items',
+      [
+        str('caption', 'Caption'),
+        optionalV1Photo,
+        { ...focus('focus', 'Photo focus'), required: false },
+        str('alt', 'Photo description', { required: false }),
+      ],
+      { summary: '{{fields.caption}}' },
+    ),
+  ]),
+  v1Faq,
+  v1Visit,
+]);
+
+// The Contact page takes its phone, email, address, hours, directions and social links from the
+// "Site header and footer" entry, so they are edited once. Its WhatsApp link comes from there too.
+const contactV1 = entry('contact-v1', 'Contact', 'contact-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [
+    v1Crumb,
+    str('eyebrow', 'Small label'),
+    str('title', 'Title'),
+    txt('lead', 'Lead line'),
+    v1Action('primary', 'Main button'),
+    str('secondaryLabel', 'Second button text (links to WhatsApp)'),
+  ]),
+  obj('ways', 'Ways to reach us', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('callTitle', 'Call card title'),
+    str('emailTitle', 'Email card title'),
+    str('whatsappTitle', 'WhatsApp card title'),
+    str('whatsappText', 'WhatsApp card text'),
+    str('visitTitle', 'Visit card title'),
+  ]),
+  obj('find', 'Find us', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('name', 'Name above the address'),
+    str('mapLabel', 'Map panel title'),
+    str('mapNote', 'Map panel note'),
+    str('directionsLabel', 'Directions button text'),
+  ]),
+  obj('form', 'Message form (a preview: it does not send anything yet)', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    obj('name', 'Name field', [str('label', 'Label'), str('placeholder', 'Placeholder')]),
+    obj('phone', 'Phone field', [str('label', 'Label'), str('placeholder', 'Placeholder'), str('error', 'Error message')]),
+    obj('email', 'Email field', [str('label', 'Label'), str('optional', 'Word shown next to the label'), str('placeholder', 'Placeholder'), str('error', 'Error message')]),
+    obj('interest', 'Topic list', [
+      str('label', 'Label'),
+      strList('options', 'Options', { field: { name: 'item', label: 'Option', widget: 'string' } }),
+    ]),
+    obj('message', 'Message field', [str('label', 'Label'), str('placeholder', 'Placeholder')]),
+    str('button', 'Button text'),
+    str('previewNotice', 'Words shown when the form is filled in correctly'),
+  ]),
+  obj('follow', 'Follow us (navy band)', [str('eyebrow', 'Small label'), str('heading', 'Heading')]),
+  obj('visit', 'Come and see us band', [
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    v1Photo('photo', 'Background photo'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones', 'Where to centre the crop on a phone, for example 62% 50%.'),
+    obj('form', 'Phone field', [str('label', 'Field name for screen readers'), str('placeholder', 'Placeholder'), str('button', 'Button text')]),
+    obj('whatsapp', 'WhatsApp link', [str('label', 'Link text')]),
+  ]),
+]);
+
+const newsV1 = entry('news-v1', 'News & Calendar', 'news-v1', [
+  v1Meta,
+  obj('hero', 'Page opening', [v1Crumb, str('eyebrow', 'Small label'), str('title', 'Title'), txt('lead', 'Lead line')]),
+  obj('feature', 'Featured story (the 20 years card)', [
+    str('href', 'Link address'),
+    str('eyebrow', 'Small label', { hint: 'Leave {years} as it is; it is filled in from the founding year.' }),
+    str('heading', 'Heading'),
+    txt('text', 'Text', { hint: 'Leave {yearsInWords} as it is; it is filled in from the founding year.' }),
+    str('linkLabel', 'Link text'),
+    v1Photo('photo', 'Photo'),
+    focus('focus', 'Photo focus'),
+    str('alt', 'Photo description'),
+  ]),
+  obj('latest', 'Latest news', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('filterLabel', 'Filter group name for screen readers'),
+    str('allLabel', 'Text of the "all" filter'),
+    strList('categories', 'Categories (the filters, in order)', {
+      field: { name: 'item', label: 'Category', widget: 'string' },
+      hint: 'Filters show only when there are six or more posts. Posts pick one of these.',
+    }),
+    str('emptyCard', 'Text of the dashed card', { hint: 'The dashed card disappears once the posts fill a row.' }),
+  ]),
+  obj('calendar', 'Key dates', [
+    str('eyebrow', 'Small label'),
+    str('heading', 'Heading'),
+    str('caption', 'Table name for screen readers'),
+    list(
+      'rows',
+      'Dates',
+      [
+        str('label', 'Event'),
+        str('value', 'Date', { hint: 'Leave {examDate} as it is; it is filled in from the admissions entry.' }),
+        { name: 'confirmed', label: 'Date is confirmed (shown in bold)', widget: 'boolean', default: false, required: false },
+      ],
+      { summary: '{{fields.label}}' },
+    ),
+    str('note', 'Note under the table'),
+  ]),
+  obj('follow', 'Stay in touch (navy band)', [str('eyebrow', 'Small label'), str('heading', 'Heading')]),
+  obj('visit', 'Come and see us band', [
+    str('heading', 'Heading'),
+    txt('text', 'Text'),
+    v1Photo('photo', 'Background photo'),
+    focus('focus', 'Photo focus'),
+    focus('focusMobile', 'Photo focus on phones', 'Where to centre the crop on a phone, for example 62% 50%.'),
+    obj('form', 'Phone field', [str('label', 'Field name for screen readers'), str('placeholder', 'Placeholder'), str('button', 'Button text')]),
+    obj('whatsapp', 'WhatsApp link', [str('label', 'Link text')]),
+  ]),
+]);
+
+// One JSON file per news post, in src/content-data/news-v1/. Add a post here and it appears on the page.
+const newsV1Posts = {
+  name: 'news-v1-posts',
+  label: 'News posts (v1)',
+  label_singular: 'News post',
+  description: 'The stories on /preview/news-v1/. Filters appear from six posts; the dashed card disappears once a row is full.',
+  folder: 'src/content-data/news-v1',
+  extension: 'json',
+  format: 'json',
+  create: true,
+  slug: '{{slug}}',
+  identifier_field: 'title',
+  summary: '{{order}}. {{title}}',
+  sortable_fields: ['order', 'title'],
+  editor: { preview: false },
+  fields: [
+    str('title', 'Title'),
+    str('label', 'Small line above the title', { hint: 'For example May 2025 or Class of 2025.' }),
+    { name: 'category', label: 'Category', widget: 'select', options: ['News', 'Results', 'Events'], hint: 'Must be one of the categories on the News page entry.' },
+    num('order', 'Order on the page', { hint: '1 is first.' }),
+    v1Photo('photo', 'Photo'),
+    { ...focus('focus', 'Photo focus'), required: false },
+    str('alt', 'Photo description', { required: false }),
+    str('href', 'Link address (leave empty if the story has no page)', { required: false }),
+  ],
+};
+
 const news = entry('news', 'News', 'news', [
   list(
     'items',
@@ -504,7 +979,9 @@ initCMS({
     collections: [
       group('pages', 'Pages', TAGS, [home, twentyYears, about, academics, admissions, boarding]),
       group('money', 'Fees, dates and results', TAGS, [fees, calendar, results]),
-      group('site', 'School and contact', TAGS, [school, contact]),
+      group('site', 'School and contact', TAGS, [school, contact, siteShell]),
+      group('v1', 'Preview pages (v1)', 'Pages at /preview/*-v1/. No labels on these pages.', [admissionsV1, academicsV1, aboutV1, boardingV1, contactV1, newsV1]),
+      newsV1Posts,
       group('news', 'News', TAGS, [news]),
     ],
   },

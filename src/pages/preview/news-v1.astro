@@ -1,0 +1,133 @@
+---
+// Design preview: News & Calendar (the "2" frames). Built with the v1 shell and shared v1 components.
+// Not linked from the navigation; always noindex. The existing /news/ page is untouched.
+//
+// News items are a collection (src/content-data/news-v1/*.json, one file per post, editable in Decap).
+//  - Filter chips appear only from FILTER_MIN_POSTS (6) posts, one chip per category that has a post.
+//  - The dashed "More news coming soon" card shows only while the posts do not fill a row (GRID_ROW).
+import SiteV1Layout from '../../layouts/SiteV1Layout.astro';
+import '../../styles/v1/page.css';
+import PageIntro from '../../components/v1/PageIntro.astro';
+import SocialBand from '../../components/v1/SocialBand.astro';
+import V1Photo from '../../components/v1/V1Photo.astro';
+import VisitBand from '../../components/v1/VisitBand.astro';
+import { FILTER_MIN_POSTS, GRID_ROW, newsPosts, newsV1 as c, newsVisit } from '../../data/news-v1';
+import { site } from '../../data/site';
+
+const showChips = newsPosts.length >= FILTER_MIN_POSTS;
+const chipCategories = c.latest.categories.filter((cat) => newsPosts.some((p) => p.category === cat));
+const showSoon = newsPosts.length < GRID_ROW;
+---
+
+<SiteV1Layout title={c.meta.title} description={c.meta.description}>
+  <div class="pg pg-h1-sm">
+    <PageIntro eyebrow={c.hero.eyebrow} title={c.hero.title} lead={c.hero.lead} titleMax="20ch">
+      <nav slot="before" class="crumb" aria-label="Breadcrumb">
+        <a href={site.home.href}>{c.hero.breadcrumb.home}</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">{c.hero.breadcrumb.current}</span>
+      </nav>
+    </PageIntro>
+
+    <section class="feature-wrap">
+      <div class="wrap">
+        <a href={c.feature.href} class="card feature">
+          <div class="ph"><V1Photo name={c.feature.photo} alt={c.feature.alt} focus={c.feature.focus} sizes="(max-width: 960px) 100vw, 700px" widths={[480, 828, 1280]} /></div>
+          <div class="copy">
+            <span class="eb">{c.feature.eyebrow}</span>
+            <h2 class="h2" style="margin-top:10px">{c.feature.heading}</h2>
+            <p class="muted">{c.feature.text}</p>
+            <span class="more">{c.feature.linkLabel}</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap" data-news>
+        <span class="eb">{c.latest.eyebrow}</span>
+        <h2 class="h2" style="margin-top:10px">{c.latest.heading}</h2>
+
+        {
+          showChips && (
+            <div class="chips" role="group" aria-label={c.latest.filterLabel}>
+              <button type="button" aria-pressed="true" data-filter="">{c.latest.allLabel}</button>
+              {chipCategories.map((cat) => <button type="button" aria-pressed="false" data-filter={cat}>{cat}</button>)}
+            </div>
+          )
+        }
+
+        <div class="news-grid">
+          {
+            newsPosts.map((post) => {
+              const Tag = post.href ? 'a' : 'article';
+              return (
+                <Tag class="card post" data-category={post.category} href={post.href || undefined}>
+                  <div class="ph"><V1Photo name={post.photo} alt={post.alt ?? ''} focus={post.focus} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 300px" widths={[360, 600, 900]} /></div>
+                  <div class="body">
+                    <small>{post.label}</small>
+                    <h3>{post.title}</h3>
+                  </div>
+                </Tag>
+              );
+            })
+          }
+          {showSoon && <div class="soon muted">{c.latest.emptyCard}</div>}
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="term-dates">
+      <div class="wrap split split-faq" style="--a:4fr;--b:8fr">
+        <div>
+          <span class="eb">{c.calendar.eyebrow}</span>
+          <h2 class="h2" style="margin-top:10px">{c.calendar.heading}</h2>
+        </div>
+        <div>
+          <table class="dates">
+            <caption>{c.calendar.caption}</caption>
+            <tbody>
+              {
+                c.calendar.rows.map((row) => (
+                  <tr>
+                    <th scope="row">{row.label}</th>
+                    <td class:list={[row.confirmed && 'is-set']}>{row.value}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+          <p class="muted" style="margin-top:16px;font-size:14px">{c.calendar.note}</p>
+        </div>
+      </div>
+    </section>
+
+    <SocialBand eyebrow={c.follow.eyebrow} heading={c.follow.heading} />
+
+    <VisitBand
+      heading={newsVisit.heading}
+      text={newsVisit.text}
+      photo={newsVisit.photo}
+      photoFocus={newsVisit.focus}
+      photoFocusMobile={newsVisit.focusMobile}
+      form={newsVisit.form}
+      alt={newsVisit.whatsapp}
+    />
+    <div class="end-space"></div>
+  </div>
+</SiteV1Layout>
+
+<script>
+  // Filter chips: show only the posts in the chosen category. No chips are rendered below six posts.
+  const root = document.querySelector<HTMLElement>('[data-news]');
+  const chips = root ? [...root.querySelectorAll<HTMLButtonElement>('.chips button')] : [];
+  if (root && chips.length) {
+    const posts = [...root.querySelectorAll<HTMLElement>('.post')];
+    for (const chip of chips) {
+      chip.addEventListener('click', () => {
+        const wanted = chip.dataset.filter || '';
+        for (const other of chips) other.setAttribute('aria-pressed', String(other === chip));
+        for (const post of posts) post.hidden = wanted !== '' && post.dataset.category !== wanted;
+      });
+    }
+  }
+</script>

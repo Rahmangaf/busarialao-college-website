@@ -3,3 +3,10 @@
 --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-8:48px;--space-10:64px;--space-12:96px;--space-16:128px;--container:1200px;--tap-min:44px;--section-y:96px;--section-y-tablet:80px;--section-y-mobile:64px;--gutter-mobile:20px;
 --radius-sm:6px;--radius-md:12px;--radius-lg:20px;--radius-full:999px;
 --shadow-1:0 1px 2px rgba(42,31,122,.06),0 1px 3px rgba(42,31,122,.08);--shadow-2:0 8px 24px rgba(42,31,122,.12)}
+
+/* ---- Theme roles (added). Light values first; dark values under [data-theme="dark"].
+   Switch any screen by setting data-theme="light" | "dark" on its root element. ---- */
+:root,[data-theme="light"]{--bg:#FFFFFF;--bg-2:#F6F7FA;--brand:#2A1F7A;--action:#0E71BA;--action-hover:#0A5A96;--on-action:#FFFFFF;--accent:#0E71BA;--text:#1B1740;--text-strong:#2A1F7A;--text-muted:#5A5F73;--border:#E2E5EE;--nav-pill:#F4F3F9;--nav-pill-border:#E2E5EE;--card:#F4F3F9;--card-text:#0D0A26;--card-muted:#5A5F73;--card-border:#DDDBE8;--plate:#FFFFFF;--pill-bg:#E9F6EE;--pill-text:#1E7A46;--pill-dot:#1E7A46}
+[data-theme="dark"]{
+--sky-500:#6F9BFF;--sky-600:#1F63E0;--sky-700:#4F86F0;--sky-50:#17123D;--sky-100:#221D40;--navy-900:#2A1F7A;--navy-700:#463C93;--red-600:#FF6B73;--surface:#0D0A26;--surface-raised:#17123D;--neutral-50:#17123D;--neutral-200:#2C2656;--neutral-400:#8E89B3;--neutral-600:#B9B5D6;--on-primary:#FFFFFF;--success-600:#4CC38A;--success-50:#12301F;--warning-700:#F2B84B;--warning-50:#2E2410;--error-50:#3A1418;
+--bg:#0D0A26;--bg-2:#17123D;--brand:#2A1F7A;--action:#1F63E0;--action-hover:#3A78EA;--on-action:#FFFFFF;--accent:#6F9BFF;--text:#FFFFFF;--text-strong:#FFFFFF;--text-muted:#B3B0C9;--border:#2C2656;--nav-pill:rgba(255,255,255,.08);--nav-pill-border:rgba(255,255,255,.16);--card:#FFFFFF;--card-text:#0D0A26;--card-muted:#5A5F73;--card-border:#EBE9F3;--plate:#FFFFFF;--pill-bg:#EEF7F1;--pill-text:#16784A;--pill-dot:#22A861}

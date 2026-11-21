@@ -1,0 +1,46 @@
+---
+// Layout for the v1 preview pages (/preview/*): the new site shell around a page.
+// - The theme is read from one place, siteConfig.defaultTheme, and put on <html data-theme="...">.
+// - These pages are previews: always noindex, never linked from the existing site.
+// - It does not use BaseLayout, so the existing pages and their styles are untouched.
+import '../styles/tokens.css';
+import '../styles/preview-fonts.css';
+import '../styles/v1/base.css';
+import SiteFooter from '../components/v1/SiteFooter.astro';
+import SiteHeader from '../components/v1/SiteHeader.astro';
+import { siteConfig } from '../../site.config.mjs';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** "overlay" puts a transparent header over a hero; "solid" is for plain pages. */
+  headerMode?: 'solid' | 'overlay';
+  /** Show the shared footer (default). */
+  footer?: boolean;
+}
+
+const { title, description, headerMode = 'solid', footer = true } = Astro.props;
+const theme = siteConfig.defaultTheme === 'light' ? 'light' : 'dark';
+const current = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en" data-theme={theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="color-scheme" content={theme} />
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+  </head>
+  <body id="top" class="v1">
+    <a class="v1-skip" href="#main">Skip to content</a>
+    <SiteHeader mode={headerMode} current={current} />
+    <main id="main">
+      <slot />
+    </main>
+    {footer && <SiteFooter />}
+  </body>
+</html>

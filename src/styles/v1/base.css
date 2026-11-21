@@ -1,0 +1,70 @@
+/*
+ * Base for the v1 preview pages. Only custom properties from tokens.css are used for colour, so every
+ * page follows data-theme="dark" | "light" on <html>. Nothing here applies to the existing pages,
+ * because only SiteV1Layout imports this file.
+ */
+
+html {
+  scroll-padding-top: 16px;
+}
+body.v1 {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, 'Inter Variable', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+.v1 *,
+.v1 *::before,
+.v1 *::after {
+  box-sizing: border-box;
+}
+.v1 img {
+  display: block;
+  max-width: 100%;
+}
+/* Zero specificity, so a component's own link colour (for example the Home buttons) always wins. */
+:where(.v1 a) {
+  color: inherit;
+  text-decoration: none;
+}
+.v1 :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.v1-skip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--action);
+  color: var(--on-action);
+  font: 600 14px Inter, 'Inter Variable', sans-serif;
+}
+.v1-skip:focus {
+  top: 8px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .v1 * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Zero-specificity reset (the same one the prototype pages used), so every v1 component starts equal. */
+:where(.v1 *) {
+  margin: 0;
+  padding: 0;
+}
+:where(.v1 ul, .v1 ol) {
+  list-style: none;
+}
+:where(.v1 button, .v1 input, .v1 select, .v1 textarea) {
+  font: inherit;
+}

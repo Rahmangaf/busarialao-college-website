@@ -1,0 +1,67 @@
+---
+// "Come and see us" band: a photo under a dark overlay with a phone number field.
+// The form has no destination yet (nothing is stored or sent), so it is a preview: it checks that a
+// phone number was entered, shows the error state, and says nothing has been sent. The button looks and
+// works like any other. A real hand-off is added when the school decides where enquiries go
+// (open question 18). The two sentences come from src/content-data/site.json ("forms").
+import V1Photo from './V1Photo.astro';
+import { site } from '../../data/site';
+
+interface Props {
+  id?: string;
+  heading: string;
+  text: string;
+  photo: string;
+  photoFocus?: string;
+  photoFocusMobile?: string;
+  form: { label: string; placeholder: string; button: string };
+  alt: { label: string; href: string };
+}
+const { id = 'visit', heading, text, photo, photoFocus, photoFocusMobile, form, alt } = Astro.props;
+---
+
+<section class="visit" id={id}>
+  <div class="ph"><V1Photo name={photo} focus={photoFocus} focusMobile={photoFocusMobile} sizes="100vw" widths={[828, 1280, 1672]} /></div>
+  <div class="shade"></div>
+  <div class="in">
+    <h2>{heading}</h2>
+    <p>{text}</p>
+    <form data-visit-form novalidate>
+      <label>
+        <span class="sr">{form.label}</span>
+        <input type="tel" name="phone" placeholder={form.placeholder} autocomplete="tel" inputmode="tel" aria-describedby={`${id}-msg`} />
+      </label>
+      <button class="btn" type="submit">{form.button} <i aria-hidden="true">↗</i></button>
+    </form>
+    <p class="vmsg" id={`${id}-msg`} role="status" data-error={site.forms.phoneError} data-notice={site.forms.previewNotice}></p>
+    <a class="alt" href={alt.href}>{alt.label}</a>
+  </div>
+</section>
+
+<script>
+  // Preview behaviour for every visit band on the page: check the number, never send anything.
+  const phoneOk = (value: string) => /^\+?\d{7,15}$/.test(value.replace(/[\s\-().]/g, ''));
+  document.querySelectorAll<HTMLFormElement>('[data-visit-form]').forEach((form) => {
+    const input = form.querySelector<HTMLInputElement>('input');
+    const msg = form.parentElement?.querySelector<HTMLElement>('.vmsg');
+    if (!input || !msg) return;
+    const show = (text: string, bad: boolean) => {
+      msg.textContent = text;
+      msg.classList.toggle('is-error', bad);
+      if (bad) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+    };
+    input.addEventListener('input', () => {
+      if (input.getAttribute('aria-invalid') && phoneOk(input.value)) show('', false);
+    });
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); // nothing is ever sent from this preview
+      if (!phoneOk(input.value)) {
+        show(msg.dataset.error || '', true);
+        input.focus();
+      } else {
+        show(msg.dataset.notice || '', false);
+      }
+    });
+  });
+</script>

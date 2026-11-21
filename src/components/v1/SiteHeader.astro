@@ -1,0 +1,87 @@
+---
+// Site header for the v1 pages: a logo plate, a pill nav and Apply Now.
+//  - mode "solid" (plain pages): sits in the flow on the page background.
+//  - mode "overlay" (over a hero): transparent and placed on top of the photo.
+// Below 1100px the nav is replaced by a menu button that opens a full-screen panel. The panel is a
+// native popover: Escape closes it and focus returns to the menu button without any script.
+// Text and links are in src/content-data/site.json.
+import '../../styles/v1/shell.css';
+import { site } from '../../data/site';
+
+interface Props {
+  mode?: 'solid' | 'overlay';
+  /** Path of the current page, used to mark its nav link. */
+  current?: string;
+}
+
+const { mode = 'solid', current = '' } = Astro.props;
+const here = current.replace(/\/$/, '');
+const isCurrent = (href: string) => {
+  const path = href.split('#')[0].replace(/\/$/, '');
+  return path !== '' && path === here ? 'page' : undefined;
+};
+---
+
+<header class:list={['sh', mode === 'overlay' && 'sh-overlay']} data-site-header>
+  <a class="sh-plate" href={site.home.href} aria-label={site.home.label}>
+    <img src="/logo/logo.svg" alt="Busarialao College" width="85" height="44" />
+  </a>
+
+  <nav class="sh-nav" aria-label="Main">
+    {site.nav.map((item) => <a href={item.href} aria-current={isCurrent(item.href)}>{item.label}</a>)}
+  </nav>
+
+  <a class="sh-btn sh-apply" href={site.apply.href}>{site.apply.label} <i aria-hidden="true">↗</i></a>
+
+  <button
+    type="button"
+    class="sh-menu"
+    popovertarget="sh-panel"
+    aria-label={site.menu.open}
+    aria-controls="sh-panel"
+    aria-expanded="false"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16"></path>
+    </svg>
+  </button>
+
+  <div id="sh-panel" class="sh-panel" popover aria-label={site.menu.title}>
+    <div class="sh-panel-top">
+      <a class="sh-plate" href={site.home.href} aria-label={site.home.label}>
+        <img src="/logo/logo.svg" alt="Busarialao College" width="85" height="44" />
+      </a>
+      <button
+        type="button"
+        class="sh-menu"
+        popovertarget="sh-panel"
+        popovertargetaction="hide"
+        aria-label={site.menu.close}
+        autofocus
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+    </div>
+    <nav aria-label="Main menu">
+      {site.nav.map((item) => <a href={item.href} aria-current={isCurrent(item.href)}>{item.label}</a>)}
+    </nav>
+    <a class="sh-btn" href={site.apply.href}>{site.apply.label} <i aria-hidden="true">↗</i></a>
+  </div>
+</header>
+
+<script>
+  // Keep aria-expanded in step with the panel (browsers that do not do it for popover buttons yet),
+  // and close the panel when a link inside it is followed (same-page links do not reload).
+  const panel = document.getElementById('sh-panel');
+  const opener = document.querySelector<HTMLButtonElement>('.sh-menu[popovertarget="sh-panel"][aria-controls]');
+  if (panel && opener) {
+    panel.addEventListener('toggle', (event) => {
+      opener.setAttribute('aria-expanded', String((event as ToggleEvent).newState === 'open'));
+    });
+    panel.addEventListener('click', (event) => {
+      if ((event.target as Element).closest('a')) panel.hidePopover();
+    });
+  }
+</script>

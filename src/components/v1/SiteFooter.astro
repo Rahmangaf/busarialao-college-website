@@ -1,0 +1,128 @@
+---
+// Site footer for the v1 pages. Desktop: logo row, four columns (School, Admissions, Find us, Contact),
+// hairline and a small copyright row. Mobile: Contact first, then School and Admissions as
+// collapsible rows; links never break across lines. Text and links are in src/content-data/site.json.
+import '../../styles/v1/shell.css';
+import { site } from '../../data/site';
+import SocialIcon from './SocialIcon.astro';
+
+const f = site.footer;
+const external = (href: string) => (href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {});
+---
+
+<footer class="sf" data-site-footer>
+  <div class="sf-card">
+    <!-- Desktop -->
+    <div class="sf-d">
+      <div class="sf-top">
+        <img class="sf-logo" src="/logo/logo.svg" alt={f.logoAlt} width="116" height="60" />
+        <p class="sf-blurb">{f.blurb}</p>
+        <div class="sf-soc">
+          {
+            f.socials.map((s) => (
+              <a class={s.key} href={s.href} aria-label={s.label} {...external(s.href)}>
+                <SocialIcon name={s.key} />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="sf-cols">
+        <div>
+          <h5>{f.school.heading}</h5>
+          <ul>{f.school.links.map((l) => <li><a class="sf-link" href={l.href}>{l.label}</a></li>)}</ul>
+        </div>
+        <div>
+          <h5>{f.admissions.heading}</h5>
+          <ul>{f.admissions.links.map((l) => <li><a class="sf-link" href={l.href}>{l.label}</a></li>)}</ul>
+        </div>
+        <div>
+          <h5>{f.findUs.heading}</h5>
+          <ul>
+            <li>
+              <address class="sf-address">
+                {f.findUs.address.map((line, i) => (<>{i > 0 && <br />}{line}</>))}
+              </address>
+            </li>
+            <li><a class="sf-link" href={f.findUs.directionsHref} {...external(f.findUs.directionsHref)}>{f.findUs.directionsLabel}</a></li>
+            <li><span class="sf-pill"><i></i>{f.hours}</span></li>
+          </ul>
+        </div>
+        <div>
+          <h5>{f.contact.heading}</h5>
+          <ul>
+            <li><a class="sf-link" href={f.contact.phoneHref}>{f.contact.phone}</a></li>
+            <li><a class="sf-link" href={f.contact.emailHref}>{f.contact.email}</a></li>
+            <li><a class="sf-link" href={f.contact.portalHref}>{f.contact.portalLabel}</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sf-bar">
+        <span class="sf-bar-text">
+          {f.legal.copyright} · <a href={f.legal.privacyHref}>{f.legal.privacyLabel}</a> · {f.legal.creditPrefix}
+          <a href={f.legal.creditHref} target="_blank" rel="noopener">{f.legal.creditLabel}</a>
+        </span>
+        <a class="sf-top-link" href="#top">{f.legal.toTopLabel}</a>
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="sf-m">
+      <div class="sf-top">
+        <img class="sf-logo" src="/logo/logo.svg" alt={f.logoAlt} width="104" height="54" />
+        <p class="sf-blurb">{f.blurb}</p>
+      </div>
+
+      <div class="sf-contact">
+        <h5>{f.contact.heading}</h5>
+        <a class="sf-link" href={f.contact.phoneHref}>{f.contact.phone}</a>
+        <a class="sf-link" href={f.contact.emailHref}>{f.contact.email}</a>
+        <a class="sf-link" href={f.contact.whatsappHref}>{f.contact.whatsappLabel}</a>
+        <div class="sf-addr-row">
+          <address class="sf-address">
+            {f.findUs.address.map((line, i) => (<>{i > 0 && <br />}{line}</>))}
+          </address>
+        </div>
+        <a class="sf-link directions" href={f.findUs.directionsHref} {...external(f.findUs.directionsHref)}>{f.findUs.directionsLabel}</a>
+        <span class="sf-pill"><i></i>{f.hours}</span>
+      </div>
+
+      <div class="sf-rows">
+        {
+          [f.school, f.admissions].map((col) => (
+            <details>
+              <summary>
+                {col.heading}
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <div class="sf-links">{col.links.map((l) => <a class="sf-link" href={l.href}>{l.label}</a>)}</div>
+            </details>
+          ))
+        }
+      </div>
+
+      <div class="sf-soc">
+        {
+          f.socials.map((s) => (
+            <a class={s.key} href={s.href} aria-label={s.label} {...external(s.href)}>
+              <SocialIcon name={s.key} />
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="sf-bar">
+        <span class="sf-bar-text">
+          {f.legal.copyright} · <a href={f.legal.privacyHref}>{f.legal.privacyLabel}</a>
+          <span style="flex-basis:100%;height:0"></span>
+          {f.legal.creditPrefix} <a href={f.legal.creditHref} target="_blank" rel="noopener">{f.legal.creditLabel}</a>
+        </span>
+        <a class="sf-top-link" href="#top">{f.legal.toTopLabel}</a>
+      </div>
+    </div>
+  </div>
+</footer>

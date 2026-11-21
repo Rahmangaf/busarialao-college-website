@@ -1,0 +1,74 @@
+---
+// Design preview: Admissions (the "2" frames). Built with the v1 shell and shared v1 components.
+// Not linked from the navigation; always noindex. The existing /admissions/ page is untouched.
+import SiteV1Layout from '../../layouts/SiteV1Layout.astro';
+import '../../styles/v1/page.css';
+import Faq from '../../components/v1/Faq.astro';
+import NavyBand from '../../components/v1/NavyBand.astro';
+import PageIntro from '../../components/v1/PageIntro.astro';
+import StepCards from '../../components/v1/StepCards.astro';
+import V1Photo from '../../components/v1/V1Photo.astro';
+import VisitBand from '../../components/v1/VisitBand.astro';
+import { admissionsV1 as c } from '../../data/admissions-v1';
+---
+
+<SiteV1Layout title={c.meta.title} description={c.meta.description}>
+  <div class="pg">
+    <PageIntro
+      eyebrow={c.hero.eyebrow}
+      title={c.hero.title}
+      lead={c.hero.lead}
+      actions={[
+        { label: c.hero.primary.label, href: c.hero.primary.href },
+        { label: c.hero.secondary.label, href: c.hero.secondary.href, kind: 'secondary' },
+      ]}
+    />
+
+    <StepCards id="apply" eyebrow={c.steps.eyebrow} heading={c.steps.heading} items={c.steps.items} />
+
+    <section class="sec">
+      <div class="wrap split">
+        <div>
+          <span class="eb">{c.whoCanApply.eyebrow}</span>
+          <h2 class="h2" style="margin-top:10px">{c.whoCanApply.heading}</h2>
+          <p class="lead muted">{c.whoCanApply.text}</p>
+        </div>
+        <div class="pcards pcards-2">
+          {c.whoCanApply.cards.map((card) => (
+            <div class="card pcard">
+              <div class="ph">
+                <V1Photo name={card.photo} alt={card.alt} focus={card.focus} sizes="(max-width: 960px) 100vw, 480px" />
+              </div>
+              <div class="body">
+                <h3>{card.title}</h3>
+                <p class="muted">{card.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <NavyBand
+      id="scholarships"
+      narrow
+      eyebrow={c.scholarships.eyebrow}
+      heading={c.scholarships.heading}
+      linkLabel={c.scholarships.linkLabel}
+      linkHref={c.scholarships.linkHref}
+    />
+
+    <Faq eyebrow={c.faq.eyebrow} heading={c.faq.heading} items={c.faq.items} />
+
+    <VisitBand
+      heading={c.visit.heading}
+      text={c.visit.text}
+      photo={c.visit.photo}
+      photoFocus={c.visit.focus}
+      photoFocusMobile={c.visit.focusMobile}
+      form={c.visit.form}
+      alt={c.visit.whatsapp}
+    />
+    <div class="end-space"></div>
+  </div>
+</SiteV1Layout>

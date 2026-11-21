@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "title": "Boarding & Life — Busarialao College",
+    "description": "Boarding on campus, and clubs, sport and practical skills for every student, day or boarding."
+  },
+  "hero": {
+    "breadcrumb": { "home": "Home", "current": "Boarding & Life" },
+    "eyebrow": "Boarding & Life",
+    "title": "A second home, and a full life outside class",
+    "lead": "Boarding on campus, and clubs, sport and practical skills for every student, day or boarding.",
+    "primary": { "label": "Book a campus tour", "href": "#visit" },
+    "secondary": { "label": "Boarding fees", "href": "/fees/" },
+    "photo": "dormitory",
+    "focus": "50% 50%",
+    "focusMobile": "50% 50%",
+    "alt": "Boarding dormitory with blue bunk beds, lockers and benches"
+  },
+  "ways": {
+    "eyebrow": "Two ways to study",
+    "heading": "Day school or boarding",
+    "cards": [
+      {
+        "title": "Day school",
+        "text": "Classes run Monday to Friday.",
+        "photo": "students-walking",
+        "focus": "50% 30%",
+        "alt": "Day students in uniform walking across campus",
+        "rows": [
+          { "label": "Hours", "value": "Details to be announced" },
+          { "label": "What to bring", "value": "Details to be announced" },
+          { "label": "Fees", "value": "Details to be announced" }
+        ]
+      },
+      {
+        "title": "Boarding",
+        "text": "Students can board on campus.",
+        "photo": "dormitory-study",
+        "focus": "35% 45%",
+        "alt": "Two boarders reading together in a dormitory",
+        "rows": [
+          { "label": "Hours", "value": "Details to be announced" },
+          { "label": "What to bring", "value": "Details to be announced" },
+          { "label": "Fees", "value": "Details to be announced" }
+        ]
+      }
+    ]
+  },
+  "hostel": {
+    "eyebrow": "Boarding",
+    "heading": "The hostel",
+    "text": "Our hostel is on campus, run by house staff and open to all students."
+  },
+  "routine": {
+    "eyebrow": "A boarder's day",
+    "heading": "Daily routine",
+    "steps": [
+      "Wake-up and morning devotion",
+      "Breakfast and morning prep",
+      "Classes",
+      "Clubs, sport and rest",
+      "Evening study",
+      "Lights out"
+    ],
+    "note": "Timings to be confirmed.",
+    "bring": {
+      "title": "What to bring",
+      "items": [
+        "Bedding: sheets, pillow and blanket",
+        "Toiletries and a bucket",
+        "School uniforms and house wear",
+        "Plate, cup and cutlery",
+        "Labelled personal items"
+      ],
+      "note": "The full list is sent with the admission letter."
+    },
+    "care": {
+      "title": "Visiting and care",
+      "text": "Visiting day and health care details to be announced."
+    }
+  },
+  "life": {
+    "eyebrow": "Student life",
+    "heading": "Clubs, sport and practical skills",
+    "photo": "football",
+    "focus": "50% 45%",
+    "alt": "Students in sky-blue and white kits playing football on the school field",
+    "cards": [
+      { "title": "Clubs", "items": ["Science", "Mathematics", "Debate", "ICT"], "text": "" },
+      { "title": "Sports", "items": ["Football", "Athletics"], "text": "" },
+      { "title": "Vocational training", "items": ["African cuisine", "Pastries", "Photography", "ICT and web design"], "text": "" },
+      { "title": "Excursions", "items": [], "text": "Educational trips each session. Details to be announced." }
+    ]
+  },
+  "gallery": {
+    "enabled": false,
+    "eyebrow": "Gallery",
+    "heading": "Life at Busarialao",
+    "items": [
+      { "caption": "Debate club" },
+      { "caption": "Science club in the lab" },
+      { "caption": "African cuisine class" },
+      { "caption": "Athletics day" },
+      { "caption": "Photography class" },
+      { "caption": "School excursion" }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "heading": "Questions parents ask.",
+    "items": [
+      { "q": "Can a day student become a boarder?", "a": "Yes, at the start of a term where space allows. Speak to the admissions office.", "open": true },
+      { "q": "Can boarders use phones?", "a": "Details to be announced by the admissions office.", "open": false },
+      { "q": "What happens if my child is unwell?", "a": "Details to be announced by the admissions office.", "open": false }
+    ]
+  },
+  "visit": {
+    "heading": "Come and see Busarialao for yourself",
+    "text": "Tours run Monday to Friday, 9am to 2pm. Leave your number and our admissions office will call to book a time.",
+    "photo": "courtyard",
+    "focus": "50% 55%",
+    "focusMobile": "62% 50%",
+    "form": { "label": "Phone number", "placeholder": "Your phone number", "button": "Book a tour" },
+    "whatsapp": { "label": "or ask on WhatsApp →", "href": "/preview/contact-v1/" }
+  }
+}
